@@ -541,7 +541,7 @@ function Dashboard() {
 
   // Eye icon click করলে customer page এ যাবে
   const handleViewCustomer = (customer) => {
-    navigate(`/customer/${customer.id}`, { state: { customer } });
+    navigate(`/customer/${customer.id}`, { state: { customer } })
   };
 
   return (

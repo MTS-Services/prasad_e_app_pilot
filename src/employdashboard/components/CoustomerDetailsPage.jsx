@@ -220,7 +220,7 @@ function CustomerDetailsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="flex-1 p-4 md:p-8">
         <button 
           onClick={handleBackToDashboard}
           className="mb-6 flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"

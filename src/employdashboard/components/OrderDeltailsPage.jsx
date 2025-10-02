@@ -172,8 +172,8 @@ function OrderDetailsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-4xl mx-auto p-6">
+    <div className="min-h-screen">
+      <div className="flex-1 p-4 md:p-8">
         <div className="flex gap-3 mb-6">
           <button 
             onClick={handleBackToCustomer}
