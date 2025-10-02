@@ -12,15 +12,13 @@ import Dashboard from "./employdashboard/Dashboard";
 import OrderManagementPage from "./employdashboard/OrderManagementPage";
 import PaymentManagement from "./employdashboard/PaymentManagement";
 import SupportPage from "./employdashboard/SupportPage";
-
-
-
+import CustomerDetailsPage from "./employdashboard/components/CoustomerDetailsPage";
+import OrderDetailsPage from "./employdashboard/components/OrderDeltailsPage";
 
 export const NotFound = () => <div className="p-8 text-2xl font-bold">404 - Page Not Found</div>;
 
 const router = createBrowserRouter([
   {
-  
     path: "/",
     element: <AppLayout />, 
     errorElement: <NotFound />, 
@@ -34,17 +32,24 @@ const router = createBrowserRouter([
         element: <Coustomerpage />,
       },
       {
+        path: "customer/:customerId", // নতুন route - customer details
+        element: <CustomerDetailsPage />,
+      },
+      {
+        path: "order/:orderId", // নতুন route - order details
+        element: <OrderDetailsPage />,
+      },
+      {
         path: "orders", 
         element: <OrderManagementPage />,
       },
- 
       {
         path: "payments",
-        element: <PaymentManagement/>,
+        element: <PaymentManagement />,
       },
       {
         path: "support",
-        element: <SupportPage/>,
+        element: <SupportPage />,
       },
     ],
   },
