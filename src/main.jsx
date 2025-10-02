@@ -32,11 +32,11 @@ const router = createBrowserRouter([
         element: <Coustomerpage />,
       },
       {
-        path: "customer/:customerId", // নতুন route - customer details
+        path: "customer/:customerId", 
         element: <CustomerDetailsPage />,
       },
       {
-        path: "order/:orderId", // নতুন route - order details
+        path: "order/:orderId", 
         element: <OrderDetailsPage />,
       },
       {
