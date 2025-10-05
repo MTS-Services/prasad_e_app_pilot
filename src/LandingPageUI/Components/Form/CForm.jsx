@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function CForm() {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -28,15 +31,15 @@ export default function CForm() {
     <div className="min-h-screen bg-gray-50 py-20 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-8 md:p-12">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-          Contact Us
+          {t('contact2.form.header')}
         </h1>
 
         <form onSubmit={handleSubmit}>
-          {/* First Name & Last Name Row */}
+          {/* First Name & Last Name */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium text-gray-900 mb-2">
-                First name<span className="text-red-500">*</span>
+                {t('contact2.form.firstName')}<span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -44,7 +47,7 @@ export default function CForm() {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                placeholder="John"
+                placeholder={t('contact2.form.firstNamePlaceholder')}
                 required
                 className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
@@ -52,7 +55,7 @@ export default function CForm() {
 
             <div>
               <label htmlFor="lastName" className="block text-sm font-medium text-gray-900 mb-2">
-                Last name<span className="text-red-500">*</span>
+                {t('contact2.form.lastName')}<span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -60,18 +63,18 @@ export default function CForm() {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                placeholder="Smith"
+                placeholder={t('contact2.form.lastNamePlaceholder')}
                 required
                 className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
             </div>
           </div>
 
-          {/* Phone & Email Row */}
+          {/* Phone & Email */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-2">
-                Phone Number<span className="text-red-500">*</span>
+                {t('contact2.form.phone')}<span className="text-red-500">*</span>
               </label>
               <input
                 type="tel"
@@ -79,7 +82,7 @@ export default function CForm() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="+91 98165 43210"
+                placeholder={t('contact2.form.phonePlaceholder')}
                 required
                 className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
@@ -87,7 +90,7 @@ export default function CForm() {
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
-                Email<span className="text-red-500">*</span>
+                {t('contact2.form.email')}<span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -95,7 +98,7 @@ export default function CForm() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="example@gmail.com"
+                placeholder={t('contact2.form.emailPlaceholder')}
                 required
                 className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
@@ -105,7 +108,7 @@ export default function CForm() {
           {/* Subject */}
           <div className="mb-6">
             <label htmlFor="subject" className="block text-sm font-medium text-gray-900 mb-2">
-              Subject
+              {t('contact2.form.subject')}
             </label>
             <input
               type="text"
@@ -113,7 +116,7 @@ export default function CForm() {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              placeholder="What do you want"
+              placeholder={t('contact.form.subjectPlaceholder')}
               className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             />
           </div>
@@ -121,25 +124,25 @@ export default function CForm() {
           {/* Message */}
           <div className="mb-8">
             <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
-              Message
+              {t('contact2.form.message')}
             </label>
             <textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="+91 98165 43210"
+              placeholder={t('contact.form.messagePlaceholder')}
               rows="6"
               className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
             ></textarea>
           </div>
 
-          {/* Submit Button */}
+          {/* Submit */}
           <button
             type="submit"
             className="bg-green-500 hover:bg-green-600 text-white font-medium px-8 py-3 rounded-md transition-colors duration-200"
           >
-            Send Message
+            {t('contact2.form.submit')}
           </button>
         </form>
       </div>

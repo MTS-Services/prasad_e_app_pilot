@@ -10,7 +10,7 @@ export const Layout = ({ children }) => {
   const {user} = useAuth()
   return (
     <div className='flex flex-col min-h-screen bg-gray-50 w-full'>
-      {user?.role=='user'? <UserNav/>:<Header/>}
+      {user?.role!=='user'? <UserNav/>:<Header/>}
       <main className='flex-grow w-full flex flex-col'>{children}</main>
       {user?.role!=='user'? <Footer/>:""}
     </div>

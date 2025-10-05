@@ -1,21 +1,24 @@
 import { Shield, Lightbulb, Target } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function MissionValues() {
+  const { t } = useTranslation();
+
   const coreValues = [
     {
       icon: <Shield className="w-8 h-8 text-green-600" />,
-      title: "Safety First",
-      description: "Uncompromising standards in operations and compliance"
+      titleKey: "mission.safetyFirst.title",
+      descriptionKey: "mission.safetyFirst.description",
     },
     {
       icon: <Lightbulb className="w-8 h-8 text-green-600" />,
-      title: "Innovation",
-      description: "Cutting-edge technology and continuous improvement"
+      titleKey: "mission.innovation.title",
+      descriptionKey: "mission.innovation.description",
     },
     {
       icon: <Target className="w-8 h-8 text-green-600" />,
-      title: "Customer Focus",
-      description: "ailored solutions for every client need"
+      titleKey: "mission.customerFocus.title",
+      descriptionKey: "mission.customerFocus.description",
     }
   ];
 
@@ -25,20 +28,17 @@ export default function MissionValues() {
         {/* Mission Section */}
         <div className="bg-yellow-50 rounded-lg px-8 py-12 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
-            Our Mission
+            {t("mission.header")}
           </h2>
           <p className="text-center text-gray-700 leading-relaxed max-w-4xl mx-auto">
-            To revolutionize industries through accessible, safe, and innovative drone technology. We bridge the gap between 
-            cutting-edge aerial capabilities and real-world business needs, delivering measurable value to our clients. Our vision is 
-            to become the most trusted drone services partner across India, setting industry standards for quality, safety, and 
-            customer satisfaction.
+            {t("mission.description")}
           </p>
         </div>
 
         {/* Core Values Section */}
         <div>
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            Our Core Values
+            {t("mission.coreValuesHeader")}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -51,10 +51,10 @@ export default function MissionValues() {
                   {value.icon}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {value.title}
+                  {t(value.titleKey)}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {value.description}
+                  {t(value.descriptionKey)}
                 </p>
               </div>
             ))}

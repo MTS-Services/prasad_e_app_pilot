@@ -1,26 +1,29 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Industry = () => {
+      const { t } = useTranslation();
+
     const industries = [
         {
             icon: '🌾',
-            title: 'Agriculture & Farming',
-            description: 'Advanced aerial solutions for agriculture & farming',
+            titleKey: 'industries.agriculture.title',
+            descriptionKey: 'industries.agriculture.description',
         },
         {
             icon: '🏗️',
-            title: 'Construction',
-            description: 'Advanced aerial solutions for construction',
+            titleKey: 'industries.construction.title',
+            descriptionKey: 'industries.construction.description',
         },
         {
             icon: '⚡',
-            title: 'Energy & Utilities',
-            description: 'Advanced aerial solutions for agriculture & farming',
+            titleKey: 'industries.energy.title',
+            descriptionKey: 'industries.energy.description',
         },
         {
             icon: '👮',
-            title: 'Public Safety & Government',
-            description: 'Advanced aerial solutions for construction',
+            titleKey: 'industries.publicSafety.title',
+            descriptionKey: 'industries.publicSafety.description',
         },
     ];
 
@@ -30,10 +33,10 @@ const Industry = () => {
                 {/* Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                        Industries We Serve
+                        {t('industries.header')}
                     </h2>
                     <p className="text-gray-600 text-sm md:text-base">
-                        Specialized drone solutions tailored to your industry needs
+                       {t('industries.subheader')}
                     </p>
                 </div>
 
@@ -49,12 +52,12 @@ const Industry = () => {
 
                             {/* Title */}
                             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                                {industry.title}
+                                {t(industry.titleKey)}
                             </h3>
 
                             {/* Description */}
                             <p className="text-gray-600 mb-4 text-sm md:text-base">
-                                {industry.description}
+                                {t(industry.descriptionKey)}
                             </p>
 
                             {/* Learn More Link */}
@@ -62,7 +65,7 @@ const Industry = () => {
                                 href="#"
                                 className="text-green-600 font-medium inline-flex items-center gap-2 hover:gap-3 transition-all text-sm md:text-base"
                             >
-                                Learn more
+                                {t('industries.learnMore')}
                                 <span>→</span>
                             </a>
                         </div>
@@ -72,7 +75,7 @@ const Industry = () => {
                 {/* View All Services Button */}
                 <div className="text-center">
                     <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-300">
-                        View All Services
+                        {t('industries.viewAllServices')}
                     </button>
                 </div>
             </div>

@@ -3,20 +3,21 @@ import { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link, NavLink } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
-// import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next'; // <-- added
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLangOpen, setIsLangOpen] = useState(false);
+  // const [isLangOpen, setIsLangOpen] = useState(false);
+  const { t } = useTranslation(); // <-- added
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Blog & Research', href: '/blog' },
-    { name: 'Contact', href: '/contact' }
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.services'), href: '/services' },
+    { name: t('nav.blog'), href: '/blog' },
+    { name: t('nav.contact'), href: '/contact' }
   ];
-// const { t } = useTranslation();
+
   return (
     <nav className="bg-white shadow-sm">
       <div className="w-11/12 mx-auto  px-4 sm:px-6 lg:px-8">
@@ -44,16 +45,15 @@ export default function Nav() {
           {/* Right Side Actions */}
           <div className="hidden lg:flex items-center space-x-4">
             {/* Language Selector */}
-            <LanguageSwitcher/>
+            <LanguageSwitcher />
 
             {/* Download Button */}
             <button className="!bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-              Download App
+              {t('nav.download')}
             </button>
             <Link to={'/login'} className="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-              Login
+              {t('nav.login')}
             </Link>
-            {/* <button className="!bg-green-500 btn text-black w-full">{t("navigation.login")}</button> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -81,24 +81,19 @@ export default function Nav() {
                 {link.name}
               </a>
             ))}
-            
+
             <div className="pt-4 z-50 border-t border-gray-200 space-y-3">
               {/* Language Selector Mobile */}
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center justify-between w-full text-gray-700 hover:text-green-500 transition-colors duration-200 py-2"
-              >
-               
-                <ChevronDown className="w-4 h-4" />
-              </button>
               
-              <LanguageSwitcher/>
+
+              <div className="flex justify-center">
+                <LanguageSwitcher />
+              </div>
 
               {/* Download App Button Mobile */}
               <button className="w-full bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-md text-base font-medium transition-colors duration-200">
-                Download App
+                {t('nav.download')}
               </button>
-              
             </div>
           </div>
         </div>

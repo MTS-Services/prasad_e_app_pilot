@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 // StatsCards.jsx
 // Responsive 4-card stats section using Tailwind CSS v4
@@ -15,7 +16,7 @@ const cards = [
       </svg>
     ),
     value: "1000+",
-    title: "Satisfied Clients",
+    titleKey: "landingstats.satisfiedClients",
   },
   {
     id: 2,
@@ -25,7 +26,7 @@ const cards = [
       </svg>
     ),
     value: "1000+",
-    title: "Projects Completed",
+    titleKey: "landingstats.projectsCompleted",
   },
   {
     id: 3,
@@ -37,7 +38,7 @@ const cards = [
       </svg>
     ),
     value: "15+",
-    title: "Industry Certifications",
+    titleKey: "landingstats.industryCertifications",
   },
   {
     id: 4,
@@ -47,11 +48,12 @@ const cards = [
       </svg>
     ),
     value: "99%",
-    title: "Client Satisfaction",
+    titleKey: "landingstats.clientSatisfaction",
   },
 ];
 
 export default function Statistics() {
+  const { t } = useTranslation();
   return (
     <section className="bg-gray-50 py-10 xl:py-20 px-4 sm:px-6 md:px-8 lg:px-10">
       <div className=" lg:w-10/12 xl:max-w-7xl mx-auto ">
@@ -68,7 +70,7 @@ export default function Statistics() {
               </div>
 
               <div className="text-3xl font-extrabold text-slate-900">{c.value}</div>
-              <div className="mt-3 text-sm text-slate-600">{c.title}</div>
+              <div className="mt-3 text-sm text-slate-600">{t(c.titleKey)}</div>
             </div>
           ))}
         </div>
