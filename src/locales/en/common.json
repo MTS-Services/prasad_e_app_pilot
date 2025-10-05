@@ -195,5 +195,12 @@
   "common": {
     "logout": "Logout",
     "pageNotFound": "Page not found"
+  },
+    "hero": {
+    "tagline": "Professional Drone Services Across India",
+    "title": "Elevate Your Business with Advanced",
+    "highlight": "Drone Solutions",
+    "description": "From precision agriculture to infrastructure inspection, we deliver cutting-edge aerial solutions for enterprises, government, and specialized industries.",
+    "cta": "Book a Service"
   }
 }

@@ -14,11 +14,13 @@ export const Button = React.memo(
       'font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
     const variantClasses = {
       primary:
-        '!text-white !bg-indigo-600 hover:!bg-indigo-700 focus:ring-indigo-500 [&]:!text-white',
+        'text-white bg-indigo-600 hover:!bg-indigo-700 focus:ring-indigo-500 [&]:!text-white',
       secondary:
         'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-400',
       blackText:
         'text-black bg-white hover:bg-gray-50 focus:ring-gray-400 border border-gray-300',
+      greenBtn:
+        'text-white bg-green-600 hover:bg-green-700 focus:ring-green-500',
     };
     const sizeClasses = {
       small: 'px-3 py-1.5 text-sm',

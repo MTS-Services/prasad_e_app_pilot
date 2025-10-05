@@ -7,6 +7,10 @@ import NotAuthorizedPage from './pages/NotAuthorizedPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { Layout } from './components/common/Layout';
 import { useRequireAuth } from './hooks/useRequireAuth';
+import MainLayout from './LandingPageUI/Layout/MainLayout';
+import Services from './LandingPageUI/Pages/Services';
+import About from './LandingPageUI/Pages/About';
+import Contact  from './LandingPageUI/Pages/Contact';
 
 function App() {
   // Protect the DashboardPage route
@@ -17,7 +21,11 @@ function App() {
       <Layout>
         <Routes>
           {/* Public Routes */}
-          <Route path='/' element={<HomePage />} />
+          <Route path='/' element={<MainLayout/>} />
+          <Route path='/services' element={<Services />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/login' element={<LoginPage />} />
           <Route path='/login' element={<LoginPage />} />
 
           {/* Protected Routes */}

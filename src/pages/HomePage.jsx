@@ -19,7 +19,7 @@ const HomePage = () => {
           <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
             <Link
               to='/login'
-              className='w-full sm:w-auto bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+              className='w-full  sm:w-auto bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
               style={{ color: 'white' }}
             >
               {t('navigation.getStarted')}
