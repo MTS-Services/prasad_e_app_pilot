@@ -30,8 +30,51 @@
       "welcome": "वापसी पर स्वागत है, कर्मचारी"
     },
     "fieldAgent": {
-      "title": "फील्ड एजेंट डैशबोर्ड",
-      "welcome": "वापसी पर स्वागत है, फील्ड एजेंट"
+      "fieldAgentSummery": {
+        "userAdded": "आपके द्वारा जोड़े गए कुल उपयोगकर्ता",
+        "totalcommition": "कुल अर्जित कमीशन",
+        "totalPayments": "हमारा बकाया भुगतान"
+      },
+      "userAdd": {
+        "AddedByYou": "आपके द्वारा जोड़ा गया",
+        "AddCustomer": "ग्राहक जोड़ें"
+      },
+      "tableHeader": {
+        "User": "उपयोगकर्ता",
+        "Role": "भूमिका",
+        "RegistrationCommission": "पंजीकरण कमीशन",
+        "FirstOrderCommission": "पहले ऑर्डर का कमीशन",
+        "JoinDate": "जुड़ने की तिथि"
+      },
+      "pagination": {
+        "showing": "दिखा रहे हैं",
+        "users": "उपयोगकर्ता",
+        "previous": "पिछला",
+        "next": "अगला"
+      },
+      "FirstModal": {
+        "addCustomer": "ग्राहक जोड़ें",
+        "customerInfo": "ग्राहक जानकारी",
+        "firstName": "पहला नाम",
+        "middleName": "मध्यम नाम",
+        "lastName": "अंतिम नाम",
+        "alsoKnownAs": "के रूप में भी जाना जाता है",
+        "nickname": "उपनाम",
+        "phone": "फ़ोन",
+        "email": "ईमेल",
+        "geoLocation": "भौगोलिक स्थान",
+        "selectOnMap": "मानचित्र पर चुनें",
+        "district": "जिला",
+        "enterDistrict": "अपना जिला दर्ज करें",
+        "mandal": "मंडल",
+        "enterMandal": "अपना मंडल दर्ज करें",
+        "village": "गांव",
+        "enterVillage": "अपना गांव दर्ज करें",
+        "registeredBy": "द्वारा पंजीकृत",
+        "selectAgent": "एजेंट चुनें",
+        "FieldAgent": "एजेंट 1",
+        "next": "अगला"
+      }
     },
     "marketing": {
       "title": "मार्केटिंग डैशबोर्ड",

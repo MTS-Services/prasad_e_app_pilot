@@ -1,0 +1,62 @@
+{
+  "statsData": [
+    {
+      "id": 1,
+      "title": "Total user added by you",
+      "value": "106",
+      "change": "+8.2% from last month",
+      "icon": "PiUsersThreeBold",
+      "bgColor": "bg-green-500"
+    },
+    {
+      "id": 2,
+      "title": "Total commission earned",
+      "value": "₹10k",
+      "change": "+8.2% from last month",
+      "icon": "FaRupeeSign",
+      "bgColor": "bg-green-500"
+    },
+    {
+      "id": 3,
+      "title": "Outstanding payments",
+      "value": "₹8k",
+      "change": "+8.2% from last month",
+      "icon": "FaRupeeSign",
+      "bgColor": "bg-green-500"
+    }
+  ],
+  "tableData": [
+    {
+      "id": 1,
+      "user": "Jacob Jones",
+      "role": "Customer",
+      "registrationCommission": "₹120",
+      "firstOrderCommission": "₹100",
+      "joinDate": "March 6, 2018"
+    },
+    {
+      "id": 2,
+      "user": "Floyd Miles",
+      "role": "Customer",
+      "registrationCommission": "₹120",
+      "firstOrderCommission": "₹100",
+      "joinDate": "July 14, 2015"
+    },
+    {
+      "id": 3,
+      "user": "Dianne Russell",
+      "role": "Customer",
+      "registrationCommission": "₹120",
+      "firstOrderCommission": "₹100",
+      "joinDate": "December 19, 2013"
+    },
+    {
+      "id": 4,
+      "user": "Theresa Webb",
+      "role": "Customer",
+      "registrationCommission": "₹120",
+      "firstOrderCommission": "₹100",
+      "joinDate": "December 19, 2013"
+    }
+  ]
+}
