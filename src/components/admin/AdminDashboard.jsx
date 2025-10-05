@@ -1,193 +1,183 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
-  HiHome,
-  HiOutlineViewGrid,
-  HiOutlineUsers,
-  HiOutlineUserGroup,
-  HiOutlineLocationMarker,
-  HiOutlineBriefcase,
-  HiOutlineCreditCard,
-  HiOutlineChartBar,
-  HiOutlineExclamation,
-  HiMenuAlt3,
-  HiX,
+  HiOutlineFilter,
+  HiOutlineBell,
+  HiOutlineSearch,
 } from 'react-icons/hi';
 
-// Import all admin components
-import DroneOperator from './DroneOperator';
-import UserManagement from './UserManagement';
-import EmployeeManagement from './EmployeeManagement';
-import FieldAgent from './FieldAgent';
-import Jobs from './Jobs';
-import PaymentsManagement from './PaymentsManagement';
-import Reports from './Reports';
-import Complaints from './Complaints';
+// Import dashboard components
+import StatsCard from '../common/StatsCard';
+import RevenueChart from '../charts/RevenueChart';
+import UserActivityTable from '../common/UserActivityTable';
+import LoadingSpinner from '../common/LoadingSpinner';
+import Sidebar from '../common/Sidebar';
+
+// Import hooks
+import { useDashboardOverview } from '../../hooks/useDashboardData';
+
+// Import page components
+import DroneOperatorPage from '../pages/DroneOperatorPage';
+import UserManagementPage from '../pages/UserManagementPage';
+import GenericPage from '../pages/GenericPage';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { t } = useTranslation();
 
-  const menuItems = [
-    { id: 'dashboard', label: t('navigation.dashboard'), icon: HiHome },
-    {
-      id: 'drone-operator',
-      label: t('sidebar.admin.droneOperator'),
-      icon: HiOutlineViewGrid,
-    },
-    {
-      id: 'user-management',
-      label: t('sidebar.admin.userManagement'),
-      icon: HiOutlineUsers,
-    },
-    {
-      id: 'employee-management',
-      label: t('sidebar.admin.employeeManagement'),
-      icon: HiOutlineUserGroup,
-    },
-    {
-      id: 'field-agent',
-      label: t('sidebar.admin.fieldAgent'),
-      icon: HiOutlineLocationMarker,
-    },
-    { id: 'jobs', label: t('sidebar.admin.jobs'), icon: HiOutlineBriefcase },
-    {
-      id: 'payments-management',
-      label: t('sidebar.admin.paymentsManagement'),
-      icon: HiOutlineCreditCard,
-    },
-    {
-      id: 'reports',
-      label: t('sidebar.admin.reports'),
-      icon: HiOutlineChartBar,
-    },
-    {
-      id: 'complaints',
-      label: t('sidebar.admin.complaints'),
-      icon: HiOutlineExclamation,
-    },
-  ];
+  // Fetch dashboard data
+  const {
+    data: dashboardData,
+    loading: dashboardLoading,
+    error: dashboardError,
+  } = useDashboardOverview();
 
   const renderContent = () => {
     switch (activeSection) {
       case 'dashboard':
+        if (dashboardLoading) {
+          return (
+            <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+              <LoadingSpinner />
+            </div>
+          );
+        }
+
+        if (dashboardError) {
+          return (
+            <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+              <div className='text-center'>
+                <p className='text-red-600 mb-4'>
+                  Error loading dashboard data
+                </p>
+                <button
+                  className='px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700'
+                  onClick={() => window.location.reload()}
+                >
+                  Retry
+                </button>
+              </div>
+            </div>
+          );
+        }
+
+        if (!dashboardData) {
+          return (
+            <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+              <p className='text-gray-500'>No dashboard data available</p>
+            </div>
+          );
+        }
+
         return (
           <div className='min-h-screen bg-gray-50 w-full'>
-            <div className='w-full px-4 sm:px-6 lg:px-8 py-6'>
-              {/* Header Section */}
-              <div className='bg-white rounded-xl shadow-sm p-6 sm:p-8 mb-8'>
-                <div className='flex items-center justify-between flex-wrap gap-4'>
-                  <div className='flex items-center'>
-                    <div className='bg-indigo-100 p-3 rounded-lg mr-4'>
-                      <HiHome className='w-8 h-8 text-indigo-600' />
-                    </div>
-                    <div>
-                      <h1 className='text-2xl sm:text-3xl font-bold text-gray-900'>
-                        {t('dashboard.admin.title')}
-                      </h1>
-                      <p className='text-gray-600 mt-1'>
-                        {t('dashboard.admin.welcome')}
-                      </p>
-                    </div>
-                  </div>
-                  <div className='flex items-center space-x-2'>
-                    <span className='bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium'>
-                      {t('dashboard.admin.fullAccess')}
-                    </span>
-                  </div>
+            <div className='w-full px-6 py-6'>
+              {/* Header Section - compact Figma match */}
+              <div className='mb-4'>
+                <div>
+                  <h1 className='text-lg font-medium text-gray-900 mb-1'>
+                    {dashboardData.overview?.title || 'Dashboard Overview'}
+                  </h1>
+                  <p className='text-gray-500 text-xs'>
+                    {dashboardData.overview?.subtitle ||
+                      'Monitor your platform performance and key metrics'}
+                  </p>
                 </div>
               </div>
 
-              {/* Stats Grid */}
-              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8'>
-                <div className='bg-white p-6 rounded-xl shadow-sm'>
-                  <div className='flex items-center justify-between'>
-                    <div>
-                      <p className='text-sm font-medium text-gray-600'>
-                        {t('stats.totalUsers')}
-                      </p>
-                      <p className='text-2xl font-bold text-gray-900'>1,234</p>
-                    </div>
-                    <div className='bg-blue-100 p-3 rounded-lg'>
-                      <HiOutlineUsers className='w-6 h-6 text-blue-600' />
-                    </div>
-                  </div>
-                </div>
-
-                <div className='bg-white p-6 rounded-xl shadow-sm'>
-                  <div className='flex items-center justify-between'>
-                    <div>
-                      <p className='text-sm font-medium text-gray-600'>
-                        {t('stats.activeSessions')}
-                      </p>
-                      <p className='text-2xl font-bold text-gray-900'>891</p>
-                    </div>
-                    <div className='bg-green-100 p-3 rounded-lg'>
-                      <HiOutlineViewGrid className='w-6 h-6 text-green-600' />
-                    </div>
-                  </div>
-                </div>
-
-                <div className='bg-white p-6 rounded-xl shadow-sm'>
-                  <div className='flex items-center justify-between'>
-                    <div>
-                      <p className='text-sm font-medium text-gray-600'>
-                        {t('stats.totalRevenue')}
-                      </p>
-                      <p className='text-2xl font-bold text-gray-900'>
-                        $184,592
-                      </p>
-                    </div>
-                    <div className='bg-emerald-100 p-3 rounded-lg'>
-                      <HiOutlineCreditCard className='w-6 h-6 text-emerald-600' />
-                    </div>
-                  </div>
-                </div>
-
-                <div className='bg-white p-6 rounded-xl shadow-sm'>
-                  <div className='flex items-center justify-between'>
-                    <div>
-                      <p className='text-sm font-medium text-gray-600'>
-                        {t('stats.openComplaints')}
-                      </p>
-                      <p className='text-2xl font-bold text-gray-900'>8</p>
-                    </div>
-                    <div className='bg-red-100 p-3 rounded-lg'>
-                      <HiOutlineExclamation className='w-6 h-6 text-red-600' />
-                    </div>
-                  </div>
-                </div>
+              {/* Stats Grid - pixel perfect match */}
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6'>
+                {dashboardData.overview?.stats?.map((stat, index) => (
+                  <StatsCard key={stat.id || index} stat={stat} />
+                ))}
               </div>
 
-              {/* Content Grid */}
-              <div className='bg-white rounded-xl shadow-sm p-6'>
-                <h2 className='text-xl font-bold text-gray-900 mb-4'>
-                  {t('dashboard.admin.overview')}
-                </h2>
-                <p className='text-gray-600'>
-                  {t('dashboard.admin.overviewDescription')}
-                </p>
+              {/* Additional ticket stat */}
+              {dashboardData.overview?.additionalStats && (
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8'>
+                  {dashboardData.overview.additionalStats.map((stat, index) => (
+                    <StatsCard key={stat.id || index} stat={stat} />
+                  ))}
+                  <div className='md:col-span-3'></div>
+                </div>
+              )}
+
+              {/* Chart Section - full width like Figma */}
+              <div className='mb-8'>
+                {dashboardData.revenueChart && (
+                  <RevenueChart
+                    data={dashboardData.revenueChart.data}
+                    title={dashboardData.revenueChart.title}
+                  />
+                )}
+              </div>
+
+              {/* Recent User Activity Table */}
+              <div>
+                {dashboardData.recentActivity && (
+                  <UserActivityTable
+                    data={dashboardData.recentActivity}
+                    title={dashboardData.recentActivity.title}
+                  />
+                )}
               </div>
             </div>
           </div>
         );
       case 'drone-operator':
-        return <DroneOperator />;
+        return <DroneOperatorPage />;
       case 'user-management':
-        return <UserManagement />;
+        return <UserManagementPage />;
       case 'employee-management':
-        return <EmployeeManagement />;
+        return (
+          <GenericPage
+            section='employees'
+            title='Employee Management'
+            subtitle='Manage and monitor employees'
+          />
+        );
       case 'field-agent':
-        return <FieldAgent />;
+        return (
+          <GenericPage
+            section='field-agents'
+            title='Field Agents'
+            subtitle='Manage and monitor field agents'
+          />
+        );
       case 'jobs':
-        return <Jobs />;
+        return (
+          <GenericPage
+            section='jobs'
+            title='Jobs Management'
+            subtitle='Manage and monitor jobs'
+            statsColumns={3}
+          />
+        );
       case 'payments-management':
-        return <PaymentsManagement />;
+        return (
+          <GenericPage
+            section='payments'
+            title='Payments Management'
+            subtitle='Manage payments and revenue'
+            statsColumns={3}
+          />
+        );
       case 'reports':
-        return <Reports />;
+        return (
+          <GenericPage
+            section='reports'
+            title='Reports & Analytics'
+            subtitle='View and generate reports'
+          />
+        );
       case 'complaints':
-        return <Complaints />;
+        return (
+          <GenericPage
+            section='complaints'
+            title='Complaints Management'
+            subtitle='Manage customer complaints'
+            statsColumns={3}
+          />
+        );
       default:
         return <div>Page not found</div>;
     }
@@ -195,89 +185,17 @@ const AdminDashboard = () => {
 
   return (
     <div className='flex h-screen bg-gray-100'>
-      {/* Mobile menu button - only show when sidebar is closed */}
-      {!sidebarOpen && (
-        <div className='lg:hidden fixed top-4 left-4 z-50'>
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className='bg-white p-3 rounded-lg shadow-lg hover:bg-gray-50 transition-all duration-200 border border-gray-200'
-          >
-            <HiMenuAlt3 className='w-5 h-5 text-gray-700' />
-          </button>
-        </div>
-      )}
-
-      {/* Sidebar */}
-      <div
-        className={`
-        fixed inset-y-0 left-0 z-40 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out
-        lg:translate-x-0 lg:static lg:inset-0
-        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-      `}
-      >
-        <div className='flex flex-col h-full'>
-          {/* Logo */}
-          <div className='flex items-center justify-between h-16 px-4 border-b border-gray-200'>
-            <div className='flex items-center min-w-0 flex-1'>
-              <div className='w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0'>
-                <span className='text-white font-bold text-sm'>P</span>
-              </div>
-              <h1 className='text-base font-semibold text-gray-900 truncate'>
-                {t('sidebar.prasadDashboard')}
-              </h1>
-            </div>
-            {/* Close button for mobile */}
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className='lg:hidden p-2 rounded-md hover:bg-gray-100 ml-4 flex-shrink-0'
-            >
-              <HiX className='w-5 h-5 text-gray-500' />
-            </button>
-          </div>
-
-          {/* Navigation */}
-          <nav className='flex-1 px-4 py-6 space-y-2 overflow-y-auto'>
-            {menuItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    setActiveSection(item.id);
-                    setSidebarOpen(false);
-                  }}
-                  className={`
-                    w-full flex items-center px-4 py-3 text-left rounded-lg transition-colors duration-200
-                    ${
-                      activeSection === item.id
-                        ? 'bg-indigo-50 text-indigo-700 border-r-2 border-indigo-700'
-                        : 'text-gray-700 hover:bg-gray-50'
-                    }
-                  `}
-                >
-                  <Icon className='w-5 h-5 mr-3' />
-                  <span className='font-medium'>{item.label}</span>
-                </button>
-              );
-            })}
-          </nav>
-        </div>
-      </div>
-
-      {/* Overlay for mobile */}
-      {sidebarOpen && (
-        <div
-          className='fixed inset-0 z-30 bg-black bg-opacity-50 lg:hidden'
-          onClick={() => setSidebarOpen(false)}
-          style={{ top: '0px' }}
-        />
-      )}
+      {/* Sidebar Component */}
+      <Sidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
 
       {/* Main content */}
-      <div className='flex-1 flex flex-col overflow-hidden lg:ml-0'>
-        {/* Mobile header spacer */}
-        <div className='lg:hidden h-20'></div>
-        <main className='flex-1 overflow-x-hidden overflow-y-auto bg-gray-100'>
+      <div className='flex-1 flex flex-col overflow-hidden'>
+        <main className='flex-1 overflow-x-hidden overflow-y-auto bg-gray-50'>
           <div className='min-h-full'>{renderContent()}</div>
         </main>
       </div>

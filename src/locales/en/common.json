@@ -39,7 +39,7 @@
     }
   },
   "sidebar": {
-    "prasadDashboard": "Prasad Dashboard",
+    "prasadDashboard": "Demo Logo",
     "admin": {
       "droneOperator": "Drone operator",
       "userManagement": "User management",
@@ -79,7 +79,36 @@
     "totalUsers": "Total Users",
     "activeSessions": "Active Sessions",
     "totalRevenue": "Total Revenue",
-    "openComplaints": "Open Complaints"
+    "openComplaints": "Open Complaints",
+    "activeUser": "Active User",
+    "totalJobs": "Total Jobs",
+    "revenue": "Revenue",
+    "complaints": "Complaints",
+    "ticket": "Ticket",
+    "lastSevenDaysRevenue": "Last 7 days revenue",
+    "recentUserActivity": "Recent User Activity"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "showing": "Showing",
+    "of": "of",
+    "users": "Users"
+  },
+  "table": {
+    "headers": {
+      "user": "User",
+      "role": "Role",
+      "jobTitle": "Job title",
+      "status": "Status",
+      "lastActive": "Last Active",
+      "actions": "Actions"
+    },
+    "status": {
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "notStarted": "Not started"
+    }
   },
   "home": {
     "title": "Welcome to Prasad Dashboard",
