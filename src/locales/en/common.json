@@ -26,8 +26,46 @@
       "overviewDescription": "Welcome to your admin dashboard. Use the sidebar to navigate between different sections."
     },
     "employee": {
-      "title": "Employee Dashboard",
-      "welcome": "Welcome back, Employee"
+      "title": "Empoloyee Dashboard Overview",
+      "welcome": "Monitor Your customer Service Performance",
+      "pages": {
+        "dashboard": {
+          "DropDown": {},
+          "card": {
+            "1st": "Total Customers",
+            "2nd": "Active Orders",
+            "3rd": "Pending Payments",
+            "4th": "Open Tickets",
+            "5th": "Completed Orders",
+            "6st": "Canceled Orders"
+          },
+          "table": {
+            "serviceName": "Service name",
+            "contact": "Contact",
+            "location": "Location",
+            "served": "Served",
+            "progress": "Progress",
+            "priority": "Priority",
+            "action": "Action",
+            "tableTitle": "Recent Business Activity"
+          }
+        },
+        "profile": {
+          "title": "Profile",
+          "description": "View and edit your personal information.",
+          "editButton": "Edit Profile"
+        },
+        "tasks": {
+          "title": "Tasks",
+          "description": "Check your assigned tasks and update status.",
+          "addTaskButton": "Add Task"
+        },
+        "attendance": {
+          "title": "Attendance",
+          "description": "View your attendance records and mark presence.",
+          "markAttendanceButton": "Mark Attendance"
+        }
+      }
     },
     "fieldAgent": {
       "title": "Field Agent Dashboard",
@@ -38,6 +76,7 @@
       "welcome": "Welcome back, Marketing Team"
     }
   },
+
   "sidebar": {
     "prasadDashboard": "Prasad Dashboard",
     "admin": {
@@ -51,12 +90,11 @@
       "complaints": "Complaints"
     },
     "employee": {
-      "myTasks": "My Tasks",
-      "schedule": "Schedule",
-      "reports": "Reports",
-      "profile": "Profile",
-      "messages": "Messages",
-      "training": "Training"
+      "dashboard": "Dashboard",
+      "customer": "Customer",
+      "orders": "Orders",
+      "payments": "Paypents",
+      "support": "Support"
     },
     "fieldAgent": {
       "myAssignments": "My Assignments",

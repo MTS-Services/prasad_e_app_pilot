@@ -7,14 +7,16 @@ import {
   CreditCard,
   Headphones,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen, activeSection, setActiveSection }) => {
+    const { t } = useTranslation();
   const menuItems = [
-    { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { id: "customer", label: "Customer", icon: User },
-    { id: "orders", label: "Orders", icon: ShoppingCart },
-    { id: "payments", label: "Payments", icon: CreditCard },
-    { id: "support", label: "Support", icon: Headphones },
+    { id: "dashboard", label: t('sidebar.employee.dashboard'), icon: LayoutDashboard },
+    { id: "customer", label: t('sidebar.employee.customer'), icon: User },
+    { id: "orders", label: t('sidebar.employee.orders'), icon: ShoppingCart },
+    { id: "payments", label: t('sidebar.employee.payments'), icon: CreditCard },
+    { id: "support", label: t('sidebar.employee.support'), icon: Headphones },
   ];
 
   return (

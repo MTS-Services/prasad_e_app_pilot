@@ -6,30 +6,32 @@ import { Users, ShoppingCart, CreditCard, Headphones, Eye, TrendingUp, TrendingD
 import RegistrationModal from "./components/Modal/RegistrationModal";
 import AssistProfileSetupModal from "./components/Modal/AssistProfileSetupModal";
 import ApiService from "../../services/apiService";
+import { useTranslation } from "react-i18next";
 
 function DashBoard() {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 days");
-  const [open, setOpen] = useState(false); 
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [stats, setStats] = useState([]);
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const { t } = useTranslation();
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
   const navigate = useNavigate();
   // inside your component:
-const [dropdownOpen, setDropdownOpen] = useState(false);
-const periods = [
-  "Last 7 days",
-  "Last 30 days",
-  "Last 60 days",
-  "Last 90 days",
-  "Last 6 months",
-  "Last 12 months",
-];
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const periods = [
+    "Last 7 days",
+    "Last 30 days",
+    "Last 60 days",
+    "Last 90 days",
+    "Last 6 months",
+    "Last 12 months",
+  ];
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -38,37 +40,37 @@ const periods = [
         const data = await ApiService.get("/dashboardOverviewData.json");
         const summaryStats = [
           {
-            label: "Total Customers",
+            label:t('dashboard.employee.pages.dashboard.card.1st'),
             value: data.summary.totalCustomers,
             trend: "up",
             icon: Users,
           },
           {
-            label: "Active Orders",
+            label: t('dashboard.employee.pages.dashboard.card.2nd'),
             value: data.summary.totalRevenue,
             trend: "up",
             icon: ShoppingCart,
           },
           {
-            label: "Pending Payments",
+            label: t('dashboard.employee.pages.dashboard.card.3rd'),
             value: data.summary.pendingPayments,
             trend: "down",
             icon: CreditCard,
           },
           {
-            label: "Open Tickets",
+            label: t('dashboard.employee.pages.dashboard.card.4th'),
             value: data.summary.avgDuration,
             trend: "up",
             icon: Headphones,
           },
           {
-            label: "Completed Orders",
+            label: t('dashboard.employee.pages.dashboard.card.5th'),
             value: data.summary.completedOrders,
             trend: "up",
             icon: ShoppingCart,
           },
           {
-            label: "Canceled Orders",
+            label:t('dashboard.employee.pages.dashboard.card.6th'),
             value: data.summary.canceledOrders,
             trend: "down",
             icon: ShoppingCart,
@@ -131,52 +133,51 @@ const periods = [
     <div className="flex-1 p-4 md:p-8 bg-gray-50">
       {/* Header */}
       <div className="mb-4 md:mb-6">
-        <h1 className="text-lg md:text-2xl font-bold text-gray-900">Dashboard Overview</h1>
-        <p className="text-xs md:text-base text-gray-600">Monitor your customer service performance</p>
+        <h1 className="text-lg md:text-2xl font-bold text-gray-900">{t('dashboard.employee.title')}</h1>
+        <p className="text-xs md:text-base text-gray-600">{t('dashboard.employee.welcome')}</p>
       </div>
 
       {/* Period Select */}
       <div className="mb-4 md:mb-6 flex flex-col items-start gap-2 relative">
-  <h2 className="text-lg md:text-xl font-normal text-gray-700">
-    {selectedPeriod} overview
-  </h2>
+        <h2 className="text-lg md:text-xl font-normal text-gray-700">
+          {selectedPeriod} overview
+        </h2>
 
-  <div className="relative w-52">
-    <button
-      onClick={() => setDropdownOpen(!dropdownOpen)}
-      className="w-full flex items-center justify-between px-3 py-2 md:px-4 md:py-2 bg-white border border-gray-300 rounded-xl text-xs md:text-sm text-gray-700 shadow-sm hover:shadow-md transition-all duration-200"
-    >
-      {selectedPeriod}
-      {dropdownOpen ? (
-        <ChevronUp className="w-4 h-4 text-gray-500 transition-transform duration-200" />
-      ) : (
-        <ChevronDown className="w-4 h-4 text-gray-500 transition-transform duration-200" />
-      )}
-    </button>
-
-    {dropdownOpen && (
-      <div
-        className="absolute mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden z-20 animate-fadeIn"
-      >
-        {periods.map((period) => (
+        <div className="relative w-52">
           <button
-            key={period}
-            onClick={() => {
-              setSelectedPeriod(period);
-              setDropdownOpen(false);
-              setCurrentPage(1);
-            }}
-            className={`block w-full text-left px-4 py-2 text-xs md:text-sm hover:bg-gray-100 ${
-              selectedPeriod === period ? "bg-gray-50 font-medium text-gray-900" : "text-gray-700"
-            }`}
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="w-full flex items-center justify-between px-3 py-2 md:px-4 md:py-2 bg-white border border-gray-300 rounded-xl text-xs md:text-sm text-gray-700 shadow-sm hover:shadow-md transition-all duration-200"
           >
-            {period}
+            {selectedPeriod}
+            {dropdownOpen ? (
+              <ChevronUp className="w-4 h-4 text-gray-500 transition-transform duration-200" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-gray-500 transition-transform duration-200" />
+            )}
           </button>
-        ))}
+
+          {dropdownOpen && (
+            <div
+              className="absolute mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden z-20 animate-fadeIn"
+            >
+              {periods.map((period) => (
+                <button
+                  key={period}
+                  onClick={() => {
+                    setSelectedPeriod(period);
+                    setDropdownOpen(false);
+                    setCurrentPage(1);
+                  }}
+                  className={`block w-full text-left px-4 py-2 text-xs md:text-sm hover:bg-gray-100 ${selectedPeriod === period ? "bg-gray-50 font-medium text-gray-900" : "text-gray-700"
+                    }`}
+                >
+                  {period}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    )}
-  </div>
-</div>
 
       {/* Loading & Error */}
       {loading && <div className="text-gray-700">Loading...</div>}
@@ -186,7 +187,7 @@ const periods = [
       {!loading && !error && (
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 md:gap-6 mb-6 md:mb-8">
           {stats.map((stat, index) => {
-            const Icon = stat.icon || Users; 
+            const Icon = stat.icon || Users;
             return (
               <div key={index} className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-200">
                 <div className="flex items-start justify-between mb-3 md:mb-4">
@@ -207,7 +208,7 @@ const periods = [
       {/* Activities Table */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="p-4 md:p-6 border-b border-gray-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <h2 className="text-lg md:text-xl font-bold text-gray-900">Recent Business Activity</h2>
+          <h2 className="text-lg md:text-xl font-bold text-gray-900">{t('dashboard.employee.pages.dashboard.table.tableTitle')}</h2>
           <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
             <button
               onClick={() => setOpen(true)}
@@ -228,13 +229,13 @@ const periods = [
           <table className="w-full min-w-max">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">Service name</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">Contact</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">Location</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">Server</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">Progress</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">Priority</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">Action</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.serviceName')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.contact')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.location')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.served')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.progress')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.priority')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.action')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -250,9 +251,8 @@ const periods = [
                     <td className="px-3 md:px-6 py-4 text-xs md:text-sm text-gray-900 whitespace-nowrap">{activity.location}</td>
                     <td className="px-3 md:px-6 py-4">
                       <span
-                        className={`inline-flex px-2 md:px-3 py-1 rounded-full text-xs md:text-sm whitespace-nowrap ${
-                          activity.servedBy === "Unassigned" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"
-                        }`}
+                        className={`inline-flex px-2 md:px-3 py-1 rounded-full text-xs md:text-sm whitespace-nowrap ${activity.servedBy === "Unassigned" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"
+                          }`}
                       >
                         {activity.servedBy}
                       </span>
@@ -264,13 +264,12 @@ const periods = [
                     </td>
                     <td className="px-3 md:px-6 py-4">
                       <span
-                        className={`inline-flex px-2 md:px-3 py-1 rounded text-xs md:text-sm font-medium whitespace-nowrap ${
-                          activity.priority === "High"
+                        className={`inline-flex px-2 md:px-3 py-1 rounded text-xs md:text-sm font-medium whitespace-nowrap ${activity.priority === "High"
                             ? "text-red-600"
                             : activity.priority === "Medium"
-                            ? "text-yellow-600"
-                            : "text-green-600"
-                        }`}
+                              ? "text-yellow-600"
+                              : "text-green-600"
+                          }`}
                       >
                         {activity.priority}
                       </span>
