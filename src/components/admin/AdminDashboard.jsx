@@ -24,7 +24,7 @@ import PaymentsManagement from './PaymentsManagement';
 import Reports from './Reports';
 import Complaints from './Complaints';
 
-const AdminDashboard = () => {
+const   AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { t } = useTranslation();

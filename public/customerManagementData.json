@@ -1,0 +1,104 @@
+{
+  "filters": {
+    "customerTypes": ["Aerial Media Services", "Ground Media Services"],
+    "serviceCategories": ["Aerial Photography & Videography (MP)", "Event Photography"]
+  },
+  "summary": {
+    "totalCustomers": 2847,
+    "totalRevenue": 438,
+    "avgDuration": 67,
+    "pendingPayments": 23
+  },
+  "customers": [
+    {
+      "serviceName": "Albert Flores",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 700
+    },
+    {
+      "serviceName": "Jenny Wilson",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 500
+    },
+    {
+      "serviceName": "Kristin Watson",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 400
+    },
+    {
+      "serviceName": "Brooklyn Simmons",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 300
+    },
+    {
+      "serviceName": "Floyd Miles",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 450
+    },
+    {
+      "serviceName": "Dianne Russell",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 600
+    },
+    {
+      "serviceName": "Ronald Richards",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 550
+    },
+    {
+      "serviceName": "Cameron Williamson",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 500
+    },
+    {
+      "serviceName": "Courtney Henry",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 650
+    },
+    {
+      "serviceName": "Jenny Wilson",
+      "company": "Agritech Solutions",
+      "contact": "john@agritech.com",
+      "phone": "225-555-0118",
+      "date": "12/09/2025",
+      "duration": "1h 30m",
+      "revenue": 520
+    }
+  ]
+}
