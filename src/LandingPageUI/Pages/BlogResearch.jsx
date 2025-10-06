@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import card from "../images/card1.png";
 import card1 from "../images/card2.jpg";
 import { FaCalendarAlt } from "react-icons/fa";
+import { Link, NavLink } from "react-router";
 
 const BlogResearch = () => {
   const { t } = useTranslation();
@@ -79,13 +80,13 @@ const BlogResearch = () => {
                   </div>
 
                   {/* Learn More Link */}
-                  <a
-                    href="#"
+                  <Link
+                    to={"/blog"}
                     className="text-green-600 font-medium inline-flex items-center gap-2 hover:gap-3 transition-all text-sm"
                   >
                     {t("blogs.learnMore")}
                     <span>→</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -94,9 +95,9 @@ const BlogResearch = () => {
 
         {/* View All Button */}
         <div className="text-center">
-          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-300">
+          <Link to={"/blog"} className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-300">
             {t("blogs.viewAll")}
-          </button>
+          </Link>
         </div>
       </div>
     </div>

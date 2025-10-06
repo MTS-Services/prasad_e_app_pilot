@@ -19,7 +19,7 @@ const Hero = () => {
             </Link>
             </div>
           </div>
-          <div></div>
+          
         </div>
     );
 };

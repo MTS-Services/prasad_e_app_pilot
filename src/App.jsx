@@ -12,6 +12,7 @@ import Services from './LandingPageUI/Pages/Services';
 import About from './LandingPageUI/Pages/About';
 import Contact  from './LandingPageUI/Pages/Contact';
 import Blog from './LandingPageUI/Pages/Blog';
+import ScrollToTop from './components/utility/ScrollToTop';
 
 function App() {
   // Protect the DashboardPage route
@@ -20,6 +21,7 @@ function App() {
   return (
     <div className='w-full min-h-screen'>
       <Layout>
+        <ScrollToTop/>
         <Routes>
           {/* Public Routes */}
           <Route path='/' element={<MainLayout/>} />
