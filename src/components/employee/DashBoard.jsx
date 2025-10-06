@@ -20,15 +20,26 @@ function DashBoard() {
   const itemsPerPage = 6;
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  
+  const [summary, setSummary] = useState({
+    totalCustomers: 0,
+    totalRevenue: 0,
+    pendingPayments: 0,
+    avgDuration: 0,
+    completedOrders: 0,
+    canceledOrders: 0,
+  });
 
-  const periods = [
-    "Last 7 days",
-    "Last 30 days",
-    "Last 60 days",
-    "Last 90 days",
-    "Last 6 months",
-    "Last 12 months",
+  const periodOptions = [
+    { key: "last7days", label: t("dashboard.employee.pages.dashboard.dropDown.last7days") },
+    { key: "last30days", label: t("dashboard.employee.pages.dashboard.dropDown.last30days") },
+    { key: "last60days", label: t("dashboard.employee.pages.dashboard.dropDown.last60days") },
+    { key: "last90days", label: t("dashboard.employee.pages.dashboard.dropDown.last90days") },
+    { key: "last6months", label: t("dashboard.employee.pages.dashboard.dropDown.last6months") },
+    { key: "last12months", label: t("dashboard.employee.pages.dashboard.dropDown.last12months") },
   ];
+
+
 
   // Fetch dashboard data
   useEffect(() => {
@@ -37,6 +48,7 @@ function DashBoard() {
         setLoading(true);
         const data = await ApiService.get("/dashboardOverviewData.json");
         setActivities(data.recentActivities || []);
+        setSummary(data.summary || {});
         setLoading(false);
       } catch (err) {
         console.error("Dashboard fetch error:", err);
@@ -47,57 +59,47 @@ function DashBoard() {
     fetchDashboardData();
   }, []);
 
-  // Memoized summary stats to update automatically on language change
+  // Memoized summary stats
   const summaryStats = useMemo(() => {
-    if (!activities) return [];
-    const dummySummary = activities.summary || {
-      totalCustomers: 0,
-      totalRevenue: 0,
-      pendingPayments: 0,
-      avgDuration: 0,
-      completedOrders: 0,
-      canceledOrders: 0,
-    };
-
     return [
       {
         label: t("dashboard.employee.pages.dashboard.card.1st"),
-        value: dummySummary.totalCustomers,
+        value: summary.totalCustomers,
         trend: "up",
         icon: Users,
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.2nd"),
-        value: dummySummary.totalRevenue,
+        value: summary.totalRevenue,
         trend: "up",
         icon: ShoppingCart,
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.3rd"),
-        value: dummySummary.pendingPayments,
+        value: summary.pendingPayments,
         trend: "down",
         icon: CreditCard,
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.4th"),
-        value: dummySummary.avgDuration,
+        value: summary.avgDuration,
         trend: "up",
         icon: Headphones,
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.5th"),
-        value: dummySummary.completedOrders,
+        value: summary.completedOrders,
         trend: "up",
         icon: ShoppingCart,
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.6th"),
-        value: dummySummary.canceledOrders,
+        value: summary.canceledOrders,
         trend: "down",
         icon: ShoppingCart,
       },
     ];
-  }, [t, activities]);
+  }, [t, summary]);
 
   // Filter activities by selected period
   const filteredActivities = useMemo(() => {
@@ -105,12 +107,12 @@ function DashBoard() {
     const now = new Date();
     let days = 30;
     switch (selectedPeriod) {
-      case "Last 7 days": days = 7; break;
-      case "Last 30 days": days = 30; break;
-      case "Last 60 days": days = 60; break;
-      case "Last 90 days": days = 90; break;
-      case "Last 6 months": days = 180; break;
-      case "Last 12 months": days = 365; break;
+      case "last7days": days = 7; break;
+      case "last30days": days = 30; break;
+      case "last60days": days = 60; break;
+      case "last90days": days = 90; break;
+      case "last6months": days = 180; break;
+      case "last12months": days = 365; break;
       default: days = 30;
     }
     return activities.filter(a => {
@@ -138,32 +140,49 @@ function DashBoard() {
     <div className="flex-1 p-4 md:p-8 bg-gray-50">
       {/* Header */}
       <div className="mb-4 md:mb-6">
-        <h1 className="text-lg md:text-2xl font-bold text-gray-900">{t('dashboard.employee.title')}</h1>
-        <p className="text-xs md:text-base text-gray-600">{t('dashboard.employee.welcome')}</p>
+        <h1 className="text-lg md:text-2xl font-bold text-gray-900">{t('dashboard.employee.title.dashPageTitle')}</h1>
+        <p className="text-xs md:text-base text-gray-600">{t('dashboard.employee.subTitle.dashpageSub')}</p>
       </div>
 
       {/* Period Select */}
       <div className="mb-4 md:mb-6 flex flex-col items-start gap-2 relative">
-        <h2 className="text-lg md:text-xl font-normal text-gray-700">{selectedPeriod} overview</h2>
+        <h2 className="text-lg md:text-xl font-normal text-gray-700">  {periodOptions.find(p => p.key === selectedPeriod)?.label || t("dashboard.employee.pages.dashboard.dropDown.last30days")} 
+         { t("dashboard.employee.pages.dashboard.dropDown.overview")}</h2>
         <div className="relative w-52">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="w-full flex items-center justify-between px-3 py-2 md:px-4 md:py-2 bg-white border border-gray-300 rounded-xl text-xs md:text-sm text-gray-700 shadow-sm hover:shadow-md transition-all duration-200"
           >
-            {selectedPeriod}
-            {dropdownOpen ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
+            {
+              
+              periodOptions.find(p => p.key === selectedPeriod)?.label ||
+              t("dashboard.employee.pages.dashboard.dropDown.last30days")
+            }
+            {dropdownOpen ? (
+              <ChevronUp className="w-4 h-4 text-gray-500" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-gray-500" />
+            )}
           </button>
           {dropdownOpen && (
             <div className="absolute mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden z-20">
-              {periods.map(period => (
+              {periodOptions.map((period) => (
                 <button
-                  key={period}
-                  onClick={() => { setSelectedPeriod(period); setDropdownOpen(false); setCurrentPage(1); }}
-                  className={`block w-full text-left px-4 py-2 text-xs md:text-sm hover:bg-gray-100 ${selectedPeriod === period ? "bg-gray-50 font-medium text-gray-900" : "text-gray-700"}`}
+                  key={period.key}
+                  onClick={() => {
+                    setSelectedPeriod(period.key);
+                    setDropdownOpen(false);
+                    setCurrentPage(1);
+                  }}
+                  className={`block w-full text-left px-4 py-2 text-xs md:text-sm hover:bg-gray-100 ${selectedPeriod === period.key
+                    ? "bg-gray-50 font-medium text-gray-900"
+                    : "text-gray-700"
+                    }`}
                 >
-                  {period}
+                  {period.label}  
                 </button>
               ))}
+
             </div>
           )}
         </div>
@@ -198,13 +217,13 @@ function DashBoard() {
       {/* Activities Table */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="p-4 md:p-6 border-b border-gray-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <h2 className="text-lg md:text-xl font-bold text-gray-900">{t('dashboard.employee.pages.dashboard.table.tableTitle')}</h2>
+          <h2 className="text-lg md:text-xl font-bold text-gray-900">{t('dashboard.employee.table.tableTitle')}</h2>
           <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
             <button onClick={() => setOpen(true)} className="px-4 md:px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-sm md:text-base">
-              Register New Customer
+              {t('dashboard.employee.button.registerNewCustomer')}
             </button>
             <button onClick={() => setIsModalOpen(true)} className="px-4 md:px-6 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-sm md:text-base">
-              Assist in Profile Setup
+              {t('dashboard.employee.button.assistProfile')}
             </button>
           </div>
         </div>
@@ -213,13 +232,13 @@ function DashBoard() {
           <table className="w-full min-w-max">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.serviceName')}</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.contact')}</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.location')}</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.served')}</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.progress')}</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.priority')}</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.pages.dashboard.table.action')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.serviceName')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.contact')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.location')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.served')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.progress')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.priority')}</th>
+                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.action')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">

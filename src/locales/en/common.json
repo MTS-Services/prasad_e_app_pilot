@@ -26,44 +26,54 @@
       "overviewDescription": "Welcome to your admin dashboard. Use the sidebar to navigate between different sections."
     },
     "employee": {
-      "title": "Empoloyee Dashboard Overview",
-      "welcome": "Monitor Your customer Service Performance",
+      "title": {
+        "dashPageTitle":"Empoloyee Dashboard Overview",
+        "customPageTitle":"Customer Management",
+        "orderPageTitle":"Orders Management",
+        "paymentPageTitle":"Payment Management",
+        "supportPageTitle":"Empoloyee Dashboard Overview"
+      },
+      "subTitle": {
+        "dashpageSub":"Monitor Your customer Service Performance",
+        "custompageSub":"Manage customer registration and profile setup",
+        "orderpageSub":"Create, reschedule, and manage customer orders",
+        "paymentpageSub":"Handle payments,discounts and billing issues",
+        "supportpageSub":"Create and manage support tickets and escalations"
+      },
+      "table": {
+        "serviceName": "Service name",
+        "contact": "Contact",
+        "location": "Location",
+        "served": "Served",
+        "progress": "Progress",
+        "priority": "Priority",
+        "action": "Action",
+        "tableTitle": "Recent Business Activity"
+      },
+      "button":{
+        "registerNewCustomer":"Register New Customer",
+        "assistProfile":"Assist in Profile Setup",
+        "reportAnalysis":"Report Analysis"
+      },
       "pages": {
         "dashboard": {
-          "DropDown": {},
+          "dropDown": {
+            "last7days": "Last 7 days",
+            "last30days": "Last 30 days",
+            "last60days": "Last 60 days",
+            "last90days": "Last 90 days",
+            "last6months": "Last 6 months",
+            "last12months": "Last 12 months",
+            "overview": "overview"
+          },
           "card": {
             "1st": "Total Customers",
             "2nd": "Active Orders",
             "3rd": "Pending Payments",
             "4th": "Open Tickets",
             "5th": "Completed Orders",
-            "6st": "Canceled Orders"
-          },
-          "table": {
-            "serviceName": "Service name",
-            "contact": "Contact",
-            "location": "Location",
-            "served": "Served",
-            "progress": "Progress",
-            "priority": "Priority",
-            "action": "Action",
-            "tableTitle": "Recent Business Activity"
+            "6th": "Canceled Orders"
           }
-        },
-        "profile": {
-          "title": "Profile",
-          "description": "View and edit your personal information.",
-          "editButton": "Edit Profile"
-        },
-        "tasks": {
-          "title": "Tasks",
-          "description": "Check your assigned tasks and update status.",
-          "addTaskButton": "Add Task"
-        },
-        "attendance": {
-          "title": "Attendance",
-          "description": "View your attendance records and mark presence.",
-          "markAttendanceButton": "Mark Attendance"
         }
       }
     },
