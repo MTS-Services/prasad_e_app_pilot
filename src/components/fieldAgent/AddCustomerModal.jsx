@@ -14,7 +14,7 @@ const INITIAL_FORM = {
   mandal: "",
   village: "",
   registeredBy: "",
-  kycDocument: "",
+  kycDocument: null,
   street: "",
   city: "",
   state: "",
@@ -32,10 +32,18 @@ export default function AddCustomerModal({ isOpen, onClose }) {
   const [validationError, setValidationError] = useState("");
   const [formData, setFormData] = useState(INITIAL_FORM);
 
+
+
+  
   const handleInputChange = (e) => {
+    const { name, value, files, type } = e.target;
     if (validationError) setValidationError("");
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
+
+    if (type === "file") {
+      setFormData({ ...formData, [name]: files[0] || null }); // store file
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleClose = () => {
@@ -65,7 +73,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
         !formData.state ||
         !formData.postalCode ||
         !formData.country ||
-        !formData.industry||
+        !formData.industry ||
         !formData.kycDocument
       ) {
         return "Please fill all required fields in Address Details (* marked).";
@@ -80,14 +88,12 @@ export default function AddCustomerModal({ isOpen, onClose }) {
       setValidationError(error);
       return;
     }
-    if (modalStep < 3) setModalStep(modalStep + 1);
+    setModalStep((prev) => Math.min(prev + 1, 3)); //
   };
 
   const prevStep = () => {
-    if (modalStep > 1) {
-      setModalStep(modalStep - 1);
-      setValidationError("");
-    }
+    setModalStep((prev) => Math.max(prev - 1, 1));
+    setValidationError("");
   };
 
   const handleConfirm = () => {
@@ -119,7 +125,8 @@ export default function AddCustomerModal({ isOpen, onClose }) {
         <div className="sticky top-0 bg-white border-b rounded-t-2xl border-gray-200 px-6 py-4 flex items-center gap-4 z-10">
           <button
             onClick={modalStep > 1 ? prevStep : handleClose}
-            className="hover:bg-gray-100 p-2 rounded-lg text-gray-600 transition"
+            type="button"
+            className="hover:bg-gray-100 p-2 rounded-lg text-[#002244] transition"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -135,7 +142,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
           </h3>
 
           {validationError && (
-            <div className="flex items-center p-3 mb-4 text-sm font-medium text-red-800 bg-red-100 rounded-lg">
+            <div className="flex items-center p-3 mb-4 text-sm font-medium text-[#C43216] bg-red-100 rounded-lg">
               <XCircle className="w-5 h-5 mr-2" />
               {validationError}
             </div>
@@ -147,7 +154,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               <div>
                 <label className="block text-sm md:text-base font-medium">
                   {t("dashboard.fieldAgent.FirstModal.firstName")}
-                  <span className="text-red-500">*</span>
+                  <span className="text-[#C43216]">*</span>
                 </label>
                 <input
                   type="text"
@@ -174,7 +181,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               <div>
                 <label className="block text-sm md:text-base font-medium">
                   {t("dashboard.fieldAgent.FirstModal.lastName")}
-                  <span className="text-red-500">*</span>
+                  <span className="text-[#C43216]">*</span>
                 </label>
                 <input
                   type="text"
@@ -201,7 +208,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               <div>
                 <label className="block text-sm md:text-base font-medium">
                   {t("dashboard.fieldAgent.FirstModal.phone")}
-                  <span className="text-red-500">*</span>
+                  <span className="text-[#C43216]">*</span>
                 </label>
                 <input
                   type="tel"
@@ -228,7 +235,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               <div>
                 <label className="block text-sm md:text-base font-medium">
                   {t("dashboard.fieldAgent.FirstModal.geoLocation")}
-                  <span className="text-red-500">*</span>
+                  <span className="text-[#C43216]">*</span>
                 </label>
                 <div className="relative">
                   <input
@@ -291,7 +298,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               <div>
                 <label className="block text-sm font-medium mb-1">
                   {t("dashboard.fieldAgent.FirstModal.registeredBy")}
-                  <span className="text-red-500">*</span>
+                  <span className="text-[#C43216]">*</span>
                 </label>
                 <select
                   name="registeredBy"
@@ -321,18 +328,20 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                   <input
                     type="file"
                     name="kycDocument"
-                    value={formData.kycDocument}
-                    accept=".doc,.docx,.jpg,.pdf,.png,"
-                    onChange={handleInputChange}
-                    placeholder="KYC number"
-                    className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
+                    accept=".doc,.docx,.jpg,.pdf,.png"
+                    onChange={handleInputChange} // store file object safely
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-green-500"
                   />
                   <Upload className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                 </div>
+                {/* Show selected file name (optional) */}
+                {formData.kycDocument && (
+                  <p className="text-sm mt-1">{formData.kycDocument.name}</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  Street<span className="text-red-500">*</span>
+                  Street<span className="text-[#C43216]">*</span>
                 </label>
                 <input
                   type="text"
@@ -346,7 +355,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    City<span className="text-red-500">*</span>
+                    City<span className="text-[#C43216]">*</span>
                   </label>
                   <input
                     type="text"
@@ -359,7 +368,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    State<span className="text-red-500">*</span>
+                    State<span className="text-[#C43216]">*</span>
                   </label>
                   <input
                     type="text"
@@ -374,7 +383,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Postal Code<span className="text-red-500">*</span>
+                    Postal Code<span className="text-[#C43216]">*</span>
                   </label>
                   <input
                     type="text"
@@ -387,7 +396,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Country<span className="text-red-500">*</span>
+                    Country<span className="text-[#C43216]">*</span>
                   </label>
                   <input
                     type="text"
@@ -401,13 +410,13 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  Industry<span className="text-red-500">*</span>
+                  Industry<span className="text-[#C43216]">*</span>
                 </label>
                 <select
                   name="industry"
                   value={formData.industry}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
+                  className="w-full px-4 py-2 border rounded-lg bg-[#F7FFE5]  focus:ring-green-500"
                 >
                   <option value="">Select industry</option>
                   <option value="agriculture">Agriculture</option>
@@ -449,12 +458,9 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               <div>
                 <label className=" text-sm font-medium mb-1 flex justify-between">
                   3rd Latitude/Longitude
-                  <button
-                    type="button"
-                    className="!text-button-primary text-xl font-bold px-2  hover:bg-green-50"
-                  >
+                  <p className="!text-button-primary text-xl font-bold px-2 ">
                     +
-                  </button>
+                  </p>
                 </label>
                 <input
                   type="text"
@@ -475,7 +481,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                   value={formData.acres}
                   onChange={handleInputChange}
                   placeholder="Land area in acres"
-                  className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
+                  className="w-full text-black px-4 py-2 border rounded-lg  focus:ring-green-500"
                 />
               </div>
             </div>
@@ -483,10 +489,11 @@ export default function AddCustomerModal({ isOpen, onClose }) {
         </div>
 
         {/* Footer */}
-        <div className="sticky bottom-0 bg-white border-t border-gray-200 rounded-b-2xl px-6 py-4 z-10">
+        <div className="sticky bottom-0 bg-white border-gray-200 rounded-b-2xl px-6 py-4 z-10">
           {modalStep < 3 ? (
             <button
               onClick={nextStep}
+              type="button"
               className="w-full !bg-button-primary hover:bg-green-600 text-white py-2.5 rounded-lg font-medium transition shadow-md disabled:bg-gray-400"
             >
               Next
@@ -494,6 +501,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
           ) : (
             <button
               onClick={handleConfirm}
+              type="button"
               className="w-full !bg-button-primary hover:bg-green-600 text-white py-2.5 rounded-lg font-medium transition shadow-md"
             >
               Confirm Registration
