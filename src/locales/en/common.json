@@ -41,7 +41,7 @@
         "supportpageSub": "Create and manage support tickets and escalations"
       },
       "table": {
-        "serviceName": "Service name",
+        "serviceName": "Service/name",
         "contact": "Contact",
         "location": "Location",
         "served": "Served",
@@ -50,7 +50,11 @@
         "action": "Action",
         "tableTitle": "Recent Business Activity",
         "orderIdName": "Order Id/Name",
-        "assignTo": "Assign To"
+        "assignTo": "Assign To",
+        "serviceDate": "Service Date",
+        "payment": "Payment",
+        "discount": "Discount",
+        "outstanding": "Outstanding"
       },
       "button": {
         "registerNewCustomer": "Register New Customer",
@@ -58,7 +62,10 @@
         "reportAnalysis": "Report Analysis",
         "createServiceRequest": "Create new Service Request",
         "cancel": "Cancel/Modify Order",
-        "reshedule": "Reshedule Order"
+        "reshedule": "Reshedule Order",
+        "collectPayment": "Collect Payment",
+        "appliedCreditsDiscount": "Applied Credits/Discount",
+        "resolveBillingIssues": "Resolve Billing Issues"
       },
       "pages": {
         "dashboard": {
@@ -92,6 +99,37 @@
             "preferredTime": "Preferred Time",
             "timeFormat": "HH:MM AM - 12:00 PM",
             "specialInstruction": "Special Instruction"
+          },
+          "rescheduleServiceOrder": {
+            "title": "Reschedule Service Order",
+            "orderId": "Order ID",
+            "customerName": "Enter customer name or phone number",
+            "serviceType": "Service Type*",
+            "mappingSurveying": "Mapping & Surveying",
+            "preferredDate": "Preferred Date",
+            "dateFormat": "mm/dd/yyyy",
+            "preferredTime": "Preferred Time",
+            "timeFormat": "HH:MM AM - 12:00 PM",
+            "specialInstruction": "Any special instructions or requirements...",
+            "createRequest": "Create Request"
+          },
+
+          "cancelServiceOrder": {
+            "title": "Cancel Service Order",
+            "orderId": "Order ID",
+            "customerName": "Enter customer name or phone number",
+            "action": "Action*",
+            "mappingSurveying": "Mapping & Surveying",
+            "reason": "Reason",
+            "specialInstruction": "Any special instructions or requirements...",
+            "cancel": "Cancel"
+          }
+        },
+        "payment": {
+          "card": {
+            "refundProcessed": "Refund Processed",
+            "pendingPayments": "Pending Payments",
+            "todaysCollections": "Today's Collections"
           }
         }
       }

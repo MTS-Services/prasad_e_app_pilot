@@ -13,7 +13,7 @@ const Coustomerpage = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -85,7 +85,7 @@ const Coustomerpage = () => {
   return (
     <div className="flex-1 p-4 md:p-8 bg-gray-50">
       <div className="mb-6 md:mb-8">
-        <h1 className="text-xl md:text-2xl font-bold text-gray-900">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
           {t('dashboard.employee.title.customPageTitle')}
         </h1>
         <p className="text-sm md:text-base text-gray-600">

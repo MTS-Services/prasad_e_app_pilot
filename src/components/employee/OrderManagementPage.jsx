@@ -13,7 +13,7 @@ const OrderManagementPage = () => {
   const [cancleModal, setCancleModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
- const { t, i18n } = useTranslation();
+ const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
@@ -52,7 +52,7 @@ const OrderManagementPage = () => {
   return (
     <div className="flex-1 p-4 md:p-8 bg-gray-50">
       <div className="mb-2 md:mb-4">
-        <h1 className="text-xl md:text-2xl font-bold text-gray-900">{t('dashboard.employee.title.orderPageTitle')}</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{t('dashboard.employee.title.orderPageTitle')}</h1>
         <p className="text-sm md:text-base text-gray-600 pt-2">{t('dashboard.employee.subTitle.orderpageSub')}</p>
       </div>
 

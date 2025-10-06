@@ -14,7 +14,7 @@ function DashBoard() {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -140,7 +140,7 @@ function DashBoard() {
     <div className="flex-1 p-4 md:p-8 bg-gray-50">
       {/* Header */}
       <div className="mb-4 md:mb-6">
-        <h1 className="text-lg md:text-2xl font-bold text-gray-900">{t('dashboard.employee.title.dashPageTitle')}</h1>
+        <h1 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">{t('dashboard.employee.title.dashPageTitle')}</h1>
         <p className="text-xs md:text-base text-gray-600">{t('dashboard.employee.subTitle.dashpageSub')}</p>
       </div>
 

@@ -51,8 +51,11 @@
         "action": "क्रिया",
         "tableTitle": "हाल की व्यावसायिक गतिविधि",
         "orderIdName": "ऑर्डर आईडी/नाम",
-
-        "assignTo": "सौंपें"
+        "assignTo": "सौंपें",
+        "serviceDate": "सेवा की तिथि",
+        "payment": "भुगतान",
+        "discount": "छूट",
+        "outstanding": "बकाया"
       },
       "button": {
         "registerNewCustomer": "नया ग्राहक पंजीकृत करें",
@@ -60,7 +63,10 @@
         "reportAnalysis": "रिपोर्ट विश्लेषण",
         "createServiceRequest": "नई सेवा अनुरोध बनाएँ",
         "cancel": "ऑर्डर रद्द/संपादित करें",
-        "reshedule": "ऑर्डर पुनर्निर्धारित करें"
+        "reshedule": "ऑर्डर पुनर्निर्धारित करें",
+        "collectPayment": "भुगतान एकत्र करें",
+        "appliedCreditsDiscount": "लागू क्रेडिट/छूट",
+        "resolveBillingIssues": "बिलिंग समस्याओं का समाधान करें"
       },
       "pages": {
         "dashboard": {
@@ -94,6 +100,37 @@
             "preferredTime": "पसंदीदा समय",
             "timeFormat": "घ:मि AM - 12:00 PM",
             "specialInstruction": "विशेष निर्देश"
+          },
+
+          "rescheduleServiceOrder": {
+            "title": "सेवा आदेश पुनर्निर्धारण",
+            "orderId": "ऑर्डर आईडी",
+            "customerName": "ग्राहक का नाम या फ़ोन नंबर दर्ज करें",
+            "serviceType": "सेवा प्रकार*",
+            "mappingSurveying": "मैपिंग और सर्वेक्षण",
+            "preferredDate": "पसंदीदा तिथि",
+            "dateFormat": "माह/दिन/साल",
+            "preferredTime": "पसंदीदा समय",
+            "timeFormat": "घंटा:मिनट पूर्वाह्न - अपराह्न",
+            "specialInstruction": "कोई विशेष निर्देश या आवश्यकताएँ...",
+            "createRequest": "अनुरोध बनाएं"
+          },
+          "cancelServiceOrder": {
+            "title": "सेवा आदेश रद्द करें",
+            "orderId": "ऑर्डर आईडी",
+            "customerName": "ग्राहक का नाम या फ़ोन नंबर दर्ज करें",
+            "action": "कार्रवाई*",
+            "mappingSurveying": "मैपिंग और सर्वेक्षण",
+            "reason": "कारण",
+            "specialInstruction": "कोई विशेष निर्देश या आवश्यकताएँ...",
+            "cancel": "रद्द करें"
+          }
+        },
+        "payment": {
+          "card": {
+            "refundProcessed": "रिफंड संसाधित",
+            "pendingPayments": "लंबित भुगतान",
+            "todaysCollections": "आज की वसूली"
           }
         }
       }

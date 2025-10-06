@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { X, Calendar, Clock, } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const CancleModal = ({ isOpen, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ const CancleModal = ({ isOpen, onClose, onSubmit }) => {
     preferredTime: '',
     specialInstruction: ''
   });
-
+ const { t } = useTranslation();
   const handleSubmit = () => {
     console.log('Form submitted:', formData);
     if (onSubmit) {
@@ -33,7 +34,7 @@ const CancleModal = ({ isOpen, onClose, onSubmit }) => {
       <div className="bg-white rounded-lg shadow-2xl w-full max-w-md md:max-w-lg lg:max-w-xl relative">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg md:text-xl font-semibold text-gray-800">Reshedule Service Order</h2>
+          <h2 className="text-lg md:text-xl font-semibold text-gray-800">{t('dashboard.employee.pages.order.cancelServiceOrder.title')}</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 transition-colors"
@@ -47,11 +48,11 @@ const CancleModal = ({ isOpen, onClose, onSubmit }) => {
           {/* Customer Field */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-white/950 mb-2">
-             Order ID
+            {t('dashboard.employee.pages.order.cancelServiceOrder.orderId')}
             </label>
             <input
               type="text"
-              placeholder="Enter customer name or phone number"
+              placeholder={t('dashboard.employee.pages.order.cancelServiceOrder.customerName')}
               value={formData.customer}
               onChange={(e) => setFormData({ ...formData, customer: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
@@ -61,7 +62,7 @@ const CancleModal = ({ isOpen, onClose, onSubmit }) => {
           {/* Service Type Field */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Action*
+            {t('dashboard.employee.pages.order.cancelServiceOrder.action')}
             </label>
             <select
               value={formData.serviceType}
@@ -73,10 +74,8 @@ const CancleModal = ({ isOpen, onClose, onSubmit }) => {
                 backgroundPosition: 'right 0.75rem center'
               }}
             >
-              <option>Mapping & Surveying</option>
-              <option>Land Survey</option>
-              <option>Construction Survey</option>
-              <option>Topographic Survey</option>
+              <option>{t('dashboard.employee.pages.order.cancelServiceOrder.mappingSurveying')}</option>
+            
             </select>
           </div>
 
@@ -84,10 +83,10 @@ const CancleModal = ({ isOpen, onClose, onSubmit }) => {
           {/* Special Instruction Field */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-            Reason
+            {t('dashboard.employee.pages.order.cancelServiceOrder.reason')}
             </label>
             <textarea
-              placeholder="Any special instructions or requirements..."
+              
               value={formData.specialInstruction}
               onChange={(e) => setFormData({ ...formData, specialInstruction: e.target.value })}
               rows="4"
@@ -100,7 +99,7 @@ const CancleModal = ({ isOpen, onClose, onSubmit }) => {
             onClick={handleSubmit}
             className="w-full bg-red-700 hover:bg-red-900 text-white font-medium py-3 px-4 rounded-md transition-colors duration-200 text-sm md:text-base"
           >
-            Create Request
+           {t('dashboard.employee.pages.order.cancelServiceOrder.cancel')}
           </button>
         </div>
       </div>
