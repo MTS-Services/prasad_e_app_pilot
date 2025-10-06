@@ -22,13 +22,13 @@ export const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-white shadow-sm sticky top-0 lg:z-50">
       <nav className="w-11/12 mx-auto  px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
         <Link
-          to={ROUTES.DASHBOARD_HOME}
+          to={'/'}
           className="flex items-center space-x-2"
         >
-          <span className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
+          <span className="text-xs font-bold text-gray-800">
             <img src={logo} alt="" />
           </span>
         </Link>
@@ -44,7 +44,8 @@ export const Header = () => {
               user.role == 'admin'? <Link className="text-gray-800 text-xl"><FiSettings /></Link> :null
             }
           {user ? (
-            <div className="hidden lg:flex items-end justify-center gap-2">
+            <div className=" flex items-end justify-center gap-2">
+              {/* dropdown btn */}
               <div className="dropdown dropdown-end">
                 <div
                   tabIndex={0}
@@ -60,11 +61,20 @@ export const Header = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-gray-100 rounded-sm z-1 mt-3 w-52 p-5 shadow"
+                  className="menu menu-sm dropdown-content bg-gray-100 rounded-sm z-1 mt-3 w-52 p-5 shadow flex flex-col gap-y-2"
                 >
                   {/* <Button variant="blackText" size="small" onClick={logout}>
                     {t("navigation.logout")}
                   </Button> */}
+                  {user &&
+            (["admin", "marketing", "employee"].includes(user.role) ? (
+              <Link className="text-gray-800 text-sm flex justify-start gap-2 items-center">
+                <FiBell /> Notification
+              </Link>
+            ) : null)}
+            {
+              user.role == 'admin'? <Link className="text-gray-800 text-sm flex justify-start gap-2 items-center "><FiSettings /> Settings</Link> :null
+            }
                   <button
                     onClick={logOutHandler}
                     className="!bg-red-400 py-1 px-3"
@@ -73,22 +83,14 @@ export const Header = () => {
                   </button>
                 </ul>
               </div>
-              <div className="flex flex-col">
-                <p className="text-black text-[16px] font-semibold">
+              <div className="lg:flex flex-col hidden">
+                <p className="text-black text-[10px] lg:text-[16px] font-semibold">
                   {user?.role}
                 </p>
-                <p className="text-gray-400 text-xs ">{user?.role}</p>
+                <p className="text-gray-400 lg:text-xs text-[8px] ">{user?.role}</p>
               </div>
             </div>
           ) : (
-            // <Button
-
-            //   variant="blackText"
-            //   size="small"
-            //   onClick={() => navigate(ROUTES.LOGIN)}
-            // >
-            //   {t("navigation.login")}
-            // </Button>
             <button className=" btn btn-md border-none bg-green-500 text-white">
               {t("navigation.login")}
             </button>
@@ -98,11 +100,3 @@ export const Header = () => {
     </header>
   );
 };
-// (
-//             <>
-
-//               <Button variant='blackText' size='small' onClick={logout}>
-//                 {t('navigation.logout')}
-//               </Button>
-//             </>
-//           ) :
