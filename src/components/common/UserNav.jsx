@@ -19,7 +19,7 @@ export default function Nav() {
   ];
 
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="w-11/12 mx-auto  px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -30,7 +30,7 @@ export default function Nav() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center xl:space-x-8 space-x-5">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
@@ -48,10 +48,10 @@ export default function Nav() {
             <LanguageSwitcher />
 
             {/* Download Button */}
-            <button className="!bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            <button className="!bg-green-500 cursor-pointer hover:bg-green-600 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               {t('nav.download')}
             </button>
-            <Link to={'/loginpage'} className="border border-green-500 hover:bg-green-600 hover:text-white text-green-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            <Link to={'/login'} className="border border-green-500 hover:bg-green-600 hover:text-white text-green-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               {t('nav.login')}
             </Link>
           </div>

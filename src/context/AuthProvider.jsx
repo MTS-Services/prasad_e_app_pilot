@@ -4,6 +4,7 @@ import { authService } from '../services/authService';
 import { AuthContext } from './AuthContext';
 
 
+
 /**
  * Provides authentication state and functions to the entire application.
  */
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }) => {
     await authService.logout();
     
     setUser(null);
+    
   };
 
   const value = {
