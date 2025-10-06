@@ -97,17 +97,17 @@ const Services = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">
                     {t(service.titleKey)}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xl text-gray-600 mb-4">
+                  <p className="md:text-xl text-gray-600 mb-4">
                     {t(service.descriptionKey)}
                   </p>
 
                   {/* Features List */}
-                  <ul className="space-y-2 mb-6">
+                  <ul className="space-y-2 mb-6 text-xs md:text-lg">
                     {service.featuresKeys.map((featureKey, idx) => (
                       <li key={idx} className="flex items-center gap-2 text-[16px] text-gray-700">
                         <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
@@ -118,10 +118,10 @@ const Services = () => {
 
                   {/* Buttons */}
                   <div className="flex items-center gap-4">
-                    <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-lg font-medium text-sm transition-colors">
+                    <button className="bg-green-500 hover:bg-green-600 text-white px-3 sm:px-6 py-2.5 btn border-none text-xs btn-xs sm:btn-md md:rounded-sm font-medium sm:text-sm transition-colors">
                       {t('services.bookService')}
                     </button>
-                    <button className="flex items-center gap-2 text-green-600 hover:text-green-700 font-medium text-sm transition-colors">
+                    <button className="flex items-center gap-2 text-green-600 hover:text-green-700 font-medium text-xs lg:text-sm transition-colors">
                       {t('services.learnMore')}
                       <ArrowRight className="w-4 h-4" />
                     </button>
