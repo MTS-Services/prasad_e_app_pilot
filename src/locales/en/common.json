@@ -65,15 +65,43 @@
         "geoLocation": "Geo location",
         "selectOnMap": "Select on map",
         "district": "District",
-        "enterDistrict": "Enter your District",
+        "enterDistrict": "Enter your District name",
         "mandal": "Mandal",
-        "enterMandal": "Enter your Mandal",
+        "enterMandal": "Enter your Mandal name",
         "village": "Village",
-        "enterVillage": "Enter your Village",
+        "enterVillage": "Enter your Village name",
         "registeredBy": "Registered By",
         "selectAgent": "Select Agent",
         "FieldAgent": "Agent 1",
-        "next": "Next"
+        "next": "Next",
+        "confirmRegistration": "Confirm Registration"
+      },
+      "SecondModal": {
+        "addressDetails": "Address Details",
+        "kycDocumentsUpload": "KYC Documents Upload",
+        "street": "Street",
+        "streetAddress": "Street address",
+        "city": "City",
+        "enterCity": "City",
+        "state": "State",
+        "enterState": "State",
+        "postalCode": "Postal Code",
+        "enterPostalCode": "400020",
+        "country": "Country",
+        "enterCountry": "India",
+        "industry": "Industry",
+        "selectIndustry": "Select industry",
+        "agriculture": "Agriculture",
+        "surveyMapping": "Survey & Mapping"
+      },
+      "ThirdModal": {
+        "serviceLocations": "Service Locations",
+        "firstLatLong": "1st Latitude/Longitude",
+        "firstLatLongValue": "Lat, Long",
+        "secondLatLong": "2nd Latitude/Longitude",
+        "thirdLatLong": "3rd Latitude/Longitude",
+        "numberOfAcres": "Number of acres",
+        "landAreaInAcres": "Land area in acres"
       }
     },
     "marketing": {

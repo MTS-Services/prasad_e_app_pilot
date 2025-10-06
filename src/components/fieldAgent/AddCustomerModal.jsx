@@ -32,9 +32,6 @@ export default function AddCustomerModal({ isOpen, onClose }) {
   const [validationError, setValidationError] = useState("");
   const [formData, setFormData] = useState(INITIAL_FORM);
 
-
-
-  
   const handleInputChange = (e) => {
     const { name, value, files, type } = e.target;
     if (validationError) setValidationError("");
@@ -105,16 +102,22 @@ export default function AddCustomerModal({ isOpen, onClose }) {
 
   const stepTitles = [
     t("dashboard.fieldAgent.FirstModal.customerInfo"),
-    "Address Details",
-    "Service Locations",
+    t("dashboard.fieldAgent.SecondModal.addressDetails"),
+    t("dashboard.fieldAgent.ThirdModal.serviceLocations"),
   ];
 
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center
-          bg-black/60 bg-opacity-50
-          transition-opacity duration-300
-        ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+    bg-black/60 bg-opacity-50
+    transition-opacity duration-300
+    ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+      onClick={(e) => {
+        // Close modal if clicking on overlay (not modal content)
+        if (e.target === e.currentTarget) {
+          handleClose();
+        }
+      }}
     >
       <div
         className={`bg-white w-full max-w-3xl mx-4 md:mx-6 rounded-lg shadow-lg max-h-[90vh] flex flex-col
@@ -322,14 +325,14 @@ export default function AddCustomerModal({ isOpen, onClose }) {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  KYC Documents
+                  {t("dashboard.fieldAgent.SecondModal.kycDocumentsUpload")}
                 </label>
                 <div className="relative">
                   <input
                     type="file"
                     name="kycDocument"
                     accept=".doc,.docx,.jpg,.pdf,.png"
-                    onChange={handleInputChange} // store file object safely
+                    onChange={handleInputChange}
                     className="w-full px-4 py-2 border rounded-lg focus:ring-green-500"
                   />
                   <Upload className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -341,41 +344,50 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  Street<span className="text-[#C43216]">*</span>
+                  {t("dashboard.fieldAgent.SecondModal.street")}
+                  <span className="text-[#C43216]">*</span>
                 </label>
                 <input
                   type="text"
                   name="street"
                   value={formData.street}
                   onChange={handleInputChange}
-                  placeholder="Street address"
+                  placeholder={t(
+                    "dashboard.fieldAgent.SecondModal.streetAddress"
+                  )}
                   className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    City<span className="text-[#C43216]">*</span>
+                    {t("dashboard.fieldAgent.SecondModal.city")}
+                    <span className="text-[#C43216]">*</span>
                   </label>
                   <input
                     type="text"
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    placeholder="City"
+                    placeholder={t(
+                      "dashboard.fieldAgent.SecondModal.enterCity"
+                    )}
                     className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    State<span className="text-[#C43216]">*</span>
+                    {t("dashboard.fieldAgent.SecondModal.state")}
+                    <span className="text-[#C43216]">*</span>
                   </label>
                   <input
                     type="text"
                     name="state"
                     value={formData.state}
                     onChange={handleInputChange}
-                    placeholder="State"
+                    placeholder={t(
+                      "dashboard.fieldAgent.SecondModal.enterState"
+                    )}
                     className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                   />
                 </div>
@@ -383,7 +395,8 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Postal Code<span className="text-[#C43216]">*</span>
+                    {t("dashboard.fieldAgent.SecondModal.postalCode")}
+                    <span className="text-[#C43216]">*</span>
                   </label>
                   <input
                     type="text"
@@ -396,21 +409,25 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Country<span className="text-[#C43216]">*</span>
+                    {t("dashboard.fieldAgent.SecondModal.country")}
+                    <span className="text-[#C43216]">*</span>
                   </label>
                   <input
                     type="text"
                     name="country"
                     value={formData.country}
                     onChange={handleInputChange}
-                    placeholder="India"
+                    placeholder={t(
+                      "dashboard.fieldAgent.SecondModal.enterCountry"
+                    )}
                     className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                   />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  Industry<span className="text-[#C43216]">*</span>
+                  {t("dashboard.fieldAgent.SecondModal.industry")}
+                  <span className="text-[#C43216]">*</span>
                 </label>
                 <select
                   name="industry"
@@ -418,9 +435,15 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                   onChange={handleInputChange}
                   className="w-full px-4 py-2 border rounded-lg bg-[#F7FFE5]  focus:ring-green-500"
                 >
-                  <option value="">Select industry</option>
-                  <option value="agriculture">Agriculture</option>
-                  <option value="survey">Survey & Mapping</option>
+                  <option value="">
+                    {t("dashboard.fieldAgent.SecondModal.selectIndustry")}
+                  </option>
+                  <option value="agriculture">
+                    {t("dashboard.fieldAgent.SecondModal.agriculture")}
+                  </option>
+                  <option value="survey">
+                    {t("dashboard.fieldAgent.SecondModal.surveyMapping")}
+                  </option>
                 </select>
               </div>
             </div>
@@ -431,33 +454,37 @@ export default function AddCustomerModal({ isOpen, onClose }) {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  1st Latitude/Longitude
+                  {t("dashboard.fieldAgent.ThirdModal.firstLatLong")}
                 </label>
                 <input
                   type="text"
                   name="lat1"
                   value={formData.lat1}
                   onChange={handleInputChange}
-                  placeholder="Lat, Long"
+                  placeholder={t(
+                    "dashboard.fieldAgent.ThirdModal.firstLatLongValue"
+                  )}
                   className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  2nd Latitude/Longitude
+                  {t("dashboard.fieldAgent.ThirdModal.secondLatLong")}
                 </label>
                 <input
                   type="text"
                   name="lat2"
                   value={formData.lat2}
                   onChange={handleInputChange}
-                  placeholder="Lat, Long"
+                  placeholder={t(
+                    "dashboard.fieldAgent.ThirdModal.firstLatLongValue"
+                  )}
                   className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                 />
               </div>
               <div>
                 <label className=" text-sm font-medium mb-1 flex justify-between">
-                  3rd Latitude/Longitude
+                  {t("dashboard.fieldAgent.ThirdModal.thirdLatLong")}
                   <p className="!text-button-primary text-xl font-bold px-2 ">
                     +
                   </p>
@@ -467,20 +494,24 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                   name="lat3"
                   value={formData.lat3}
                   onChange={handleInputChange}
-                  placeholder="Lat, Long"
+                  placeholder={t(
+                    "dashboard.fieldAgent.ThirdModal.firstLatLongValue"
+                  )}
                   className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  Number of acres
+                  {t("dashboard.fieldAgent.ThirdModal.numberOfAcres")}
                 </label>
                 <input
                   type="text"
                   name="acres"
                   value={formData.acres}
                   onChange={handleInputChange}
-                  placeholder="Land area in acres"
+                  placeholder={t(
+                    "dashboard.fieldAgent.ThirdModal.landAreaInAcres"
+                  )}
                   className="w-full text-black px-4 py-2 border rounded-lg  focus:ring-green-500"
                 />
               </div>
@@ -496,7 +527,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               type="button"
               className="w-full !bg-button-primary hover:bg-green-600 text-white py-2.5 rounded-lg font-medium transition shadow-md disabled:bg-gray-400"
             >
-              Next
+              {t("dashboard.fieldAgent.FirstModal.next")}
             </button>
           ) : (
             <button
@@ -504,7 +535,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               type="button"
               className="w-full !bg-button-primary hover:bg-green-600 text-white py-2.5 rounded-lg font-medium transition shadow-md"
             >
-              Confirm Registration
+              {t("dashboard.fieldAgent.FirstModal.confirmRegistration")}
             </button>
           )}
         </div>

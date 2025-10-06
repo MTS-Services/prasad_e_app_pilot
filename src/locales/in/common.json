@@ -65,15 +65,42 @@
         "geoLocation": "भौगोलिक स्थान",
         "selectOnMap": "मानचित्र पर चुनें",
         "district": "जिला",
-        "enterDistrict": "अपना जिला दर्ज करें",
+        "enterDistrict": "अपना जिले का नाम दर्ज करें",
         "mandal": "मंडल",
-        "enterMandal": "अपना मंडल दर्ज करें",
+        "enterMandal": "अपना मंडल का नाम दर्ज करें",
         "village": "गांव",
-        "enterVillage": "अपना गांव दर्ज करें",
+        "enterVillage": "अपने गांव का नाम दर्ज करें",
         "registeredBy": "द्वारा पंजीकृत",
         "selectAgent": "एजेंट चुनें",
         "FieldAgent": "एजेंट 1",
-        "next": "अगला"
+        "next": "अगला",
+        "confirmRegistration": "पंजीकरण की पुष्टि करें"
+      },
+      "SecondModal": {
+        "addressDetails": "पता विवरण",
+        "kycDocumentsUpload": "केवाईसी दस्तावेज़ अपलोड",
+        "street": "सड़क",
+        "streetAddress": "सड़क का पता",
+        "city": "शहर",
+        "enterCity": "शहर",
+        "state": "राज्य",
+        "enterState": "राज्य",
+        "postalCode": "डाक कोड",
+        "country": "देश",
+        "enterCountry": "भारत",
+        "industry": "उद्योग",
+        "selectIndustry": "उद्योग चुनें",
+        "agriculture": "कृषि",
+        "surveyMapping": "सर्वेक्षण और मानचित्रण"
+      },
+      "ThirdModal": {
+        "serviceLocations": "सेवा स्थान",
+        "firstLatLong": "पहला अक्षांश/देशांतर",
+        "firstLatLongValue": "अक्षांश, देशांतर",
+        "secondLatLong": "दूसरा अक्षांश/देशांतर",
+        "thirdLatLong": "तीसरा अक्षांश/देशांतर",
+        "numberOfAcres": "एकड़ की संख्या",
+        "landAreaInAcres": "भूमि क्षेत्र (एकड़ में)"
       }
     },
     "marketing": {
