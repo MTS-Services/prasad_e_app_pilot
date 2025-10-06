@@ -140,7 +140,7 @@ export default function CForm() {
           {/* Submit */}
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white font-medium px-8 py-3 rounded-md transition-colors duration-200"
+            className="bg-green-500 hover:bg-green-600 text-white font-medium sm:px-8 px-4 py-1 sm:py-3 rounded-md transition-colors duration-200"
           >
             {t('contact2.form.submit')}
           </button>

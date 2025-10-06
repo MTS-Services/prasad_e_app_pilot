@@ -40,7 +40,7 @@ export default function CompleteSections() {
       {/* Meet Our Team Section */}
       <div className="py-16 px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl lg:text-[40px] text-center text-gray-900 mb-3">
+          <h2 className="text-3xl lg:text-[40px] font-semibold text-center text-gray-900 mb-3">
             {t('team.header')}
           </h2>
           <p className="text-center text-gray-600 mb-12 text-[16px] max-w-3xl mx-auto">

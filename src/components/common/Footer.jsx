@@ -19,7 +19,7 @@ export default function Footer() {
             <p className="text-white text-sm md:text-lg max-w-4xl mx-auto mb-8 leading-relaxed">
               {t("footer.cta.description")}
             </p>
-            <button className="btn btn-sm md:btn-md lg:btn-lg bg-white hover:bg-gray-100 text-green-500 font-semibold px-8 py-3 rounded-lg transition-colors shadow-md">
+            <button className="btn btn-sm md:btn-md lg:btn-lg bg-green-500 hover:bg-gray-100 hover:text-green-500 text-white font-medium border-transparent px-8 py-3 rounded-lg transition-colors shadow-md">
               {t("footer.cta.button")}
             </button>
           </div>

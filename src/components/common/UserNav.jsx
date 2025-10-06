@@ -51,7 +51,7 @@ export default function Nav() {
             <button className="!bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               {t('nav.download')}
             </button>
-            <Link to={'/login'} className="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            <Link to={'/login'} className="border border-green-500 hover:bg-green-600 hover:text-white text-green-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               {t('nav.login')}
             </Link>
           </div>
@@ -91,9 +91,12 @@ export default function Nav() {
               </div>
 
               {/* Download App Button Mobile */}
-              <button className="w-full bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-md text-base font-medium transition-colors duration-200">
+              <button className="w-full bg-green-500 hover:bg-green-600 text-white px-6 py-3 text-sm rounded-md  font-medium transition-colors duration-200">
                 {t('nav.download')}
               </button>
+              <Link to={'/login'} className="border-green-500 w-full btn border bg-transparent shadow-none hover:bg-green-600 text-green-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+              {t('nav.login')}
+            </Link>
             </div>
           </div>
         </div>
