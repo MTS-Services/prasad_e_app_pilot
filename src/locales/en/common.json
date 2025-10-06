@@ -27,18 +27,18 @@
     },
     "employee": {
       "title": {
-        "dashPageTitle":"Empoloyee Dashboard Overview",
-        "customPageTitle":"Customer Management",
-        "orderPageTitle":"Orders Management",
-        "paymentPageTitle":"Payment Management",
-        "supportPageTitle":"Empoloyee Dashboard Overview"
+        "dashPageTitle": "Empoloyee Dashboard Overview",
+        "customPageTitle": "Customer Management",
+        "orderPageTitle": "Orders Management",
+        "paymentPageTitle": "Payment Management",
+        "supportPageTitle": "Empoloyee Dashboard Overview"
       },
       "subTitle": {
-        "dashpageSub":"Monitor Your customer Service Performance",
-        "custompageSub":"Manage customer registration and profile setup",
-        "orderpageSub":"Create, reschedule, and manage customer orders",
-        "paymentpageSub":"Handle payments,discounts and billing issues",
-        "supportpageSub":"Create and manage support tickets and escalations"
+        "dashpageSub": "Monitor Your customer Service Performance",
+        "custompageSub": "Manage customer registration and profile setup",
+        "orderpageSub": "Create, reschedule, and manage customer orders",
+        "paymentpageSub": "Handle payments,discounts and billing issues",
+        "supportpageSub": "Create and manage support tickets and escalations"
       },
       "table": {
         "serviceName": "Service name",
@@ -48,12 +48,17 @@
         "progress": "Progress",
         "priority": "Priority",
         "action": "Action",
-        "tableTitle": "Recent Business Activity"
+        "tableTitle": "Recent Business Activity",
+        "orderIdName": "Order Id/Name",
+        "assignTo": "Assign To"
       },
-      "button":{
-        "registerNewCustomer":"Register New Customer",
-        "assistProfile":"Assist in Profile Setup",
-        "reportAnalysis":"Report Analysis"
+      "button": {
+        "registerNewCustomer": "Register New Customer",
+        "assistProfile": "Assist in Profile Setup",
+        "reportAnalysis": "Report Analysis",
+        "createServiceRequest": "Create new Service Request",
+        "cancel": "Cancel/Modify Order",
+        "reshedule": "Reshedule Order"
       },
       "pages": {
         "dashboard": {
@@ -73,6 +78,20 @@
             "4th": "Open Tickets",
             "5th": "Completed Orders",
             "6th": "Canceled Orders"
+          }
+        },
+        "order": {
+          "modal": {
+            "createServiceRequest": "Create Service Request",
+            "customer": "Customer",
+            "enterCustomerNameOrPhone": "Enter customer name or phone number",
+            "serviceType": "Service Type*",
+            "mappingSurveying": "Mapping & Surveying",
+            "preferredDate": "Preferred Date",
+            "dateFormat": "mm/dd/yyyy",
+            "preferredTime": "Preferred Time",
+            "timeFormat": "HH:MM AM - 12:00 PM",
+            "specialInstruction": "Special Instruction"
           }
         }
       }

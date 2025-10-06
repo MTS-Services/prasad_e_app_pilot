@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { X, Calendar, Clock, } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const ServiceRequestModal = ({ isOpen, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ const ServiceRequestModal = ({ isOpen, onClose, onSubmit }) => {
     preferredTime: '',
     specialInstruction: ''
   });
-
+ const { t, i18n } = useTranslation();
   const handleSubmit = () => {
     console.log('Form submitted:', formData);
     if (onSubmit) {
@@ -33,7 +34,7 @@ const ServiceRequestModal = ({ isOpen, onClose, onSubmit }) => {
       <div className="bg-white rounded-lg shadow-2xl w-full max-w-md md:max-w-lg lg:max-w-xl relative">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg md:text-xl font-semibold text-gray-800">Create Service Request</h2>
+          <h2 className="text-lg md:text-xl font-semibold text-gray-800">{t('dashboard.employee.pages.order.modal.createServiceRequest')}</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 transition-colors"
@@ -47,11 +48,11 @@ const ServiceRequestModal = ({ isOpen, onClose, onSubmit }) => {
           {/* Customer Field */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-white/950 mb-2">
-              Customer
+              {t('dashboard.employee.pages.order.modal.customer')}
             </label>
             <input
               type="text"
-              placeholder="Enter customer name or phone number"
+              placeholder={t('dashboard.employee.pages.order.modal.enterCustomerNameOrPhone')}
               value={formData.customer}
               onChange={(e) => setFormData({ ...formData, customer: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
@@ -61,7 +62,7 @@ const ServiceRequestModal = ({ isOpen, onClose, onSubmit }) => {
           {/* Service Type Field */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Service Type*
+              {t('dashboard.employee.pages.order.modal.serviceType')}
             </label>
             <select
               value={formData.serviceType}
@@ -85,12 +86,12 @@ const ServiceRequestModal = ({ isOpen, onClose, onSubmit }) => {
             {/* Preferred Date */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Preferred Date
+               {t('dashboard.employee.pages.order.modal.preferredDate')}
               </label>
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="mm/dd/yyyy"
+                  placeholder={t('dashboard.employee.pages.order.modal.dateFormat')}
                   value={formData.preferredDate}
                   onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
                   className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
@@ -102,12 +103,12 @@ const ServiceRequestModal = ({ isOpen, onClose, onSubmit }) => {
             {/* Preferred Time */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Preferred Time
+                {t('dashboard.employee.pages.order.modal.preferredTime')}
               </label>
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="HH:MM AM - 12:00 PM"
+                  placeholder={t('dashboard.employee.pages.order.modal.timeFormat')}
                   value={formData.preferredTime}
                   onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
                   className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
@@ -120,7 +121,7 @@ const ServiceRequestModal = ({ isOpen, onClose, onSubmit }) => {
           {/* Special Instruction Field */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Special Instruction
+              {t('dashboard.employee.pages.order.modal.specialInstruction')}
             </label>
             <textarea
               placeholder="Any special instructions or requirements..."

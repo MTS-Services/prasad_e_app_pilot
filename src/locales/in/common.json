@@ -34,12 +34,12 @@
         "paymentPageTitle": "भुगतान प्रबंधन",
         "supportPageTitle": "कर्मचारी डैशबोर्ड अवलोकन"
       },
-     "subTitle": {
-  "dashpageSub": "अपने ग्राहक सेवा प्रदर्शन की निगरानी करें",
-  "custompageSub": "ग्राहक पंजीकरण और प्रोफ़ाइल सेटअप प्रबंधित करें",
-  "orderpageSub": "ग्राहक ऑर्डर बनाएं, पुनर्निर्धारित करें और प्रबंधित करें",
-  "paymentpageSub": "भुगतान, छूट और बिलिंग समस्याओं को संभालें",
-  "supportpageSub": "सपोर्ट टिकट और उन्नयन बनाएँ और प्रबंधित करें"
+      "subTitle": {
+        "dashpageSub": "अपने ग्राहक सेवा प्रदर्शन की निगरानी करें",
+        "custompageSub": "ग्राहक पंजीकरण और प्रोफ़ाइल सेटअप प्रबंधित करें",
+        "orderpageSub": "ग्राहक ऑर्डर बनाएं, पुनर्निर्धारित करें और प्रबंधित करें",
+        "paymentpageSub": "भुगतान, छूट और बिलिंग समस्याओं को संभालें",
+        "supportpageSub": "सपोर्ट टिकट और उन्नयन बनाएँ और प्रबंधित करें"
       },
       "table": {
         "serviceName": "सेवा का नाम",
@@ -49,12 +49,18 @@
         "progress": "प्रगति",
         "priority": "प्राथमिकता",
         "action": "क्रिया",
-        "tableTitle": "हाल की व्यावसायिक गतिविधि"
+        "tableTitle": "हाल की व्यावसायिक गतिविधि",
+        "orderIdName": "ऑर्डर आईडी/नाम",
+
+        "assignTo": "सौंपें"
       },
       "button": {
         "registerNewCustomer": "नया ग्राहक पंजीकृत करें",
         "assistProfile": "प्रोफ़ाइल सेटअप में सहायता करें",
-        "reportAnalysis": "रिपोर्ट विश्लेषण"
+        "reportAnalysis": "रिपोर्ट विश्लेषण",
+        "createServiceRequest": "नई सेवा अनुरोध बनाएँ",
+        "cancel": "ऑर्डर रद्द/संपादित करें",
+        "reshedule": "ऑर्डर पुनर्निर्धारित करें"
       },
       "pages": {
         "dashboard": {
@@ -76,20 +82,19 @@
             "6th": "रद्द किए गए आदेश"
           }
         },
-        "profile": {
-          "title": "प्रोफ़ाइल",
-          "description": "अपनी व्यक्तिगत जानकारी देखें और संपादित करें।",
-          "editButton": "प्रोफ़ाइल संपादित करें"
-        },
-        "tasks": {
-          "title": "कार्य",
-          "description": "अपने असाइन किए गए कार्यों की जांच करें और स्थिति अपडेट करें।",
-          "addTaskButton": "कार्य जोड़ें"
-        },
-        "attendance": {
-          "title": "उपस्थिति",
-          "description": "अपनी उपस्थिति रिकॉर्ड देखें और उपस्थित चिह्नित करें।",
-          "markAttendanceButton": "उपस्थिति चिह्नित करें"
+        "order": {
+          "modal": {
+            "createServiceRequest": "नई सेवा अनुरोध बनाएँ",
+            "customer": "ग्राहक",
+            "enterCustomerNameOrPhone": "ग्राहक का नाम या फ़ोन नंबर दर्ज करें",
+            "serviceType": "सेवा प्रकार*",
+            "mappingSurveying": "मैपिंग और सर्वेक्षण",
+            "preferredDate": "पसंदीदा तिथि",
+            "dateFormat": "मम/दि/वववव",
+            "preferredTime": "पसंदीदा समय",
+            "timeFormat": "घ:मि AM - 12:00 PM",
+            "specialInstruction": "विशेष निर्देश"
+          }
         }
       }
     },
