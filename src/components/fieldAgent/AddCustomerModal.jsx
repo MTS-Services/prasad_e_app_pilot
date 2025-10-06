@@ -45,7 +45,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
     onClose();
   };
 
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   const validateStep = () => {
     if (modalStep === 1) {
       if (
@@ -65,7 +65,8 @@ export default function AddCustomerModal({ isOpen, onClose }) {
         !formData.state ||
         !formData.postalCode ||
         !formData.country ||
-        !formData.industry
+        !formData.industry||
+        !formData.kycDocument
       ) {
         return "Please fill all required fields in Address Details (* marked).";
       }
@@ -96,7 +97,11 @@ export default function AddCustomerModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const stepTitles = [t("dashboard.fieldAgent.FirstModal.customerInfo"), "Address Details", "Service Locations"];
+  const stepTitles = [
+    t("dashboard.fieldAgent.FirstModal.customerInfo"),
+    "Address Details",
+    "Service Locations",
+  ];
 
   return (
     <div
@@ -141,7 +146,8 @@ export default function AddCustomerModal({ isOpen, onClose }) {
             <div className="space-y-3">
               <div>
                 <label className="block text-sm md:text-base font-medium">
-                  {t("dashboard.fieldAgent.FirstModal.firstName")}<span className="text-red-500">*</span>
+                  {t("dashboard.fieldAgent.FirstModal.firstName")}
+                  <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -167,7 +173,8 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               </div>
               <div>
                 <label className="block text-sm md:text-base font-medium">
-                  {t("dashboard.fieldAgent.FirstModal.lastName")}<span className="text-red-500">*</span>
+                  {t("dashboard.fieldAgent.FirstModal.lastName")}
+                  <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -193,7 +200,8 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               </div>
               <div>
                 <label className="block text-sm md:text-base font-medium">
-                  {t("dashboard.fieldAgent.FirstModal.phone")}<span className="text-red-500">*</span>
+                  {t("dashboard.fieldAgent.FirstModal.phone")}
+                  <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
@@ -219,7 +227,8 @@ export default function AddCustomerModal({ isOpen, onClose }) {
               </div>
               <div>
                 <label className="block text-sm md:text-base font-medium">
-                  {t("dashboard.fieldAgent.FirstModal.geoLocation")}<span className="text-red-500">*</span>
+                  {t("dashboard.fieldAgent.FirstModal.geoLocation")}
+                  <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
                   <input
@@ -227,7 +236,9 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                     name="geoLocation"
                     value={formData.geoLocation}
                     onChange={handleInputChange}
-                    placeholder={t("dashboard.fieldAgent.FirstModal.selectOnMap")}
+                    placeholder={t(
+                      "dashboard.fieldAgent.FirstModal.selectOnMap"
+                    )}
                     className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                   />
                   <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -243,8 +254,10 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                   name="district"
                   value={formData.district}
                   onChange={handleInputChange}
-                  placeholder={t("dashboard.fieldAgent.FirstModal.enterDistrict")}
-                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm md:text-base  focus:ring-blue-500 focus:outline-none"
+                  placeholder={t(
+                    "dashboard.fieldAgent.FirstModal.enterDistrict"
+                  )}
+                  className="mt-1 w-full border  rounded-md px-3 py-2 text-sm md:text-base  focus:ring-blue-500 focus:outline-none"
                 />
               </div>
               <div>
@@ -257,7 +270,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                   value={formData.mandal}
                   onChange={handleInputChange}
                   placeholder={t("dashboard.fieldAgent.FirstModal.enterMandal")}
-                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm md:text-base  focus:ring-blue-500 focus:outline-none"
+                  className="mt-1 w-full border  rounded-md px-3 py-2 text-sm md:text-base  focus:ring-blue-500 focus:outline-none"
                 />
               </div>
               <div>
@@ -269,13 +282,16 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                   value={formData.village}
                   name="village"
                   onChange={handleInputChange}
-                  placeholder={t("dashboard.fieldAgent.FirstModal.enterVillage")}
-                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm md:text-base  focus:ring-blue-500 focus:outline-none"
+                  placeholder={t(
+                    "dashboard.fieldAgent.FirstModal.enterVillage"
+                  )}
+                  className="mt-1 w-full border rounded-md px-3 py-2 text-sm md:text-base  focus:ring-blue-500 focus:outline-none"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  {t("dashboard.fieldAgent.FirstModal.registeredBy")}<span className="text-red-500">*</span>
+                  {t("dashboard.fieldAgent.FirstModal.registeredBy")}
+                  <span className="text-red-500">*</span>
                 </label>
                 <select
                   name="registeredBy"
@@ -283,8 +299,12 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                   onChange={handleInputChange}
                   className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                 >
-                  <option value="">{t("dashboard.fieldAgent.FirstModal.selectAgent")}</option>
-                  <option value="agent1">{t("dashboard.fieldAgent.FirstModal.FieldAgent")}</option>
+                  <option value="">
+                    {t("dashboard.fieldAgent.FirstModal.selectAgent")}
+                  </option>
+                  <option value="agent1">
+                    {t("dashboard.fieldAgent.FirstModal.FieldAgent")}
+                  </option>
                 </select>
               </div>
             </div>
