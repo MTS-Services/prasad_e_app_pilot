@@ -64,6 +64,7 @@ const Services = () => {
     <div>
       {/* Banner */}
       <div
+      id="services"
         className="relative h-[372px] flex items-center justify-center bg-center bg-cover px-4 sm:px-6 md:px-8"
         style={{ backgroundImage: `url(${Banner})` }}
       >

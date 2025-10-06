@@ -11,6 +11,7 @@ import MainLayout from './LandingPageUI/Layout/MainLayout';
 import Services from './LandingPageUI/Pages/Services';
 import About from './LandingPageUI/Pages/About';
 import Contact  from './LandingPageUI/Pages/Contact';
+import Blog from './LandingPageUI/Pages/Blog';
 
 function App() {
   // Protect the DashboardPage route
@@ -24,8 +25,10 @@ function App() {
           <Route path='/' element={<MainLayout/>} />
           <Route path='/services' element={<Services />} />
           <Route path='/about' element={<About />} />
+          <Route path='/blog' element={<Blog/>} />
           <Route path='/contact' element={<Contact />} />
-          <Route path='/login' element={<LoginPage />} />
+          <Route path='/loginpage' element={<HomePage/>} />
+          <Route path='/login' element={<LoginPage/>} />
           
 
           {/* Protected Routes */}

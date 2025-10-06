@@ -5,6 +5,7 @@ export const APP_VERSION = '1.0.0';
 // Routes
 export const ROUTES = {
   HOME: '/',
+  DASHBOARD_HOME: '/loginpage',
   LOGIN: '/login',
   DASHBOARD: '/dashboard',
   UNAUTHORIZED: '/unauthorized',

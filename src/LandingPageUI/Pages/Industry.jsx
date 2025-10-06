@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
 
 const Industry = () => {
       const { t } = useTranslation();
@@ -62,7 +63,7 @@ const Industry = () => {
 
                             {/* Learn More Link */}
                             <a
-                                href="#"
+                                href="/services"
                                 className="text-green-600 font-medium inline-flex items-center gap-2 hover:gap-3 transition-all text-sm md:text-base"
                             >
                                 {t('industries.learnMore')}
@@ -74,9 +75,9 @@ const Industry = () => {
 
                 {/* View All Services Button */}
                 <div className="text-center">
-                    <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-300">
+                    <Link to={'services'} className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-300">
                         {t('industries.viewAllServices')}
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import banner1 from '../images/banner1.png';
 import banner2 from '../images/banner2.jpg';
 import banner3 from '../images/banner3.jpg';
+import { Link } from 'react-router';
 
 const Gallery = () => {
   const { t } = useTranslation();
@@ -70,9 +71,9 @@ const Gallery = () => {
 
         {/* View All Services Button */}
         <div className="text-center">
-          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-300">
+          <Link to={"/services"} className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-300">
             {t('industries.viewAllServices')}
-          </button>
+          </Link>
         </div>
       </div>
     </div>

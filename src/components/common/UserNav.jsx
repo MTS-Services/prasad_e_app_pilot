@@ -23,11 +23,11 @@ export default function Nav() {
       <div className="w-11/12 mx-auto  px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center">
+          <Link to={'/'} className="flex items-center">
             <div className="flex items-center space-x-2">
               <img src={logo} alt="navlogo" />
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
@@ -51,7 +51,7 @@ export default function Nav() {
             <button className="!bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               {t('nav.download')}
             </button>
-            <Link to={'/login'} className="border border-green-500 hover:bg-green-600 hover:text-white text-green-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            <Link to={'/loginpage'} className="border border-green-500 hover:bg-green-600 hover:text-white text-green-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               {t('nav.login')}
             </Link>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../hooks/useAuth";
 import { Button } from "./Button";
@@ -10,13 +10,18 @@ import logo from "../../assets/logo.png";
 
 export const Header = () => {
   const { user, logout } = useAuth();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const logOutHandler = () =>{
+    logout()
+    navigate("/")
+  }
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <Link to={ROUTES.HOME} className="flex items-center space-x-2">
+        <Link to={ROUTES.DASHBOARD_HOME} className="flex items-center space-x-2">
           <span className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
             <img src={logo} alt="" />
           </span>
@@ -46,7 +51,7 @@ export const Header = () => {
                   {/* <Button variant="blackText" size="small" onClick={logout}>
                     {t("navigation.logout")}
                   </Button> */}
-                  <button onClick={logout} className="!bg-red-400 py-1 px-3">{t("navigation.logout")}</button>
+                  <button onClick={logOutHandler} className="!bg-red-400 py-1 px-3">{t("navigation.logout")}</button>
                 </ul>
               </div>
               <p className="text-black text-xs opacity-15">{user?.role}</p>
