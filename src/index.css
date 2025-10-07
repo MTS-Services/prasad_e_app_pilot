@@ -50,6 +50,16 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+/* Add this to your main CSS file (e.g., index.css) */
+.hide-scrollbar {
+  /* For Firefox */
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  /* For Chrome, Safari, and Opera */
+  display: none;
+}
 
 /* button {
   border-radius: 8px;

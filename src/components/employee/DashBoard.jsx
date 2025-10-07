@@ -128,9 +128,6 @@ function DashBoard({ onViewCustomerDetails }) {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-
-
-
   const handlePrevious = () => setCurrentPage(prev => Math.max(prev - 1, 1));
   const handleNext = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
 

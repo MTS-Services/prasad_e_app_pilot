@@ -59,7 +59,7 @@ const CustomerDetailsPage = ({ customer, onBack, onViewOrderDetails }) => {
 
 
   return (
-    <div className="h-full bg-gray-50 overflow-y-hidden">
+    <div className="h-full bg-gray-50 ">
       <div className="flex-1 p-4 md:p-8">
         <button
           onClick={onBack}

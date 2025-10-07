@@ -20,7 +20,9 @@
       "phone": "(225) 555-0118",
       "date": "12/08/2025 - 16/08/2025",
       "duration": "1h 30min",
-      "revenue": 700
+      "revenue": 700,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     },
     {
       "serviceName": "Jenny Wilson",
@@ -29,7 +31,9 @@
       "phone": "(225) 555-0118",
       "date": "12/08/2025 - 16/08/2025",
       "duration": "1h 30min",
-      "revenue": 900
+      "revenue": 900,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Kristin Watson",
@@ -38,7 +42,9 @@
       "phone": "(225) 555-0118",
       "date": "12/08/2025 - 16/08/2025",
       "duration": "1h 30min",
-      "revenue": 400
+      "revenue": 400,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Brooklyn Simmons",
@@ -47,7 +53,9 @@
       "phone": "(225) 555-0118",
       "date": "12/08/2025 - 16/08/2025",
       "duration": "1h 30min",
-      "revenue": 300
+      "revenue": 300,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     },
     {
       "serviceName": "Floyd Miles",
@@ -56,7 +64,9 @@
       "phone": "(225) 555-0118",
       "date": "13/08/2025 - 17/08/2025",
       "duration": "1h 45min",
-      "revenue": 450
+      "revenue": 450,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     },
     {
       "serviceName": "Dianne Russell",
@@ -65,7 +75,9 @@
       "phone": "(225) 555-0118",
       "date": "13/08/2025 - 18/08/2025",
       "duration": "2h 00min",
-      "revenue": 600
+      "revenue": 600,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Ronald Richards",
@@ -74,7 +86,9 @@
       "phone": "(225) 555-0118",
       "date": "14/08/2025 - 19/08/2025",
       "duration": "1h 30min",
-      "revenue": 550
+      "revenue": 550,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Cameron Williamson",
@@ -83,7 +97,9 @@
       "phone": "(225) 555-0118",
       "date": "15/08/2025 - 20/08/2025",
       "duration": "1h 30min",
-      "revenue": 500
+      "revenue": 500,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     },
     {
       "serviceName": "Courtney Henry",
@@ -92,7 +108,9 @@
       "phone": "(225) 555-0118",
       "date": "16/08/2025 - 21/08/2025",
       "duration": "1h 20min",
-      "revenue": 650
+      "revenue": 650,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     },
     {
       "serviceName": "Devon Lane",
@@ -101,7 +119,9 @@
       "phone": "(225) 555-0118",
       "date": "17/08/2025 - 22/08/2025",
       "duration": "1h 15min",
-      "revenue": 720
+      "revenue": 720,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Marvin McKinney",
@@ -110,7 +130,9 @@
       "phone": "(225) 555-0118",
       "date": "18/08/2025 - 23/08/2025",
       "duration": "1h 40min",
-      "revenue": 680
+      "revenue": 680,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Bessie Cooper",
@@ -119,7 +141,9 @@
       "phone": "(225) 555-0118",
       "date": "19/08/2025 - 24/08/2025",
       "duration": "1h 35min",
-      "revenue": 500
+      "revenue": 500,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     },
     {
       "serviceName": "Eleanor Pena",
@@ -128,7 +152,9 @@
       "phone": "(225) 555-0118",
       "date": "20/08/2025 - 25/08/2025",
       "duration": "1h 50min",
-      "revenue": 800
+      "revenue": 800,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     },
     {
       "serviceName": "Guy Hawkins",
@@ -137,7 +163,9 @@
       "phone": "(225) 555-0118",
       "date": "21/08/2025 - 26/08/2025",
       "duration": "1h 45min",
-      "revenue": 420
+      "revenue": 420,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Arlene McCoy",
@@ -146,7 +174,9 @@
       "phone": "(225) 555-0118",
       "date": "22/08/2025 - 27/08/2025",
       "duration": "1h 25min",
-      "revenue": 560
+      "revenue": 560,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Savannah Nguyen",
@@ -155,7 +185,9 @@
       "phone": "(225) 555-0118",
       "date": "23/08/2025 - 28/08/2025",
       "duration": "1h 45min",
-      "revenue": 640
+      "revenue": 640,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     },
     {
       "serviceName": "Jerome Bell",
@@ -164,7 +196,9 @@
       "phone": "(225) 555-0118",
       "date": "24/08/2025 - 29/08/2025",
       "duration": "1h 15min",
-      "revenue": 570
+      "revenue": 570,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     },
     {
       "serviceName": "Esther Howard",
@@ -173,7 +207,9 @@
       "phone": "(225) 555-0118",
       "date": "25/08/2025 - 30/08/2025",
       "duration": "1h 40min",
-      "revenue": 620
+      "revenue": 620,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Leslie Alexander",
@@ -182,7 +218,9 @@
       "phone": "(225) 555-0118",
       "date": "26/08/2025 - 31/08/2025",
       "duration": "1h 35min",
-      "revenue": 580
+      "revenue": 580,
+      "customerType": "Aerial Media Services",
+      "serviceCategory": "Event Photography"
     },
     {
       "serviceName": "Annette Black",
@@ -191,7 +229,9 @@
       "phone": "(225) 555-0118",
       "date": "27/08/2025 - 01/09/2025",
       "duration": "1h 50min",
-      "revenue": 690
+      "revenue": 690,
+      "customerType": "Ground Media Services",
+      "serviceCategory": "Aerial Photography & Videography (MP)"
     }
   ]
 }
