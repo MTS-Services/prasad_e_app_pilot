@@ -27,21 +27,21 @@ const Gallery = () => {
   ];
 
   return (
-    <div className="py-16 px-4 sm:px-6 md:px-8 lg:px-10 bg-gray-50">
+    <div className="py-4 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-10 bg-gray-50">
       <div className="lg:w-10/12 xl:max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+        <div className="text-center mb-6 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             {t('industries.header')}
           </h2>
-          <p className="text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
+          <p className="text-gray-600 text-xs sm:text-sm md:text-base max-w-3xl mx-auto">
             {t('industries.subheader')}
           </p>
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
-          {galleryItems.map((item, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 lg:mb-8 mb-5">
+          {galleryItems?.map((item, index) => {
             const isLarge = index === 2; // Last item is large
             return (
               <div
@@ -70,8 +70,8 @@ const Gallery = () => {
         </div>
 
         {/* View All Services Button */}
-        <div className="text-center">
-          <Link to={"/services"} className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-300">
+        <div className="text-center  mb-2">
+          <Link to={"/services"} className="bg-green-600 hover:bg-green-700 text-white font-semibold lg:px-8 lg:py-3 px-4 py-2 text-sm rounded transition-colors duration-300">
             {t('industries.viewAllServices')}
           </Link>
         </div>

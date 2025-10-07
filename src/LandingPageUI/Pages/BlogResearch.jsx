@@ -26,21 +26,21 @@ const BlogResearch = () => {
   ];
 
   return (
-    <div className="py-16 px-4 sm:px-6 md:px-8 lg:px-10 bg-white">
+    <div className="py-4 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-10 bg-white">
       <div className="lg:w-10/12 xl:max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+        <div className="text-center mb-6 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             {t("blogs.header")}
           </h2>
-          <p className="text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
+          <p className="text-gray-600 text-xs sm:text-sm md:text-base max-w-3xl mx-auto">
             {t("blogs.subheader")}
           </p>
         </div>
 
         {/* Blog Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {blogs.map((blog, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 lg:mb-8 mb-5">
+          {blogs?.map((blog, index) => (
             <div
               key={index}
               className="bg-sky-50 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
@@ -55,26 +55,26 @@ const BlogResearch = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="p-4 lg:p-6">
                 {/* Category */}
-                <p className="text-sm font-semibold mb-2 text-green-600">
+                <p className="lg:text-sm text-xs font-semibold mb-2 text-green-600">
                   {t(blog.categoryKey)}
                 </p>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="lg:text-xl text-lg font-bold text-gray-900 mb-3">
                   {t(blog.titleKey)}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-gray-600 lg:text-sm text-xs mb-4">
                   {t(blog.descriptionKey)}
                 </p>
 
                 {/* Footer */}
                 <div className="flex items-center justify-between">
                   {/* Date */}
-                  <div className="flex items-center gap-2 text-gray-500 text-sm">
+                  <div className="flex items-center gap-2 text-gray-500 lg:text-sm text-xs">
                     <FaCalendarAlt className="text-xs" />
                     <span>{blog.date}</span>
                   </div>
@@ -94,8 +94,8 @@ const BlogResearch = () => {
         </div>
 
         {/* View All Button */}
-        <div className="text-center">
-          <Link to={"/blog"} className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-300">
+        <div className="text-center mb-2">
+          <Link to={"/blog"} className="bg-green-600 hover:bg-green-700 text-white font-semibold lg:px-8 lg:py-3 px-4 py-2 text-sm rounded transition-colors duration-300">
             {t("blogs.viewAll")}
           </Link>
         </div>

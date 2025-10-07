@@ -21,17 +21,17 @@ const FAQ = () => {
   };
 
   return (
-    <div className="py-16 px-4 sm:px-6 md:px-8 lg:px-10 bg-gray-50">
+    <div className="py-4 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-10 bg-gray-50 mb-0">
       <div className="lg:w-10/12 mx-auto max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+        <div className="text-center mb-6 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
             {t('faq.header')}
           </h2>
         </div>
 
         {/* FAQ Items */}
-        <div className="space-y-4">
+        <div className="space-y-2 lg:space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
@@ -40,12 +40,12 @@ const FAQ = () => {
               {/* Question Button */}
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors duration-200"
+                className="w-full flex items-center justify-between p-3 lg:p-5 text-left hover:bg-gray-50 transition-colors duration-200"
               >
-                <span className="font-semibold text-gray-900 pr-4">
+                <span className="font-semibold text-sm lg:text-lg text-gray-900 pr-4">
                   {t(faq.questionKey)}
                 </span>
-                <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-600 text-white rounded text-xl font-light">
+                <span className="flex-shrink-0 lg:w-10 lg:h-10 h-7 w-7 flex items-center justify-center bg-green-600 text-white rounded text-sm lg:text-xl font-light">
                   {openIndex === index ? '−' : '+'}
                 </span>
               </button>

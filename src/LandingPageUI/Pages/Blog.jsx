@@ -10,25 +10,25 @@ import { useTranslation } from "react-i18next";
 
 const BlogCardComponent = ({ image, category, title, description, date }) => (
   <div className="bg-sky-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-    <div className="relative  lg:h-[340px] overflow-hidden">
+    <div className="relative w-full lg:h-[340px] overflow-hidden">
       <img 
         src={image} 
         alt={title}
         className="w-full h-full object-cover"
       />
     </div>
-    <div className="p-6">
-      <span className={`text-xs font-medium text-green-500 uppercase tracking-wide`}>
+    <div className="p-3 lg:p-6">
+      <span className={`lg:text-sm text-xs font-medium text-green-500 uppercase tracking-wide`}>
         {category}
       </span>
-      <h3 className="text-xl font-bold text-gray-900 mt-2 mb-3">
+      <h3 className="lg:text-xl text-lg font-bold text-gray-900 mt-2 mb-3">
         {title}
       </h3>
-      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+      <p className="text-gray-600 lg:text-sm text-xs mb-4 leading-relaxed">
         {description}
       </p>
       <div className="flex items-center justify-between">
-        <div className="flex items-center text-gray-500 text-sm">
+        <div className="flex items-center text-gray-500 lg:text-sm text-xs">
           <Calendar className="w-4 h-4 mr-2" />
           <span>{date}</span>
         </div>
@@ -115,18 +115,18 @@ const Blog = () => {
         </div>
       </div>
 
-      <div className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-11/12 lg:w-10/12 xl:max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+      <div className="bg-gray-50  py-6 lg:py-12 px-4 sm:px-6 lg:px-8">
+        <div className="lg:w-10/12 xl:max-w-7xl mx-auto">
+          <div className="text-center mb-6 lg:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
               {t('blog.title')}
             </h2>
-            <p className="text-gray-600 text-base sm:text-lg md:text-xl py-3 max-w-2xl mx-auto">
+            <p className="text-gray-600 text-xs sm:text-sm md:text-base py-3 max-w-2xl mx-auto">
              {t('blog.description')}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 lg:gap-8">
             {blogs.map((blog, index) => (
               <BlogCardComponent key={index} {...blog} />
             ))}

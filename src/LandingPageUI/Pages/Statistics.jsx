@@ -55,21 +55,21 @@ const cards = [
 export default function Statistics() {
   const { t } = useTranslation();
   return (
-    <section className="bg-gray-50 py-10 xl:py-20 px-4 sm:px-6 md:px-8 lg:px-10">
+    <section className="bg-gray-50 py-6 sm:py-10 xl:py-20 px-4 sm:px-6 md:px-8 lg:px-10">
       <div className=" lg:w-10/12 xl:max-w-7xl mx-auto ">
-        <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 lg:gap-6 gap-2">
           {cards.map((c) => (
             <div
               key={c.id}
               className="bg-white xl:w-[282px] xl:h-[274px] rounded-xl p-6 shadow-sm flex flex-col items-center justify-center text-center hover:shadow-md transition-shadow"
             >
               <div className="mb-4">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-emerald-50 text-emerald-700">
+                <div className="inline-flex items-center justify-center w-14  h-14 rounded-lg bg-emerald-50 text-emerald-700">
                   {c.icon}
                 </div>
               </div>
 
-              <div className="text-3xl font-extrabold text-slate-900">{c.value}</div>
+              <div className="lg:text-3xl text-xl font-extrabold text-slate-900">{c.value}</div>
               <div className="mt-3 text-sm text-slate-600">{t(c.titleKey)}</div>
             </div>
           ))}

@@ -10,16 +10,16 @@ export default function Footer() {
   return (
     <div>
       {/* CTA Section */}
-      <div className="bg-gray-50 py-16 px-4 sm:px-6 md:px-8 lg:px-10">
+      <div className="bg-gray-50 py-6 sm:py-10 lg:pt-6 pb-6 px-4 sm:px-6 md:px-8 lg:px-10 ">
         <div className="lg:w-10/12 mx-auto max-w-7xl">
-          <div className="bg-green-900 relative -mb-42 z-40 rounded-2xl p-8 md:p-12 text-center shadow-lg">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
+          <div className="bg-green-900 relative -mb-40 z-40 rounded-2xl p-8 md:p-12 text-center shadow-lg">
+            <h2 className="text-xl sm:text-3xl xl:text-4xl font-bold text-white mb-6">
               {t("footer.cta.title")}
             </h2>
-            <p className="text-white text-sm md:text-lg max-w-4xl mx-auto mb-8 leading-relaxed">
+            <p className="text-white text-xs lg:text-sm xl:text-lg max-w-4xl mx-auto mb-8 leading-relaxed">
               {t("footer.cta.description")}
             </p>
-            <button className="btn btn-sm md:btn-md lg:btn-lg bg-green-500 hover:bg-green-600  text-white font-medium border-transparent px-8 py-3 rounded-sm transition-colors shadow-md">
+            <button className="btn btn-sm  lg:btn-lg bg-green-500 hover:bg-green-600  text-white font-medium border-transparent px-8 py-3 rounded-sm transition-colors shadow-md">
               {t("footer.cta.button")}
             </button>
           </div>
@@ -27,51 +27,77 @@ export default function Footer() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#002201] -z-0 text-white px-4 sm:px-6 md:px-8 lg:px-10 pt-40 py-12">
+      <footer className="bg-[#002201] -z-0 text-white px-4 sm:px-6 md:px-8 lg:px-10 pt-40  py-1">
         <div className="lg:w-10/12 mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-6 sm:mb-6 lg:mb-12">
             {/* Brand Column */}
             <div>
               <div className="flex items-center mb-4">
                 <img src={logo} alt="Logo" />
-                <span className="font-bold text-lg">{t("footer.brand.name")}</span>
+                <span className="font-bold text-lg">
+                  {t("footer.brand.name")}
+                </span>
               </div>
               <p className="text-gray-300 text-sm mb-6 leading-relaxed">
                 {t("footer.brand.description")}
               </p>
             </div>
 
-            {/* Service Column */}
-            <div>
-              <h3 className="font-semibold text-lg mb-4">{t("footer.service.title")}</h3>
-              <ul className="space-y-3 text-gray-300 text-sm">
-                {t("footer.service.items", { returnObjects: true }).map((item, idx) => (
-                  <li key={idx}>
-                    <a href="#" className="hover:text-white transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            <div className="grid grid-cols-2 gap-8 col-span-2">
+              {/* Service Column */}{" "}
+              <div>
+                {" "}
+                <h3 className="font-semibold text-lg mb-4">
+                  {t("footer.service.title")}
+                </h3>{" "}
+                <ul className="space-y-3 text-gray-300 text-sm">
+                  {" "}
+                  {t("footer.service.items", { returnObjects: true }).map(
+                    (item, idx) => (
+                      <li key={idx}>
+                        {" "}
+                        <a
+                          href="#"
+                          className="hover:text-white transition-colors"
+                        >
+                          {" "}
+                          {item}{" "}
+                        </a>{" "}
+                      </li>
+                    )
+                  )}{" "}
+                </ul>{" "}
+              </div>{" "}
+              {/* Company Column */}{" "}
+              <div>
+                {" "}
+                <h3 className="font-semibold text-lg mb-4">
+                  {t("footer.company.title")}
+                </h3>{" "}
+                <ul className="space-y-3 text-gray-300 text-sm">
+                  {" "}
+                  {t("footer.company.items", { returnObjects: true }).map(
+                    (item, idx) => (
+                      <li key={idx}>
+                        {" "}
+                        <a
+                          href="#"
+                          className="hover:text-white transition-colors"
+                        >
+                          {" "}
+                          {item}{" "}
+                        </a>{" "}
+                      </li>
+                    )
+                  )}{" "}
+                </ul>{" "}
+              </div>
             </div>
-
-            {/* Company Column */}
-            <div>
-              <h3 className="font-semibold text-lg mb-4">{t("footer.company.title")}</h3>
-              <ul className="space-y-3 text-gray-300 text-sm">
-                {t("footer.company.items", { returnObjects: true }).map((item, idx) => (
-                  <li key={idx}>
-                    <a href="#" className="hover:text-white transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* Contact Column */}
             <div>
-              <h3 className="font-semibold text-lg mb-4">{t("footer.contact.title")}</h3>
+              <h3 className="font-semibold text-lg mb-4">
+                {t("footer.contact.title")}
+              </h3>
               <ul className="space-y-4 text-gray-300 text-sm">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -92,7 +118,7 @@ export default function Footer() {
       </footer>
 
       {/* Copyright */}
-      <footer className="py-3 bg-black text-center text-gray-400 text-sm">
+      <footer className="py-3 bg-black text-center text-gray-400 text-xs lg:text-sm">
         © {currentYear} {t("footer.copyright")}
       </footer>
     </div>
