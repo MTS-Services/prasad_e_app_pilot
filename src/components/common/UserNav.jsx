@@ -57,7 +57,10 @@ export default function Nav() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center space-x-2">
+            
+                <LanguageSwitcher />
+              
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-700 hover:text-green-500 transition-colors duration-200"
@@ -86,9 +89,7 @@ export default function Nav() {
               {/* Language Selector Mobile */}
               
 
-              <div className="flex justify-center">
-                <LanguageSwitcher />
-              </div>
+              
 
               {/* Download App Button Mobile */}
               <button className="w-full bg-green-500 hover:bg-green-600 text-white px-6 py-3 text-sm rounded-md  font-medium transition-colors duration-200">
