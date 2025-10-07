@@ -28,15 +28,15 @@ export default function CForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20 px-4">
-      <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-sm p-8 md:p-12">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+    <div className="min-h-screen bg-gray-50 py-10 lg:py-20 px-4">
+      <div className="max-w-7xl w-11/12 mx-auto md:bg-white rounded-lg lg:shadow-sm p-2 lg:p-8 md:p-12">
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
           {t('contact2.form.header')}
         </h1>
 
         <form onSubmit={handleSubmit}>
           {/* First Name & Last Name */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-6 mb-2 lg:mb-6">
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium text-gray-900 mb-2">
                 {t('contact2.form.firstName')}<span className="text-red-500">*</span>
@@ -49,7 +49,7 @@ export default function CForm() {
                 onChange={handleChange}
                 placeholder={t('contact2.form.firstNamePlaceholder')}
                 required
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-1.5 lg:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
             </div>
 
@@ -65,13 +65,13 @@ export default function CForm() {
                 onChange={handleChange}
                 placeholder={t('contact2.form.lastNamePlaceholder')}
                 required
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4  py-1.5 lg:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
             </div>
           </div>
 
           {/* Phone & Email */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-6 mb-2 lg:mb-6">
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-2">
                 {t('contact2.form.phone')}<span className="text-red-500">*</span>
@@ -84,7 +84,7 @@ export default function CForm() {
                 onChange={handleChange}
                 placeholder={t('contact2.form.phonePlaceholder')}
                 required
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-1.5 lg:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
             </div>
 
@@ -100,13 +100,13 @@ export default function CForm() {
                 onChange={handleChange}
                 placeholder={t('contact2.form.emailPlaceholder')}
                 required
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-1.5 lg:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
             </div>
           </div>
 
           {/* Subject */}
-          <div className="mb-6">
+          <div className="mb-2 lg:mb-6">
             <label htmlFor="subject" className="block text-sm font-medium text-gray-900 mb-2">
               {t('contact2.form.subject')}
             </label>
@@ -117,12 +117,12 @@ export default function CForm() {
               value={formData.subject}
               onChange={handleChange}
               placeholder={t('contact.form.subjectPlaceholder')}
-              className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4  py-1.5 lg:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             />
           </div>
 
           {/* Message */}
-          <div className="mb-8">
+          <div className="mb-4 lg:mb-8">
             <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
               {t('contact2.form.message')}
             </label>
@@ -133,7 +133,7 @@ export default function CForm() {
               onChange={handleChange}
               placeholder={t('contact.form.messagePlaceholder')}
               rows="6"
-              className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+              className="w-full px-4 py-1.5 lg:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
             ></textarea>
           </div>
 
