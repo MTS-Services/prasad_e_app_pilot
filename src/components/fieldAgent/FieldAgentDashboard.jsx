@@ -224,7 +224,7 @@ const FieldAgentDashboard = () => {
       <div
         className={`bg-white shadow-lg transform ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 transition-transform duration-300 ease-in-out fixed lg:static inset-y-0 left-0 z-50 w-64 overflow-y-auto`}
+        } lg:translate-x-0 transition-transform duration-300 ease-in-out fixed lg:static inset-y-0 left-0 z-30 w-64 overflow-y-auto`}
       >
         <div className='flex items-center justify-between h-16 px-6 border-b border-gray-200'>
           <h1 className='text-xl font-bold text-gray-900'>
@@ -296,7 +296,7 @@ const FieldAgentDashboard = () => {
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
-          className='fixed inset-0 bg-black bg-opacity-50 lg:hidden z-40'
+          className='fixed inset-0 bg-black opacity-50 lg:hidden z-20'
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}

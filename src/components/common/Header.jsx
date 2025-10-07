@@ -36,12 +36,12 @@ export const Header = () => {
           <LanguageSwitcher />
           {user &&
             (["admin", "marketing", "employee"].includes(user.role) ? (
-              <Link className="text-gray-800 text-xl">
+              <Link className="text-gray-800 text-xl lg:flex hidden">
                 <FiBell />
               </Link>
             ) : null)}
             {
-              user.role == 'admin'? <Link className="text-gray-800 text-xl"><FiSettings /></Link> :null
+              user.role == 'admin'? <Link className="text-gray-800 text-xl lg:flex hidden"><FiSettings /></Link> :null
             }
           {user ? (
             <div className=" flex items-end justify-center gap-2">
@@ -68,12 +68,12 @@ export const Header = () => {
                   </Button> */}
                   {user &&
             (["admin", "marketing", "employee"].includes(user.role) ? (
-              <Link className="text-gray-800 text-sm flex justify-start gap-2 items-center">
+              <Link className="text-gray-800 text-sm flex justify-start gap-2 items-center lg:hidden">
                 <FiBell /> Notification
               </Link>
             ) : null)}
             {
-              user.role == 'admin'? <Link className="text-gray-800 text-sm flex justify-start gap-2 items-center "><FiSettings /> Settings</Link> :null
+              user.role == 'admin'? <Link className="text-gray-800 text-sm flex justify-start gap-2 items-center  lg:hidden"><FiSettings /> Settings</Link> :null
             }
                   <button
                     onClick={logOutHandler}

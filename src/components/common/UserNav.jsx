@@ -19,9 +19,9 @@ export default function Nav() {
   ];
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="w-11/12 mx-auto  px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className="bg-white shadow-sm  sticky top-0 z-50">
+      <div className="w-11/12 mx-auto  px-4 sm:px-6 lg:px-8 xl:h-20 flex items-center justify-center">
+        <div className="flex justify-between items-center  w-full h-16">
           {/* Logo */}
           <Link to={'/'} className="flex items-center">
             <div className="flex items-center space-x-2">
@@ -35,7 +35,7 @@ export default function Nav() {
               <NavLink
                 key={link.name}
                 to={link.href}
-                className="!text-gray-700 hover:text-green-500 transition-colors duration-200 text-sm font-medium"
+                className="!text-gray-700 hover:text-green-500 transition-colors duration-200 text-sm xl:text-[16px] font-medium"
               >
                 {link.name}
               </NavLink>
