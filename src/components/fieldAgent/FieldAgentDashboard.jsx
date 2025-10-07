@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { FaRupeeSign, FaUserCircle } from "react-icons/fa";
+import { FaRupeeSign } from "react-icons/fa";
 import { PiUsersThreeBold } from "react-icons/pi";
 import { FiUserPlus } from "react-icons/fi";
 import AddCustomerModal from "./AddCustomerModal";
@@ -16,8 +16,7 @@ const FieldAgentDashboard = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const totalUsers = 106;
-  const usersPerPage = 6;
+  const usersPerPage = 4;
   const ICONS = {
     PiUsersThreeBold: PiUsersThreeBold,
     FaRupeeSign: FaRupeeSign,
@@ -50,6 +49,25 @@ const FieldAgentDashboard = () => {
 
     fetchAgentData();
   }, []);
+
+  // Calculate total users and pages based on the fetched data
+  const totalUsers = tableData.length;
+  const totalPages = Math.ceil(totalUsers / usersPerPage);
+
+  // Determine the data to show on the current page
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = tableData.slice(indexOfFirstUser, indexOfLastUser);
+
+  // Helper to generate page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
+  // Handle loading and error states
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="   bg-[#FAFFFD] p-4 md:p-6 lg:p-8">
@@ -103,36 +121,54 @@ const FieldAgentDashboard = () => {
             </button>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
+          <div className="overflow-x-auto custom-scrollbar">
+            <table className="w-full lg:w-[1800px]">
               <thead className="bg-[#F5F7FA]">
-                <tr>
+                <tr >
+                  {/* Always visible columns */}
                   <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
-                    {t("dashboard.fieldAgent.tableHeader.User")}
+                    {t("dashboard.fieldAgent.tableHeader.CustomerList")}
                   </th>
                   <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
                     {t("dashboard.fieldAgent.tableHeader.Role")}
                   </th>
                   <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
-                    {t("dashboard.fieldAgent.tableHeader.RegistrationCommission")}
+                    {t(
+                      "dashboard.fieldAgent.tableHeader.RegistrationCommission"
+                    )}
                   </th>
                   <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
                     {t("dashboard.fieldAgent.tableHeader.FirstOrderCommission")}
                   </th>
                   <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
-                    {t("dashboard.fieldAgent.tableHeader.JoinDate")}
+                    {t("dashboard.fieldAgent.tableHeader.EffectiveDate")}
+                  </th>
+
+                  {/* Scrollable columns */}
+                  <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
+                    {t("dashboard.fieldAgent.tableHeader.RegistrationDate")}
+                  </th>
+                  <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
+                    {t("dashboard.fieldAgent.tableHeader.CustomerType")}
+                  </th>
+                  <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
+                    {t("dashboard.fieldAgent.tableHeader.NextFollowUpDate")}
+                  </th>
+                  <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
+                    {t("dashboard.fieldAgent.tableHeader.ServiceInterest")}
+                  </th>
+                  <th className="text-left py-4 px-6 text-sm md:text-base font-semibold text-black">
+                    {t("dashboard.fieldAgent.tableHeader.QuickActions")}
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {tableData.map((row) => (
+                {currentUsers.map((row) => (
                   <tr
                     key={row.id}
                     className="hover:bg-gray-50 transition-colors border-b border-gray-100"
                   >
-                    <td className="py-4 px-6 text-sm text-black ">
-                      {row.user}
-                    </td>
+                    <td className="py-4 px-6 text-sm text-black">{row.customerList}</td>
                     <td className="py-4 px-6 text-sm text-black">{row.role}</td>
                     <td className="py-4 px-6 text-sm text-black">
                       {row.registrationCommission}
@@ -141,7 +177,24 @@ const FieldAgentDashboard = () => {
                       {row.firstOrderCommission}
                     </td>
                     <td className="py-4 px-6 text-sm text-black">
-                      {row.joinDate}
+                      {row.effectiveDate}
+                    </td>
+
+                    {/* Scrollable columns */}
+                    <td className="py-4 px-6 text-sm text-black">
+                      {row.registrationDate}
+                    </td>
+                    <td className="py-4 px-6 text-sm text-black">
+                      {row.customerType}
+                    </td>
+                    <td className="py-4 px-6 text-sm text-black">
+                      {row.nextFollowUpDate}
+                    </td>
+                    <td className="py-4 px-6 text-sm text-black">
+                      {row.serviceInterest}
+                    </td>
+                    <td className="py-4 px-6 text-sm text-black">
+                      {row.quickActions}
                     </td>
                   </tr>
                 ))}
@@ -150,33 +203,45 @@ const FieldAgentDashboard = () => {
           </div>
 
           {/* Pagination */}
-          <div className=" py-4 md:py-6 ">
+          <div className="py-4 md:py-6">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-gray-200 pb-2 md:pb-3">
               <p className="text-sm text-black px-4 md:px-6">
-                {t("dashboard.fieldAgent.pagination.showing")} {usersPerPage} of {totalUsers} {t("dashboard.fieldAgent.pagination.users")}
+                {t("dashboard.fieldAgent.pagination.showing")}{" "}
+                {currentUsers.length} of {totalUsers}{" "}
+                {t("dashboard.fieldAgent.pagination.users")}
               </p>
-              <div className="flex items-center gap-0.5 sm:gap-2 sm:px-4 md:px-6">
+              <div className="flex flex-row flex-wrap items-center gap-0.5 sm:gap-2 px-3 sm:px-4 md:px-6">
                 <button
                   onClick={() =>
                     setCurrentPage((prev) => Math.max(1, prev - 1))
                   }
-                  disabled={currentPage === 1}
-                  className="px-2 sm:px-3 py-1.5 text-sm text-gray-600 !bg-gray-100 hover:bg-gray-100 rounded  disabled:cursor-not-allowed transition-colors"
+                  disabled={currentPage === 1} // This is correct, disables on page 1
+                  className="px-2 sm:px-3 py-1.5 text-sm text-gray-600 !bg-gray-100 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   {t("dashboard.fieldAgent.pagination.previous")}
                 </button>
-                <button className="px-2 sm:px-3 py-1.5text-sm !bg-button-primary text-white rounded font-medium">
-                  1
-                </button>
+
+                {/* Dynamically create page number buttons */}
+                {pageNumbers.map((number) => (
+                  <button
+                    key={number}
+                    onClick={() => setCurrentPage(number)}
+                    className={`px-3 py-1.5 text-sm rounded transition-colors ${
+                      currentPage === number
+                        ? "!bg-button-primary text-white font-medium"
+                        : "!bg-gray-100 text-black hover:bg-gray-200"
+                    }`}
+                  >
+                    {number}
+                  </button>
+                ))}
+
                 <button
-                  onClick={() => setCurrentPage(2)}
-                  className="px-2 sm:px-3 py-1.5 text-sm text-black !bg-gray-100 hover:bg-gray-100 rounded transition-colors"
-                >
-                  2
-                </button>
-                <button
-                  onClick={() => setCurrentPage((prev) => prev + 1)}
-                  className="px-2 sm:px-3 py-1.5 text-sm text-gray-600 !bg-gray-100 hover:bg-gray-100 rounded transition-colors"
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                  }
+                  disabled={currentPage === totalPages} // Disable on the last page
+                  className="px-2 sm:px-3 py-1.5 text-sm text-gray-600 !bg-gray-100 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   {t("dashboard.fieldAgent.pagination.next")}
                 </button>

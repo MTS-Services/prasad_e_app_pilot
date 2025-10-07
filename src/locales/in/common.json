@@ -40,11 +40,16 @@
         "AddCustomer": "ग्राहक जोड़ें"
       },
       "tableHeader": {
-        "User": "उपयोगकर्ता",
+        "CustomerList": "ग्राहक सूची",
         "Role": "भूमिका",
         "RegistrationCommission": "पंजीकरण कमीशन",
         "FirstOrderCommission": "पहले ऑर्डर का कमीशन",
-        "JoinDate": "जुड़ने की तिथि"
+        "EffectiveDate": "प्रभावी तिथि",
+        "RegistrationDate": "पंजीकरण तिथि",
+        "CustomerType": "ग्राहक प्रकार",
+        "NextFollowUpDate": "अगली फॉलो-अप तिथि",
+        "ServiceInterest": "सेवा रुचि",
+        "QuickActions": "त्वरित क्रियाएँ"
       },
       "pagination": {
         "showing": "दिखा रहे हैं",

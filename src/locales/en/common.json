@@ -40,11 +40,16 @@
         "AddCustomer": "Add Customer"
       },
       "tableHeader": {
-        "User": "User",
+        "CustomerList": "Customer List",
         "Role": "Role",
         "RegistrationCommission": "Registration Commission",
         "FirstOrderCommission": "First Order Commission",
-        "JoinDate": "Join Date"
+        "EffectiveDate": "Effective Date",
+        "RegistrationDate": "Registration Date",
+        "CustomerType": "Customer Type",
+        "NextFollowUpDate": "Next Follow-up Date",
+        "ServiceInterest": "Service Interest",
+        "QuickActions": "Quick Actions"
       },
       "pagination": {
         "showing": "Showing",

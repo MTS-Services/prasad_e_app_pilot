@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /* Ensure full width layout */
 html,
@@ -65,6 +65,27 @@ button {
 button:hover {
   border-color: #646cff;
 }
+
+.custom-scrollbar {
+  /* WebKit browsers (Chrome, Safari) */
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f5f5f5; /* optional track color */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #565252; /* your custom color */
+    border-radius: 9999px;
+  }
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #565252 #f5f5f5; /* thumb color | track color */
+}
+
 /* button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -83,9 +104,7 @@ button:focus-visible {
   }
 }
 
-
-
-@theme{
-  --color-button-primary: #00C805;
-  --color-button-text: #FFFFFF;
+@theme {
+  --color-button-primary: #00c805;
+  --color-button-text: #ffffff;
 }

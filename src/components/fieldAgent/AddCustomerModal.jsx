@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { ChevronLeft, MapPin, Upload, XCircle } from "lucide-react";
+import { FiChevronLeft, FiMapPin, FiUpload, FiXCircle } from 'react-icons/fi';
+
 import { useTranslation } from "react-i18next";
 
 const INITIAL_FORM = {
@@ -95,6 +96,9 @@ export default function AddCustomerModal({ isOpen, onClose }) {
 
   const handleConfirm = () => {
     console.log("Form submitted:", formData);
+
+
+    // post function here
     handleClose();
   };
 
@@ -120,7 +124,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
       }}
     >
       <div
-        className={`bg-white w-full max-w-3xl mx-4 md:mx-6 rounded-lg shadow-lg max-h-[90vh] flex flex-col
+        className={`bg-white w-full max-w-2xl mx-4 md:mx-6 rounded-lg shadow-lg max-h-[80vh] flex flex-col
       transform transition-transform duration-300 px-2 md:px-4 lg:px-12
       ${isOpen ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
@@ -131,7 +135,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
             type="button"
             className="hover:bg-gray-100 p-2 rounded-lg text-[#002244] transition"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <FiChevronLeft className="w-5 h-5" />
           </button>
           <h2 className="text-lg md:text-4xl font-semibold text-center flex-1">
             {t("dashboard.fieldAgent.FirstModal.addCustomer")}
@@ -146,7 +150,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
 
           {validationError && (
             <div className="flex items-center p-3 mb-4 text-sm font-medium text-[#C43216] bg-red-100 rounded-lg">
-              <XCircle className="w-5 h-5 mr-2" />
+              <FiXCircle className="w-5 h-5 mr-2" />
               {validationError}
             </div>
           )}
@@ -251,7 +255,7 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                     )}
                     className="w-full px-4 py-2 border rounded-lg  focus:ring-green-500"
                   />
-                  <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <FiMapPin className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                 </div>
               </div>
 
@@ -335,11 +339,11 @@ export default function AddCustomerModal({ isOpen, onClose }) {
                     onChange={handleInputChange}
                     className="w-full px-4 py-2 border rounded-lg focus:ring-green-500"
                   />
-                  <Upload className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <FiUpload className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                 </div>
                 {/* Show selected file name (optional) */}
                 {formData.kycDocument && (
-                  <p className="text-sm mt-1">{formData.kycDocument.name}</p>
+                  <p className="text-lg mt-1">Your selected file name is : <span>{formData.kycDocument.name}</span></p>
                 )}
               </div>
               <div>
