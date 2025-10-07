@@ -38,16 +38,16 @@ export default function CompleteSections() {
   return (
     <div className="bg-gray-50">
       {/* Meet Our Team Section */}
-      <div className="py-16 px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl lg:text-[40px] font-semibold text-center text-gray-900 mb-3">
+      <div className="lg:py-16 py-5 px-4 lg:px-8 bg-gray-50">
+        <div className="w-full mx-auto">
+          <h2 className="text-2xl md:text-3xl lg:text-[40px] font-bold text-center text-gray-900 mb-3">
             {t('team.header')}
           </h2>
-          <p className="text-center text-gray-600 mb-12 text-[16px] max-w-3xl mx-auto">
+          <p className="text-center text-gray-600 mb-5 lg:mb-12 text-xs lg:text-[16px] max-w-3xl mx-auto">
             {t('team.subheader')}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6">
             {team.map((member, index) => (
               <div
                 key={index}
@@ -61,7 +61,7 @@ export default function CompleteSections() {
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="text-2xl font-bold text-gray-950 mb-1">
+                  <h3 className="text-lg lg:text-2xl font-bold text-gray-950 mb-1">
                     {t(member.nameKey)}
                   </h3>
                   <p className="text-xs font-medium text-sky-600 mb-2">
