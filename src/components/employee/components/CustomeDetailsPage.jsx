@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { IoMdArrowBack } from "react-icons/io";
+import { TbWorld } from "react-icons/tb";
 
 const CustomerDetailsPage = ({ customer, onBack, onViewOrderDetails }) => {
-  // Sample orders - you'll replace this with actual data from API
+
   const customerData = {
     name: customer?.name || 'Albert Flores',
     email: 'albert.flores@gmail.com',
@@ -58,7 +59,7 @@ const CustomerDetailsPage = ({ customer, onBack, onViewOrderDetails }) => {
 
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="h-full bg-gray-50 overflow-y-hidden">
       <div className="flex-1 p-4 md:p-8">
         <button
           onClick={onBack}
@@ -86,7 +87,9 @@ const CustomerDetailsPage = ({ customer, onBack, onViewOrderDetails }) => {
 
             {/* Location Box */}
             <div className="bg-green-50 border border-green-100 px-4 py-2 sm:px-5 sm:py-3 rounded-lg w-full sm:w-auto">
-              <div className="text-[11px] sm:text-xs text-gray-600 mb-1 font-medium">New Field (India Gate-wal)</div>
+              <div className="text-[11px] flex gap-2 sm:text-xs text-gray-600 mb-1 font-medium">
+                <TbWorld className="w-4 h-4 text-gray-600" />
+                New Field (India Gate-wal)</div>
               <div className="text-xs sm:text-sm text-gray-800">
                 Latitude: <span className="font-semibold">{customerData.location.latitude}</span>
               </div>
@@ -185,7 +188,7 @@ const CustomerDetailsPage = ({ customer, onBack, onViewOrderDetails }) => {
             </div>
 
             {/* Passport */}
-            <div className="bg-gray-300 rounded-lg p-8 flex items-center justify-center min-h-[280px]">
+            <div className="bg-gray-300 rounded-lg p-8 flex items-center justify-center min-h-[180px]">
               <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-lg p-6 w-full max-w-md border-4 border-orange-400">
                 <div className="flex items-start justify-between mb-3">
                   <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">

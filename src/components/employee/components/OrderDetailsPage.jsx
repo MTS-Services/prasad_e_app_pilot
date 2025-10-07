@@ -1,6 +1,5 @@
 
-import React, { useState } from "react";
-import { ArrowLeft, Package, Globe } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 
 // Order Details Page Component
