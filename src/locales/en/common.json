@@ -44,7 +44,7 @@
         "serviceName": "Service/name",
         "contact": "Contact",
         "location": "Location",
-        "served": "Served",
+        "served": "Served BY",
         "progress": "Progress",
         "priority": "Priority",
         "action": "Action",

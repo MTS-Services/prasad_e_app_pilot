@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { Users, ShoppingCart, CreditCard, Headphones, Eye, TrendingUp, TrendingDown, ChevronUp, ChevronDown } from "lucide-react";
 
 import RegistrationModal from "./components/Modal/RegistrationModal";
@@ -7,7 +7,7 @@ import AssistProfileSetupModal from "./components/Modal/AssistProfileSetupModal"
 import ApiService from "../../services/apiService";
 import { useTranslation } from "react-i18next";
 
-function DashBoard() {
+function DashBoard({ onViewCustomerDetails }) {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 days");
   const [open, setOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,9 +18,9 @@ function DashBoard() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
-  const navigate = useNavigate();
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  
+
   const [summary, setSummary] = useState({
     totalCustomers: 0,
     totalRevenue: 0,
@@ -129,9 +129,7 @@ function DashBoard() {
     currentPage * itemsPerPage
   );
 
-  const handleViewCustomer = (activity) => {
-    navigate(`/customer/${activity.serviceName}`, { state: { activity } });
-  };
+
 
   const handlePrevious = () => setCurrentPage(prev => Math.max(prev - 1, 1));
   const handleNext = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
@@ -146,15 +144,15 @@ function DashBoard() {
 
       {/* Period Select */}
       <div className="mb-4 md:mb-6 flex flex-col items-start gap-2 relative">
-        <h2 className="text-lg md:text-xl font-normal text-gray-700">  {periodOptions.find(p => p.key === selectedPeriod)?.label || t("dashboard.employee.pages.dashboard.dropDown.last30days")} 
-         { t("dashboard.employee.pages.dashboard.dropDown.overview")}</h2>
+        <h2 className="text-lg md:text-xl font-normal text-gray-700">  {periodOptions.find(p => p.key === selectedPeriod)?.label || t("dashboard.employee.pages.dashboard.dropDown.last30days")}
+          {t("dashboard.employee.pages.dashboard.dropDown.overview")}</h2>
         <div className="relative w-52">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="w-full flex items-center justify-between px-3 py-2 md:px-4 md:py-2 bg-white border border-gray-300 rounded-xl text-xs md:text-sm text-gray-700 shadow-sm hover:shadow-md transition-all duration-200"
           >
             {
-              
+
               periodOptions.find(p => p.key === selectedPeriod)?.label ||
               t("dashboard.employee.pages.dashboard.dropDown.last30days")
             }
@@ -179,7 +177,7 @@ function DashBoard() {
                     : "text-gray-700"
                     }`}
                 >
-                  {period.label}  
+                  {period.label}
                 </button>
               ))}
 
@@ -266,7 +264,7 @@ function DashBoard() {
                     </span>
                   </td>
                   <td className="px-3 md:px-6 py-4">
-                    <button onClick={() => handleViewCustomer(activity)} className="text-gray-600 hover:text-gray-900">
+                    <button   onClick={() => onViewCustomerDetails(activity)}  className="text-gray-600 hover:text-gray-900">
                       <Eye className="w-4 h-4 md:w-5 md:h-5" />
                     </button>
                   </td>
@@ -287,6 +285,7 @@ function DashBoard() {
           </div>
         </div>
       </div>
+      
 
       {/* Modals */}
       <RegistrationModal isOpen={open} onClose={() => setOpen(false)} />
