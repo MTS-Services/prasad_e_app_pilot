@@ -28,7 +28,7 @@ const Sidebar = ({
       icon: LayoutDashboard,
     },
     {
-      id: 'drone-operator',
+      id: 'drone-operators',
       label: t('sidebar.admin.droneOperator'),
       icon: Plane,
     },

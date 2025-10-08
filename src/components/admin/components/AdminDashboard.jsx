@@ -12,10 +12,17 @@ import UserActivityTable from '../../common/UserActivityTable';
 // Import hooks
 import { useDashboardOverview } from '../../../hooks/useDashboardData';
 
-// Import page components
-import DroneOperatorPage from '../../pages/DroneOperatorPage';
-import UserManagementPage from '../../pages/UserManagementPage';
-import GenericPage from '../../pages/GenericPage';
+// Import admin components
+import DroneOperator from './DroneOperator';
+import UserManagement from './UserManagement';
+import EmployeeManagement from './EmployeeManagement';
+import FieldAgent from './FieldAgent';
+import Jobs from './Jobs';
+import PaymentsManagement from './PaymentsManagement';
+import Reports from './Reports';
+import Complaints from './Complaints';
+
+// Import common components
 import StatsCard from '../../common/StatsCard';
 import Sidebar from '../../common/Sidebar';
 import LoadingSpinner from '../../common/LoadingSpinner';
@@ -33,6 +40,30 @@ const AdminDashboard = () => {
 
   const renderContent = () => {
     switch (activeSection) {
+      case 'drone-operators':
+        return <DroneOperator />;
+
+      case 'user-management':
+        return <UserManagement />;
+
+      case 'employee-management':
+        return <EmployeeManagement />;
+
+      case 'field-agent':
+        return <FieldAgent />;
+
+      case 'jobs':
+        return <Jobs />;
+
+      case 'payments-management':
+        return <PaymentsManagement />;
+
+      case 'reports':
+        return <Reports />;
+
+      case 'complaints':
+        return <Complaints />;
+
       case 'dashboard':
         if (dashboardLoading) {
           return (
@@ -41,7 +72,6 @@ const AdminDashboard = () => {
             </div>
           );
         }
-
         if (dashboardError) {
           return (
             <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
@@ -184,7 +214,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className='flex h-screen bg-gray-100'>
+    <div className='flex h-screen bg-gray-100 overflow-hidden'>
       {/* Sidebar Component */}
       <Sidebar
         isOpen={sidebarOpen}
