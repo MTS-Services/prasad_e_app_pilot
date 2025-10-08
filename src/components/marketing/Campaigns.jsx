@@ -1,66 +1,237 @@
-import React from 'react';
-import { HiOutlineSpeakerphone } from 'react-icons/hi';
+import React, { useState } from "react";
 
 const Campaigns = () => {
+  const [seasonalPage, setSeasonalPage] = useState(1);
+  const [loyaltyPage, setLoyaltyPage] = useState(1);
+
+  // Fake data for Seasonal Campaigns
+  const seasonalCampaigns = [
+    {
+      id: 1,
+      name: "Spring Sky Deals",
+      type: "Brand Awareness",
+      leads: 500,
+      roi: "145%",
+    },
+    {
+      id: 2,
+      name: "Summer Heights Promo",
+      type: "Customer Acquisition",
+      leads: 600,
+      roi: "200%",
+    },
+    {
+      id: 3,
+      name: "Monsoon View Specials",
+      type: "Retargeting",
+      leads: 700,
+      roi: "300%",
+    },
+    {
+      id: 4,
+      name: "Autumn Horizon Offer",
+      type: "Customer Acquisition",
+      leads: 30,
+      roi: "400%",
+    },
+    {
+      id: 5,
+      name: "Winter Skyline Campaign",
+      type: "Brand Awareness",
+      leads: 54,
+      roi: "500%",
+    },
+    {
+      id: 6,
+      name: "New Year New Heights",
+      type: "Retargeting",
+      leads: 54,
+      roi: "600%",
+    },
+  ];
+
+  // Fake data for Loyalty Campaigns
+  const loyaltyCampaigns = [
+    {
+      id: 1,
+      name: "SkyPoints Rewards",
+      type: "Brand Awareness",
+      leads: 500,
+      roi: "145%",
+    },
+    {
+      id: 2,
+      name: "DroneMiles Loyalty Program",
+      type: "Customer Acquisition",
+      leads: 800,
+      roi: "200%",
+    },
+    {
+      id: 3,
+      name: "Aerial Advantage Club",
+      type: "Retargeting",
+      leads: 700,
+      roi: "300%",
+    },
+    {
+      id: 4,
+      name: "Elite Flyer Membership",
+      type: "Customer Acquisition",
+      leads: 30,
+      roi: "400%",
+    },
+    {
+      id: 5,
+      name: "Property Vision Rewards",
+      type: "Brand Awareness",
+      leads: 54,
+      roi: "500%",
+    },
+    {
+      id: 6,
+      name: "Altitude Advantage",
+      type: "Retargeting",
+      leads: 54,
+      roi: "600%",
+    },
+  ];
+
+  const itemsPerPage = 4;
+
+  const paginateData = (data, currentPage) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return data.slice(startIndex, endIndex);
+  };
+
+  const totalSeasonalPages = Math.ceil(seasonalCampaigns.length / itemsPerPage);
+  const totalLoyaltyPages = Math.ceil(loyaltyCampaigns.length / itemsPerPage);
+
+  const paginatedSeasonalCampaigns = paginateData(
+    seasonalCampaigns,
+    seasonalPage
+  );
+  const paginatedLoyaltyCampaigns = paginateData(loyaltyCampaigns, loyaltyPage);
+
+  const CampaignTable = ({
+    title,
+    campaigns,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    totalItems,
+  }) => (
+    <div className="bg-white rounded-lg shadow mb-8 p-6">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl lg:text-4xl font-bold text-gray-900">{title}</h2>
+        <button className="bg-green-500 hover:bg-green-600 text-gray-900 px-4 py-2 rounded text-sm font-medium flex items-center">
+          <span className="mr-1">+</span> Create Campaign
+        </button>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full lg:table-fixed">
+          <thead className="">
+            <tr className="border bg-gray-100 border-gray-200">
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
+                Campaign Name
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
+                Campaign Types
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
+                Leads Generated
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
+                ROI
+              </th>
+              <th className="px-4 py-3 text-right text-sm font-medium text-gray-600">
+                ACTIONS
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {campaigns?.map((campaign) => (
+              <tr key={campaign.id} className="border border-gray-200">
+                <td className="px-4 py-4 text-sm text-gray-900">
+                  {campaign.name}
+                </td>
+                <td className="px-4 py-4 text-sm text-gray-600">
+                  {campaign.type}
+                </td>
+                <td className="px-4 py-4 text-sm text-gray-900">
+                  {campaign.leads}
+                </td>
+                <td className="px-4 py-4 text-sm text-gray-900">
+                  {campaign.roi}
+                </td>
+                <td className="px-4 py-4 text-sm text-right">
+                  <button className="bg-green-500 hover:bg-green-600 text-gray-900 font-semibold px-4 py-2 rounded-lg text-sm">
+                    See details
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="mt-4 flex items-center justify-between">
+        <div className="text-sm text-sky-500">
+          Page {currentPage} of {totalPages} (Total: {totalItems} results)
+        </div>
+        <div className="flex space-x-2">
+          <button
+            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 border rounded-lg text-sm ${
+              currentPage === 1
+                ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
+                : "bg-transparent text-sky-500 border-sky-500"
+            }`}
+          >
+            Previous
+          </button>
+          <button
+            onClick={() =>
+              setCurrentPage(Math.min(totalPages, currentPage + 1))
+            }
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 border rounded-lg text-sm ${
+              currentPage === totalPages
+                ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
+                : "bg-transparent text-sky-500 border-sky-500"
+            }`}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
-    <div className='min-h-screen bg-gray-50 w-full'>
-      <div className='w-full px-4 sm:px-6 lg:px-8 py-6'>
-        {/* Header Section */}
-        <div className='bg-white rounded-xl shadow-sm p-6 sm:p-8 mb-8'>
-          <div className='flex items-center justify-between flex-wrap gap-4'>
-            <div className='flex items-center'>
-              <div className='bg-green-100 p-3 rounded-lg mr-4'>
-                <HiOutlineSpeakerphone className='w-8 h-8 text-green-600' />
-              </div>
-              <div>
-                <h1 className='text-2xl sm:text-3xl font-bold text-gray-900'>
-                  Campaigns
-                </h1>
-                <p className='text-gray-600 mt-1'>
-                  Create and manage marketing campaigns
-                </p>
-              </div>
-            </div>
-            <div className='flex items-center space-x-2'>
-              <span className='bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium'>
-                Active
-              </span>
-            </div>
-          </div>
-        </div>
+    <div className="min-h-screen bg-gray-50 w-full">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+        {/* Seasonal Campaign Table */}
+        <CampaignTable
+          title="Seasonal Campaign Overview"
+          campaigns={paginatedSeasonalCampaigns}
+          currentPage={seasonalPage}
+          setCurrentPage={setSeasonalPage}
+          totalPages={totalSeasonalPages}
+          totalItems={seasonalCampaigns.length}
+        />
 
-        {/* Content Area */}
-        <div className='bg-white rounded-xl shadow-sm p-6'>
-          <h2 className='text-xl font-bold text-gray-900 mb-4'>
-            Campaign Management
-          </h2>
-          <p className='text-gray-600 mb-6'>
-            This page will contain campaign creation and management
-            functionality.
-          </p>
-
-          {/* Demo Content */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-            <div className='bg-gray-50 p-4 rounded-lg'>
-              <h3 className='font-semibold text-gray-900 mb-2'>
-                Total Campaigns
-              </h3>
-              <p className='text-2xl font-bold text-blue-600'>24</p>
-            </div>
-            <div className='bg-gray-50 p-4 rounded-lg'>
-              <h3 className='font-semibold text-gray-900 mb-2'>Active</h3>
-              <p className='text-2xl font-bold text-green-600'>8</p>
-            </div>
-            <div className='bg-gray-50 p-4 rounded-lg'>
-              <h3 className='font-semibold text-gray-900 mb-2'>Completed</h3>
-              <p className='text-2xl font-bold text-purple-600'>12</p>
-            </div>
-            <div className='bg-gray-50 p-4 rounded-lg'>
-              <h3 className='font-semibold text-gray-900 mb-2'>Draft</h3>
-              <p className='text-2xl font-bold text-orange-600'>4</p>
-            </div>
-          </div>
-        </div>
+        {/* Loyalty Campaign Table */}
+        <CampaignTable
+          title="Loyalty Campaign Overview"
+          campaigns={paginatedLoyaltyCampaigns}
+          currentPage={loyaltyPage}
+          setCurrentPage={setLoyaltyPage}
+          totalPages={totalLoyaltyPages}
+          totalItems={loyaltyCampaigns.length}
+        />
       </div>
     </div>
   );
