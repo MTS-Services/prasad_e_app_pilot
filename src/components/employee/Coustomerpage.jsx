@@ -256,9 +256,10 @@ import { Eye } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import RegistrationModal from './components/Modal/RegistrationModal';
-import AssistProfileSetupModal from './components/Modal/AssistProfileSetupModal';
+
 import ApiService from '../../services/apiService';
 import { useTranslation } from 'react-i18next';
+import { AssistProfileSetupModal2 } from './components/Modal/AssistProfileSetupModal';
 
 const Coustomerpage = ({ setSelectedCustomer, setActiveSection }) => {
   const [open, setOpen] = useState(false);
@@ -506,7 +507,7 @@ const Coustomerpage = ({ setSelectedCustomer, setActiveSection }) => {
 
       {open && <RegistrationModal open={open} setOpen={setOpen} />}
       {isModalOpen && (
-        <AssistProfileSetupModal
+        <AssistProfileSetupModal2
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
         />

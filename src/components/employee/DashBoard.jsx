@@ -1,26 +1,18 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 
 import { Users, ShoppingCart, CreditCard, Headphones, Eye, TrendingUp, TrendingDown, ChevronUp, ChevronDown } from "lucide-react";
 
 import RegistrationModal from "./components/Modal/RegistrationModal";
-import AssistProfileSetupModal from "./components/Modal/AssistProfileSetupModal";
+import { AssistProfileSetupModal2, PersonalInfoModal, ServiceLocationModal, VerificationModal } from "./components/Modal/AssistProfileSetupModal";
 import ApiService from "../../services/apiService";
 import { useTranslation } from "react-i18next";
 
 function DashBoard({ onViewCustomerDetails }) {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 30 days");
   const [open, setOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { t } = useTranslation();
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
-
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const [summary, setSummary] = useState({
     totalCustomers: 0,
     totalRevenue: 0,
@@ -29,6 +21,26 @@ function DashBoard({ onViewCustomerDetails }) {
     completedOrders: 0,
     canceledOrders: 0,
   });
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+  const { t } = useTranslation();
+  
+
+ const [mainModalOpen, setMainModalOpen] = useState(false);
+  const [subModalType, setSubModalType] = useState(null);
+  const [customerEmail, setCustomerEmail] = useState("");
+
+  const handleOpenSubModal = useCallback((setupType, email) => {
+    setCustomerEmail(email);
+    setSubModalType(setupType);
+    setMainModalOpen(false);
+  }, []);
+
+  const handleCloseSubModal = useCallback(() => {
+    setSubModalType(null);
+    setMainModalOpen(true);
+  }, []);
 
   const periodOptions = [
     { key: "last7days", label: t("dashboard.employee.pages.dashboard.dropDown.last7days") },
@@ -38,9 +50,6 @@ function DashBoard({ onViewCustomerDetails }) {
     { key: "last6months", label: t("dashboard.employee.pages.dashboard.dropDown.last6months") },
     { key: "last12months", label: t("dashboard.employee.pages.dashboard.dropDown.last12months") },
   ];
-
-
-
   // Fetch dashboard data
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -132,7 +141,7 @@ function DashBoard({ onViewCustomerDetails }) {
   const handleNext = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
 
   return (
-    <div className="flex-1 p-4 md:p-8 bg-gray-50">
+    <div className="p-4 md:p-8 bg-gray-50">
       {/* Header */}
       <div className="mb-4 md:mb-6">
         <h1 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">{t('dashboard.employee.title.dashPageTitle')}</h1>
@@ -217,7 +226,7 @@ function DashBoard({ onViewCustomerDetails }) {
             <button onClick={() => setOpen(true)} className="px-4 md:px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-sm md:text-base">
               {t('dashboard.employee.button.registerNewCustomer')}
             </button>
-            <button onClick={() => setIsModalOpen(true)} className="px-4 md:px-6 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-sm md:text-base">
+            <button onClick={() => setMainModalOpen(true)} className="px-4 md:px-6 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-sm md:text-base">
               {t('dashboard.employee.button.assistProfile')}
             </button>
           </div>
@@ -286,9 +295,37 @@ function DashBoard({ onViewCustomerDetails }) {
 
       {/* Modals */}
       <RegistrationModal isOpen={open} onClose={() => setOpen(false)} />
-      <AssistProfileSetupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {/* <AssistProfileSetupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
+        <AssistProfileSetupModal2
+        isOpen={mainModalOpen}
+        onClose={() => setMainModalOpen(false)}
+        onOpenSubModal={handleOpenSubModal}
+      />
+
+      <PersonalInfoModal
+        isOpen={subModalType === "Personal Information"}
+        onClose={handleCloseSubModal}
+        email={customerEmail}
+      />
+
+      <VerificationModal
+        isOpen={subModalType === "Verification Details"}
+        onClose={handleCloseSubModal}
+        email={customerEmail}
+      />
+
+      <ServiceLocationModal
+        isOpen={subModalType === "Service Location"}
+        onClose={handleCloseSubModal}
+        email={customerEmail}
+      />
     </div>
   );
 }
 
 export default DashBoard;
+
+
+
+
+
