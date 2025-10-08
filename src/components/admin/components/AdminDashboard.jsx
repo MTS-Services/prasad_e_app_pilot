@@ -6,19 +6,19 @@ import {
 } from 'react-icons/hi';
 
 // Import dashboard components
-import StatsCard from '../common/StatsCard';
 import RevenueChart from '../charts/RevenueChart';
-import UserActivityTable from '../common/UserActivityTable';
-import LoadingSpinner from '../common/LoadingSpinner';
-import Sidebar from '../common/Sidebar';
+import UserActivityTable from '../../common/UserActivityTable';
 
 // Import hooks
-import { useDashboardOverview } from '../../hooks/useDashboardData';
+import { useDashboardOverview } from '../../../hooks/useDashboardData';
 
 // Import page components
-import DroneOperatorPage from '../pages/DroneOperatorPage';
-import UserManagementPage from '../pages/UserManagementPage';
-import GenericPage from '../pages/GenericPage';
+import DroneOperatorPage from '../../pages/DroneOperatorPage';
+import UserManagementPage from '../../pages/UserManagementPage';
+import GenericPage from '../../pages/GenericPage';
+import StatsCard from '../../common/StatsCard';
+import Sidebar from '../../common/Sidebar';
+import LoadingSpinner from '../../common/LoadingSpinner';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
@@ -187,8 +187,8 @@ const AdminDashboard = () => {
     <div className='flex h-screen bg-gray-100'>
       {/* Sidebar Component */}
       <Sidebar
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
+        isOpen={sidebarOpen}
+        setIsOpen={setSidebarOpen}
         activeSection={activeSection}
         setActiveSection={setActiveSection}
       />
