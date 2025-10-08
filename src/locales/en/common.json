@@ -64,8 +64,8 @@
         "cancel": "Cancel/Modify Order",
         "reshedule": "Reshedule Order",
         "collectPayment": "Collect Payment",
-        "appliedCreditsDiscount": "Applied Credits/Discount",
-        "resolveBillingIssues": "Resolve Billing Issues"
+        "discount": "Applied Credits/Discount",
+        "billing": "Resolve Billing Issues"
       },
       "pages": {
         "dashboard": {

@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TrendingUp, TrendingDown, Plus, Calendar, X ,Eye} from 'lucide-react';
+import CreateTicketModal from './components/Modal/CreateTicketModal';
+import EscalateTicketModal from './components/Modal/EscalateTicketModal';
+import { GrUserSettings } from 'react-icons/gr';
 
 const SupportPage = () => {
+    const [showCreate, setShowCreate] = useState(false);
+  const [showEscalate, setShowEscalate] = useState(false);
 
     const stats = [
         {
@@ -78,17 +83,18 @@ const SupportPage = () => {
                 </p>
             </div>
             <div className="flex  gap-2 md:gap-3 mb-2 md:mb-4">
-                <button className="px-4 md:px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-sm md:text-base">
+                <button
+                onClick={() => setShowCreate(true)}
+                className="px-4 md:px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-sm md:text-base">
                     <Plus className="inline-block w-6 h-8 mr-1 -ml-1 " />
                     Create SUPPORT TICKET
                 </button>
-                <button className="px-4 md:px-6 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-sm md:text-base">
-                    <Calendar className="inline-block w-6 h-8 mr-1 -ml-1" />
-                    Manage Ticket
-                </button>
+              
 
-                <button className="px-4 md:px-6 py-2 bg-[#DC3545] text-white rounded-lg hover:bg-red-700 font-medium text-sm md:text-base">
-                    <X className="inline-block w-6 h-8 mr-1 -ml-1" />
+                <button
+                  onClick={() => setShowEscalate(true)}
+                className="px-4 md:px-6 py-2 bg-[#DC3545] text-white rounded-lg hover:bg-red-700 font-medium text-sm md:text-base">
+                   <GrUserSettings className="inline-block w-6 h-8 mr-1 -ml-1" />
                     Escalate to technical team
                 </button>
             </div>
@@ -234,6 +240,8 @@ const SupportPage = () => {
                     </div>
                 </div>
             </div>
+             <CreateTicketModal isOpen={showCreate} onClose={() => setShowCreate(false)} />
+      <EscalateTicketModal isOpen={showEscalate} onClose={() => setShowEscalate(false)} />
         </div>
     )
 }

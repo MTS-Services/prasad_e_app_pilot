@@ -5,11 +5,18 @@ import { TrendingUp, TrendingDown, Wrench } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlinePayment, MdPercent } from "react-icons/md";
 import ApiService from '../../services/apiService';
+import CollectPaymentModal from './components/Modal/CollectPaymentModa';
+import ApplyDiscountModal from './components/Modal/ApplyDiscountModal';
+import ResolveBillingModal from './components/Modal/ResolveBillingModal';
 
 const PaymentManagement = () => {
   const { t, i18n } = useTranslation();
   const [recentTransactions, setRecentTransactions] = useState([]);
   const [stats, setStats] = useState([]);
+    // 3 ta alada state - prottek modal er jonno
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [isDiscountModalOpen, setIsDiscountModalOpen] = useState(false);
+  const [isBillingModalOpen, setIsBillingModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
@@ -81,19 +88,25 @@ const PaymentManagement = () => {
 
       {/* Buttons */}
     <div className="flex gap-2 md:gap-3 mb-2 md:mb-4">
-  <button className="px-3 md:px-6 py-2 md:py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-xs md:text-sm lg:text-base flex items-center">
+  <button
+    onClick={() => setIsPaymentModalOpen(true)}
+  className="px-3 md:px-6 py-2 md:py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-xs md:text-sm lg:text-base flex items-center">
     <MdOutlinePayment className="w-4 h-5 md:w-6 md:h-8 mr-1 -ml-1" />
-    {t('dashboard.employee.button.registerNewCustomer')}
+    {t('dashboard.employee.button.collectPayment')}
   </button>
 
-  <button className="px-3 md:px-6 py-2 md:py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-xs md:text-sm lg:text-base flex items-center">
+  <button
+   onClick={() => setIsDiscountModalOpen(true)}
+  className="px-3 md:px-6 py-2 md:py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-xs md:text-sm lg:text-base flex items-center">
     <MdPercent className="w-4 h-5 md:w-6 md:h-8 mr-1 -ml-1" />
-    {t('dashboard.employee.button.assistProfile')}
+    {t('dashboard.employee.button.discount')}
   </button>
 
-  <button className="px-3 md:px-6 py-2 md:py-2 bg-[#DC3545] text-white rounded-lg hover:bg-red-700 font-medium text-xs md:text-sm lg:text-base flex items-center">
+  <button
+    onClick={() => setIsBillingModalOpen(true)}
+  className="px-3 md:px-6 py-2 md:py-2 bg-[#DC3545] text-white rounded-lg hover:bg-red-700 font-medium text-xs md:text-sm lg:text-base flex items-center">
     <Wrench className="w-4 h-5 md:w-6 md:h-8 mr-1 -ml-1" />
-    {t('dashboard.employee.button.reportAnalysis')}
+    {t('dashboard.employee.button.billing')}
   </button>
 </div>
 
@@ -197,6 +210,18 @@ const PaymentManagement = () => {
           </div>
         </div>
       </div>
+       <CollectPaymentModal 
+        isOpen={isPaymentModalOpen} 
+        onClose={() => setIsPaymentModalOpen(false)} 
+      />
+      <ApplyDiscountModal
+        isOpen={isDiscountModalOpen} 
+        onClose={() => setIsDiscountModalOpen(false)} 
+      />
+      <ResolveBillingModal 
+        isOpen={isBillingModalOpen} 
+        onClose={() => setIsBillingModalOpen(false)} 
+      />
     </div>
   );
 };

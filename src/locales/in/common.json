@@ -65,8 +65,9 @@
         "cancel": "ऑर्डर रद्द/संपादित करें",
         "reshedule": "ऑर्डर पुनर्निर्धारित करें",
         "collectPayment": "भुगतान एकत्र करें",
-        "appliedCreditsDiscount": "लागू क्रेडिट/छूट",
-        "resolveBillingIssues": "बिलिंग समस्याओं का समाधान करें"
+        "discount": "लागू किए गए क्रेडिट/छूट",
+"billing": "बिलिंग समस्याओं का समाधान"
+
       },
       "pages": {
         "dashboard": {

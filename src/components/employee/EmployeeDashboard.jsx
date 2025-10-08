@@ -1,47 +1,28 @@
 import React, { useState } from "react";
-
 import Coustomerpage from "./Coustomerpage";
-
 import OrderManagementPage from "./OrderManagementPage";
-
 import PaymentManagement from "./PaymentManagement";
-
 import SupportPage from "./SupportPage";
-
 import Sidebar from "./components/Sidebar";
-
 import Dashboard from "./DashBoard";
-
 import CustomerDetailsPage from "./components/CustomeDetailsPage";
-
 import ReportAnalysisPage from "./components/ReportAnalysisPage";
-
 import OrderDetailsPage from "./components/OrderDetailsPage";
 
 const EmployeeDashboard = () => {
 
   const [activeSection, setActiveSection] = useState("dashboard");
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const [selectedCustomer, setSelectedCustomer] = useState(null);
-
   const [selectedOrder, setSelectedOrder] = useState(null);
-
   const handleViewCustomerDetails = (customer) => {
-
     setSelectedCustomer(customer);
-
     setActiveSection("customerDetails");
-
   };
 
   const handleViewOrderDetails = (order) => {
-
     setSelectedOrder(order);
-
     setActiveSection("orderDetails");
-
   };
 
   const handleBackToDashboard = () => {
