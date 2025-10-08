@@ -1,0 +1,13 @@
+{
+  "title": "User Management",
+  "stats": [
+    {
+      "label": "Total Users",
+      "value": "2,456",
+      "change": "+12.5%",
+      "changeType": "positive",
+      "icon": "users"
+    }
+  ],
+  "users": []
+}

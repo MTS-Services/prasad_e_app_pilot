@@ -1,0 +1,13 @@
+{
+  "title": "Drone Operators",
+  "stats": [
+    {
+      "label": "Total Operators",
+      "value": "45",
+      "change": "+5.2%",
+      "changeType": "positive",
+      "icon": "users"
+    }
+  ],
+  "operators": []
+}

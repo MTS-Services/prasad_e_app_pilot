@@ -1,0 +1,13 @@
+{
+  "title": "Jobs Management",
+  "stats": [
+    {
+      "label": "Total Jobs",
+      "value": "1,234",
+      "change": "+15.3%",
+      "changeType": "positive",
+      "icon": "briefcase"
+    }
+  ],
+  "jobs": []
+}

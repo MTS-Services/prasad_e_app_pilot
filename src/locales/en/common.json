@@ -22,8 +22,18 @@
       "title": "Admin Dashboard",
       "welcome": "Welcome back, Administrator",
       "fullAccess": "Full Access",
-      "overview": "Overview",
-      "overviewDescription": "Welcome to your admin dashboard. Use the sidebar to navigate between different sections."
+      "overview": "Dashboard Overview",
+      "overviewDescription": "Monitor your platform performance and key metrics",
+      "stats": {
+        "active-users": "Active User",
+        "total-jobs": "Total Jobs",
+        "revenue": "Revenue",
+        "complaints": "Complaints",
+        "tickets": "Tickets",
+        "ticket": "Ticket"
+      },
+      "recentActivity": "Recent User Activity",
+      "revenueChart": "Last 7 days revenue"
     },
     "employee": {
       "title": "Employee Dashboard",
@@ -223,6 +233,10 @@
   },
   "common": {
     "logout": "Logout",
-    "pageNotFound": "Page not found"
+    "pageNotFound": "Page not found",
+    "error": "Error",
+    "retry": "Retry",
+    "noData": "No data available",
+    "manageAndMonitor": "Manage and monitor"
   }
 }
