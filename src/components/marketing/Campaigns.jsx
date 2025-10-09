@@ -153,7 +153,7 @@ const Campaigns = () => {
           <tbody>
             {campaigns?.map((campaign) => (
               <tr key={campaign.id} className="border border-gray-200">
-                <td className="px-4 py-6 text-[16px] text-gray-900">
+                <td className="px-4 py-6 text-[16px] font-semibold text-gray-900">
                   {campaign.name}
                 </td>
                 <td className="px-4 py-6 text-[16px] text-black">

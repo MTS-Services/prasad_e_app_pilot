@@ -85,16 +85,16 @@ const Leads = () => {
               </p>
             </div>
             <div className="flex flex-wrap py-3 lg:flex-row gap-3">
-              <select className=" lg:px-4 lg:py-2 border border-gray-300 rounded-lg text-sm text-black bg-transparent">
+              <select className=" lg:px-4 lg:py-2 border border-gray-300 rounded-lg text-sm lg:text-lg text-black bg-transparent">
                 <option>All lead</option>
                 <option>Hot</option>
                 <option>Warm</option>
                 <option>Cool</option>
               </select>
-              <button className="lg:btn-md btn-xs btn bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium shadow-none border-none ">
+              <button className="lg:btn-md xl:btn-lg btn-xs btn bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium shadow-none border-none ">
                 Export Leads
               </button>
-              <button className="btn lg:btn-md btn-xs bg-yellow-400  text-gray-900 px-6 py-2 rounded-lg font-medium border-transparent shadow-none">
+              <button className="btn lg:btn-md xl:btn-lg btn-xs bg-yellow-400  text-gray-900 px-6 py-2 rounded-lg font-medium border-transparent shadow-none">
                 Automation
               </button>
             </div>
@@ -136,21 +136,21 @@ const Leads = () => {
                   className="border-b border-gray-200 hover:bg-gray-50 transition-colors"
                 >
                   <td className="px-6 py-4">
-                    <span className="text-sm text-gray-900">
+                    <span className="px-4 py-6 text-[16px] text-gray-900 font-semibold">
                       {lead.company}
                     </span>
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-sm">
-                      <div className="text-gray-900">{lead.email}</div>
-                      <div className="text-gray-500">{lead.phone}</div>
+                      <div className="text-gray-900  text-[16px]">{lead.email}</div>
+                      <div className="text-gray-500 text-[16px]">{lead.phone}</div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-gray-900">{lead.source}</span>
+                    <span className="text-sm text-gray-900 text-[16px]">{lead.source}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-gray-900">
+                    <span className="text-sm text-gray-900 text-[16px]">
                       {lead.location}
                     </span>
                   </td>

@@ -13,6 +13,7 @@ import {
 } from 'react-icons/hi';
 import Campaigns from './Campaigns';
 import Leads from './Leads';
+import Settings from './Settings';
 
 const MarketingDashboard = () => {
   const { t } = useTranslation();
@@ -183,42 +184,7 @@ const MarketingDashboard = () => {
         );
       case 'settings':
         return (
-          <div className='space-y-6'>
-            <h2 className='text-2xl font-bold text-gray-900'>
-              {t('marketing.settings')}
-            </h2>
-            <div className='bg-white p-6 rounded-lg shadow'>
-              <div className='space-y-4'>
-                <div>
-                  <label className='block text-sm font-medium text-gray-700 mb-2'>
-                    {t('marketing.defaultCampaignSettings')}
-                  </label>
-                  <div className='space-y-2'>
-                    <label className='flex items-center'>
-                      <input
-                        type='checkbox'
-                        defaultChecked
-                        className='rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-                      />
-                      <span className='ml-2 text-sm text-gray-600'>
-                        {t('marketing.autoOptimize')}
-                      </span>
-                    </label>
-                    <label className='flex items-center'>
-                      <input
-                        type='checkbox'
-                        defaultChecked
-                        className='rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-                      />
-                      <span className='ml-2 text-sm text-gray-600'>
-                        {t('marketing.trackConversions')}
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Settings/>
         );
       default:
         return <div>{t('common.pageNotFound')}</div>;
