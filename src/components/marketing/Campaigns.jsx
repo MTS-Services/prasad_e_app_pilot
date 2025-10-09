@@ -96,7 +96,7 @@ const Campaigns = () => {
     },
   ];
 
-  const itemsPerPage = 4;
+  const itemsPerPage = 5;
 
   const paginateData = (data, currentPage) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -129,7 +129,7 @@ const Campaigns = () => {
         </button>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto h-[527px]">
         <table className="w-full lg:table-fixed">
           <thead className="">
             <tr className="border bg-gray-100 border-gray-200">
@@ -153,20 +153,20 @@ const Campaigns = () => {
           <tbody>
             {campaigns?.map((campaign) => (
               <tr key={campaign.id} className="border border-gray-200">
-                <td className="px-4 py-4 text-sm text-gray-900">
+                <td className="px-4 py-6 text-[16px] text-gray-900">
                   {campaign.name}
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-600">
+                <td className="px-4 py-6 text-[16px] text-black">
                   {campaign.type}
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-900">
+                <td className="px-4 py-6 text-[16px] text-black">
                   {campaign.leads}
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-900">
+                <td className="px-4 py-6 text-[16px] text-black">
                   {campaign.roi}
                 </td>
-                <td className="px-4 py-4 text-sm text-right">
-                  <button className="bg-green-500 hover:bg-green-600 text-gray-900 font-semibold px-4 py-2 rounded-lg text-sm">
+                <td className="px-4 py-6 text-sm text-right">
+                  <button className="bg-green-500 w-[120px] hover:bg-green-600 text-gray-900 font-semibold px-4 py-2 rounded-lg text-sm">
                     See details
                   </button>
                 </td>

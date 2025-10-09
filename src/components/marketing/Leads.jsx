@@ -227,7 +227,7 @@ const Leads = () => {
 
         {/* Targeted Audience Card */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h1 className="font-semibold text-2xl text-gray-900 mb-6">
+          <h1 className="font-semibold text-3xl text-gray-900 mb-6">
             Targeted Audience
           </h1>
           
@@ -237,11 +237,11 @@ const Leads = () => {
               <MapPin className="w-5 h-5 text-gray-700" />
               <span className="font-medium text-gray-900">Location</span>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-5">
               {locations.map((location, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 font-semibold bg-red-100 rounded text-sm text-gray-700"
+                  className="px-3 xl:px-6 border-none shadow-none py-1 btn btn-sm lg:btn-md xl:btn-lg font-semibold p-2.5 bg-red-100 rounded text-[16px] text-gray-700"
                 >
                   {location}
                 </span>
@@ -250,16 +250,16 @@ const Leads = () => {
           </div>
 
           {/* Demographics Section */}
-          <div className="mb-6">
+          <div className="mb-6  *:text-[16px]">
             <div className="flex items-center gap-2 mb-3">
               <Users className="w-5 h-5 text-gray-700" />
               <span className="font-medium text-gray-900">Demographics</span>
             </div>
             <div className="space-y-2">
-              <p className="text-gray-900 font-medium">
+              <p className="text-gray-600 text-2xl font-medium">
                 <span className="">Age:</span> 22 - 55
               </p>
-              <p className="text-gray-900 font-medium">
+              <p className="text-gray-600 text-2xl font-medium">
                 <span className="">Income:</span> $75k+
               </p>
             </div>
@@ -267,8 +267,8 @@ const Leads = () => {
 
           {/* Audience Type Section */}
           <div>
-            <h3 className=" text-gray-900 mb-2 font-medium">Audience Type</h3>
-            <p className="text-gray-700 font-medium">Real estate developers & investor</p>
+            <h3 className=" text-gray-600 mb-2 font-medium">Audience Type</h3>
+            <p className="text-gray-600 font-medium text-2xl">Real estate developers & investor</p>
           </div>
         </div>
       </div>
