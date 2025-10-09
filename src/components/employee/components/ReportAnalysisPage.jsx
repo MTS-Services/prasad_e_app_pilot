@@ -83,7 +83,7 @@ const ReportAnalysisPage = () => {
   const fetchReportData = async () => {
     try {
       setLoading(true);
-      const data = await ApiService.get("/customerManagementData.json");
+      const data = await ApiService.get("/employee/customerManagementData.json");
 
       setSummary(data.summary || {});
       setCustomers(data.customers || []);

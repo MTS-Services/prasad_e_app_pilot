@@ -25,9 +25,9 @@ function DashBoard({ onViewCustomerDetails }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const { t } = useTranslation();
-  
 
- const [mainModalOpen, setMainModalOpen] = useState(false);
+
+  const [mainModalOpen, setMainModalOpen] = useState(false);
   const [subModalType, setSubModalType] = useState(null);
   const [customerEmail, setCustomerEmail] = useState("");
 
@@ -55,7 +55,7 @@ function DashBoard({ onViewCustomerDetails }) {
     const fetchDashboardData = async () => {
       try {
         setLoading(true);
-        const data = await ApiService.get("/dashboardOverviewData.json");
+        const data = await ApiService.get("/employee/dashboardOverviewData.json");
         setActivities(data.recentActivities || []);
         setSummary(data.summary || {});
         setLoading(false);
@@ -76,36 +76,42 @@ function DashBoard({ onViewCustomerDetails }) {
         value: summary.totalCustomers,
         trend: "up",
         icon: Users,
+        bgColor:"bg-[#F7FFE5]"
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.2nd"),
         value: summary.totalRevenue,
         trend: "up",
         icon: ShoppingCart,
+         bgColor:"bg-[#F7FFE5]"
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.3rd"),
         value: summary.pendingPayments,
         trend: "down",
         icon: CreditCard,
+         bgColor:"bg-[#F7FFE5]"
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.4th"),
         value: summary.avgDuration,
         trend: "up",
         icon: Headphones,
+         bgColor:"bg-[#ECFDF6]"
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.5th"),
         value: summary.completedOrders,
         trend: "up",
         icon: ShoppingCart,
+         bgColor:"bg-[#ECFDF6]"
       },
       {
         label: t("dashboard.employee.pages.dashboard.card.6th"),
         value: summary.canceledOrders,
         trend: "down",
         icon: ShoppingCart,
+         bgColor:"bg-[#ECFDF6]"
       },
     ];
   }, [t, summary]);
@@ -205,7 +211,9 @@ function DashBoard({ onViewCustomerDetails }) {
               <div key={index} className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-200">
                 <div className="flex items-start justify-between mb-3 md:mb-4">
                   <span className="text-gray-600 text-xs md:text-sm">{stat.label}</span>
-                  <Icon className="w-4 h-4 md:w-5 md:h-5 text-gray-400" />
+                   <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
+                        <Icon className="w-6 h-6 text-gray-700" />
+                      </div>
                 </div>
                 <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
                 <div className={`text-xs md:text-sm flex items-center gap-1 ${stat.trend === "up" ? "text-green-600" : "text-red-600"}`}>
@@ -270,7 +278,7 @@ function DashBoard({ onViewCustomerDetails }) {
                     </span>
                   </td>
                   <td className="px-3 md:px-6 py-4">
-                    <button   onClick={() => onViewCustomerDetails(activity)}  className="text-gray-600 hover:text-gray-900">
+                    <button onClick={() => onViewCustomerDetails(activity)} className="text-gray-600 hover:text-gray-900">
                       <Eye className="w-4 h-4 md:w-5 md:h-5" />
                     </button>
                   </td>
@@ -291,12 +299,12 @@ function DashBoard({ onViewCustomerDetails }) {
           </div>
         </div>
       </div>
-      
+
 
       {/* Modals */}
       <RegistrationModal isOpen={open} onClose={() => setOpen(false)} />
       {/* <AssistProfileSetupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
-        <AssistProfileSetupModal2
+      <AssistProfileSetupModal2
         isOpen={mainModalOpen}
         onClose={() => setMainModalOpen(false)}
         onOpenSubModal={handleOpenSubModal}
@@ -324,8 +332,3 @@ function DashBoard({ onViewCustomerDetails }) {
 }
 
 export default DashBoard;
-
-
-
-
-

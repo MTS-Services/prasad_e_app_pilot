@@ -32,7 +32,7 @@ const OrderManagementPage = () => {
     const fetchActivities = async () => {
       try {
         setLoading(true);
-        const data = await ApiService.get('/order.json');
+        const data = await ApiService.get('/employee/order.json');
         console.log("all data ", data)
         setActivities(data || []);
         setLoading(false);

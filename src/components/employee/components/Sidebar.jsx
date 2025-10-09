@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+
 const Sidebar = ({ sidebarOpen, setSidebarOpen, activeSection, setActiveSection }) => {
     const { t } = useTranslation();
   const menuItems = [
@@ -84,6 +85,3 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, activeSection, setActiveSection 
 };
 
 export default Sidebar;
-
-
-

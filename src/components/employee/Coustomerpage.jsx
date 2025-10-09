@@ -41,7 +41,7 @@ const Coustomerpage = ({ setSelectedCustomer, setActiveSection }) => {
     const fetchCustomerData = async () => {
       try {
         setLoading(true);
-        const data = await ApiService.get('/customerManagementData.json');
+        const data = await ApiService.get('/employee/customerManagementData.json');
         setActivities(
           data.customers.map((customer) => ({
             name: customer.serviceName,

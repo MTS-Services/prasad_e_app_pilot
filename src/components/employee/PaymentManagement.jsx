@@ -23,7 +23,7 @@ const PaymentManagement = () => {
   // Fetch JSON Data Once
   const fetchTransactions = async () => {
     try {
-      const data = await ApiService.get('/payment.json');
+      const data = await ApiService.get('/employee/payment.json');
       setRecentTransactions(data.transactions);
       return data; // return data for stats calculation
     } catch (error) {
