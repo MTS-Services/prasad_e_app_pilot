@@ -1,58 +1,26 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
-import AppLayout from "./AppLayout"; 
-import Coustomerpage from "./employdashboard/Coustomerpage";
-import Dashboard from "./employdashboard/Dashboard";
-import OrderManagementPage from "./employdashboard/OrderManagementPage";
-import PaymentManagement from "./employdashboard/PaymentManagement";
-import SupportPage from "./employdashboard/SupportPage";
-import CustomerDetailsPage from "./employdashboard/components/CoustomerDetailsPage";
-import OrderDetailsPage from "./employdashboard/components/OrderDeltailsPage";
+import AppLayout from "../src/AppLayout"
+import MarketDashboard from "./marketDashboard/MarketDashboard";
 
-export const NotFound = () => <div className="p-8 text-2xl font-bold">404 - Page Not Found</div>;
+export const NotFound = () => (
+  <div className="p-8 text-2xl font-bold">404 - Page Not Found</div>
+);
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <AppLayout />, 
-    errorElement: <NotFound />, 
-    children: [
-      {
-        path: "/",
-        element: <Dashboard />,
-      },
-      {
-        path: "customer", 
-        element: <Coustomerpage />,
-      },
-      {
-        path: "customer/:customerId", 
-        element: <CustomerDetailsPage />,
-      },
-      {
-        path: "order/:orderId", 
-        element: <OrderDetailsPage />,
-      },
-      {
-        path: "orders", 
-        element: <OrderManagementPage />,
-      },
-      {
-        path: "payments",
-        element: <PaymentManagement />,
-      },
-      {
-        path: "support",
-        element: <SupportPage />,
-      },
-    ],
-  },
+    {
+      path : "/",
+      Component : AppLayout,
+      children : [
+        {
+          index : true,
+          Component : MarketDashboard,
+        }
+      ]
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

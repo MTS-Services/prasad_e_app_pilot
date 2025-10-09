@@ -35,20 +35,20 @@ const RegistrationModal = ({ isOpen, onClose }) => {
     let newErrors = {};
 
     if (step === 1) {
-      ["firstName","lastName","phone","email","geoLocation","district","mandal","village"].forEach(key => {
-        if(!formData[key]) newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} is required`;
+      ["firstName", "lastName", "phone", "email", "geoLocation", "district", "mandal", "village"].forEach(key => {
+        if (!formData[key]) newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} is required`;
       });
     }
 
     if (step === 2) {
-      ["kycDocument","street","city","state","postalCode","country","area"].forEach(key => {
-        if(!formData[key]) newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} is required`;
+      ["kycDocument", "street", "city", "state", "postalCode", "country", "area"].forEach(key => {
+        if (!formData[key]) newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} is required`;
       });
     }
 
     if (step === 3) {
-      ["lat1","long1","lat2","long2","lat3","long3","acres"].forEach(key => {
-        if(!formData[key]) newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} is required`;
+      ["lat1", "long1", "lat2", "long2", "lat3", "long3", "acres"].forEach(key => {
+        if (!formData[key]) newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} is required`;
       });
     }
 
@@ -134,16 +134,16 @@ const RegistrationModal = ({ isOpen, onClose }) => {
         {step === 1 && (
           <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2">
             {[
-              "firstName","middleName","lastName","aka","phone","email","geoLocation","district","mandal","village"
+              "firstName", "middleName", "lastName", "aka", "phone", "email", "geoLocation", "district", "mandal", "village"
             ].map((key) => (
               <div key={key}>
                 <label className="block mb-1 font-medium">{formatLabel(key)}</label>
                 <input
                   type={key === "email" ? "email" : "text"}
                   placeholder={formatLabel(key)}
-                  className="w-full border rounded p-2"
+                  className="w-full border rounded p-2 bordeer-[#002244]"
                   value={formData[key]}
-                  onChange={(e) => setFormData({...formData, [key]: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
                 />
                 {errors[key] && <p className="text-red-500 text-sm">{errors[key]}</p>}
               </div>
@@ -158,8 +158,8 @@ const RegistrationModal = ({ isOpen, onClose }) => {
               <label className="block mb-1 font-medium">{formatLabel("kycDocument")}</label>
               <input
                 type="file"
-                onChange={(e) => setFormData({...formData, kycDocument: e.target.files[0]})}
-                className="w-full"
+                onChange={(e) => setFormData({ ...formData, kycDocument: e.target.files[0] })}
+                className="w-full bordeer-[#002244]"
               />
               {errors.kycDocument && <p className="text-red-500 text-sm">{errors.kycDocument}</p>}
             </div>
@@ -168,22 +168,22 @@ const RegistrationModal = ({ isOpen, onClose }) => {
               <label className="block mb-1 font-medium">{formatLabel("street")}</label>
               <input
                 type="text"
-                className="w-full border rounded p-2"
+                className="w-full border rounded p-2 bordeer-[#002244]"
                 value={formData.street}
-                onChange={(e) => setFormData({...formData, street: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, street: e.target.value })}
               />
               {errors.street && <p className="text-red-500 text-sm">{errors.street}</p>}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {["city","state"].map(key => (
+              {["city", "state"].map(key => (
                 <div key={key}>
                   <label className="block mb-1 font-medium">{formatLabel(key)}</label>
                   <input
                     type="text"
-                    className="w-full border rounded p-2"
+                    className="w-full border rounded p-2 bordeer-[#002244]"
                     value={formData[key]}
-                    onChange={(e)=>setFormData({...formData,[key]:e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
                   />
                   {errors[key] && <p className="text-red-500 text-sm">{errors[key]}</p>}
                 </div>
@@ -191,14 +191,14 @@ const RegistrationModal = ({ isOpen, onClose }) => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {["postalCode","country"].map(key => (
+              {["postalCode", "country"].map(key => (
                 <div key={key}>
                   <label className="block mb-1 font-medium">{formatLabel(key)}</label>
                   <input
                     type="text"
-                    className="w-full border rounded p-2"
+                    className="w-full border rounded p-2 bordeer-[#002244]"
                     value={formData[key]}
-                    onChange={(e)=>setFormData({...formData,[key]:e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
                   />
                   {errors[key] && <p className="text-red-500 text-sm">{errors[key]}</p>}
                 </div>
@@ -209,9 +209,9 @@ const RegistrationModal = ({ isOpen, onClose }) => {
             <div>
               <label className="block mb-1 font-medium">{formatLabel("area")}</label>
               <select
-                className="w-full border rounded p-2"
+                className="w-full border rounded p-2 bordeer-[#002244]"
                 value={formData.area}
-                onChange={(e)=>setFormData({...formData, area:e.target.value})}
+                onChange={(e) => setFormData({ ...formData, area: e.target.value })}
               >
                 <option value="">-- Select Area --</option>
                 <option value="Area1">Area 1</option>
@@ -226,14 +226,14 @@ const RegistrationModal = ({ isOpen, onClose }) => {
         {/* Step 3 */}
         {step === 3 && (
           <div className="space-y-3">
-            {["lat1","long1","lat2","long2","lat3","long3","acres"].map(key=>(
+            {["lat1", "long1", "lat2", "long2", "lat3", "long3", "acres"].map(key => (
               <div key={key}>
                 <label className="block mb-1 font-medium">{formatLabel(key)}</label>
                 <input
                   type="text"
-                  className="w-full border rounded p-2"
+                  className="w-full border rounded p-2 bordeer-[#002244]"
                   value={formData[key]}
-                  onChange={(e)=>setFormData({...formData,[key]:e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
                 />
                 {errors[key] && <p className="text-red-500 text-sm">{errors[key]}</p>}
               </div>

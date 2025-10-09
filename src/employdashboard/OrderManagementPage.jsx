@@ -1,8 +1,11 @@
-import React from 'react'
-import { Eye,  } from 'lucide-react';
+import { useState } from 'react'
 
+import { Eye } from 'lucide-react';
+import ServiceRequestModal from './components/Modal/ServiceRequestModal';
+import ResheduleServiceModal from './components/Modal/ResheduleServiceModal';
+import CancleModal from './components/Modal/CancleModal';
 const OrderManagementPage = () => {
-     const activities = [
+  const activities = [
     {
       name: 'Eleanor Pena',
       company: 'Agritech Solutions',
@@ -70,28 +73,46 @@ const OrderManagementPage = () => {
       avatar: 'FM'
     },
   ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isResheduleModalOpen, setIsResheduleModalOpen] = useState(false);
+  const [cancleModal, setCancleModal] = useState(false);
+  const handleCreateServiceModal = (formdata) => {
+    console.log('Form data received in parent:', formdata);
+  }
+  const handleResheduleModal = (formdata) => {
+    console.log('Form data received in parent:', formdata);
+  }
+  const handleCancleModal = (formdata) => {
+    console.log('Form data received in parent:', formdata);
+  }
   return (
-     <div className="flex-1 p-4 md:p-8 bg-gray-50">
+    <div className="flex-1 p-4 md:p-8 bg-gray-50">
       <div className="mb-2 md:mb-4">
         <h1 className="text-xl md:text-2xl font-bold text-gray-900">Orders Management</h1>
         <p className="text-sm md:text-base text-gray-600 pt-2">Monitor your customer service performance</p>
       </div>
       <div className="flex  gap-2 md:gap-3 mb-2 md:mb-4">
-              <button className="px-4 md:px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-sm md:text-base">
-                Register New Customer
-              </button>
-              <button className="px-4 md:px-6 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-sm md:text-base">
-                Assist in Profile Setup
-              </button>
-              <button className="px-4 md:px-6 py-2 bg-[#DC3545] text-white rounded-lg hover:bg-red-700 font-medium text-sm md:text-base">
-                Report Analysis
-              </button>
-            </div>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="px-4 md:px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-sm md:text-base">
+          Create new Service Request
+        </button>
+        <button
+          onClick={() => setIsResheduleModalOpen(true)}
+          className="px-4 md:px-6 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-sm md:text-base">
+         Reshedule Order
+        </button>
+        <button
+          onClick={() => setCancleModal(true)}
+          className="px-4 md:px-6 py-2 bg-[#DC3545] text-white rounded-lg hover:bg-red-700 font-medium text-sm md:text-base">
+          Cancel/Modify Order
+        </button>
+      </div>
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="p-4 md:p-6 border-b border-gray-200">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <h2 className="text-lg md:text-xl font-bold text-gray-900">Recent Business Activity</h2>
-            
+
           </div>
         </div>
 
@@ -129,8 +150,8 @@ const OrderManagementPage = () => {
                   <td className="px-3 md:px-6 py-4 text-xs md:text-sm text-gray-900 whitespace-nowrap">{activity.location}</td>
                   <td className="px-3 md:px-6 py-4">
                     <span className={`inline-flex px-2 md:px-3 py-1 rounded-full text-xs md:text-sm whitespace-nowrap ${activity.server === 'Unassigned'
-                        ? 'bg-red-100 text-red-700'
-                        : 'bg-green-100 text-green-700'
+                      ? 'bg-red-100 text-red-700'
+                      : 'bg-green-100 text-green-700'
                       }`}>
                       {activity.server}
                     </span>
@@ -142,8 +163,8 @@ const OrderManagementPage = () => {
                   </td>
                   <td className="px-3 md:px-6 py-4">
                     <span className={`inline-flex px-2 md:px-3 py-1 rounded text-xs md:text-sm font-medium whitespace-nowrap ${activity.priority === 'High' ? 'text-red-600' :
-                        activity.priority === 'Medium' ? 'text-yellow-600' :
-                          'text-green-600'
+                      activity.priority === 'Medium' ? 'text-yellow-600' :
+                        'text-green-600'
                       }`}>
                       {activity.priority}
                     </span>
@@ -171,8 +192,17 @@ const OrderManagementPage = () => {
           </div>
         </div>
       </div>
+      <ServiceRequestModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleCreateServiceModal} />
+      <ResheduleServiceModal isOpen={isResheduleModalOpen} onClose={() => setIsResheduleModalOpen(false)} onSubmit={handleResheduleModal} />
+      <CancleModal isOpen={cancleModal} onClose={()=>setCancleModal(false)} onSubmit={handleCancleModal} />
     </div>
   )
 }
 
 export default OrderManagementPage
+
+
+
+
+
+// 

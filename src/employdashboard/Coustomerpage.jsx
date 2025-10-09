@@ -1,6 +1,12 @@
-import { Eye,  } from 'lucide-react';
+import { Eye, } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import RegistrationModal from './components/Modal/RegistrationModal';
+import AssistProfileSetupModal from './components/Modal/AssistProfileSetupModal';
 const Coustomerpage = () => {
-
+  const navigate = useNavigate(); 
+  const [open, setOpen] = useState(false);
+      const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const activities = [
     {
@@ -82,13 +88,16 @@ const Coustomerpage = () => {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <h2 className="text-lg md:text-xl font-bold text-gray-900">Recent Business Activity</h2>
             <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
-              <button className="px-4 md:px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-sm md:text-base">
+              <button onClick={() => setOpen(true)} className="px-4 md:px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium text-sm md:text-base">
                 Register New Customer
               </button>
-              <button className="px-4 md:px-6 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-sm md:text-base">
+              <button  onClick={() => setIsModalOpen(true)} className="px-4 md:px-6 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 font-medium text-sm md:text-base">
                 Assist in Profile Setup
               </button>
-              <button className="px-4 md:px-6 py-2 bg-[#DC3545] text-white rounded-lg hover:bg-red-700 font-medium text-sm md:text-base">
+              <button
+                onClick={() => navigate('/customer/report-analysis')}
+                className="px-4 md:px-6 py-2 bg-[#DC3545] text-white rounded-lg hover:bg-red-700 font-medium text-sm md:text-base"
+              >
                 Report Analysis
               </button>
             </div>
@@ -129,8 +138,8 @@ const Coustomerpage = () => {
                   <td className="px-3 md:px-6 py-4 text-xs md:text-sm text-gray-900 whitespace-nowrap">{activity.location}</td>
                   <td className="px-3 md:px-6 py-4">
                     <span className={`inline-flex px-2 md:px-3 py-1 rounded-full text-xs md:text-sm whitespace-nowrap ${activity.server === 'Unassigned'
-                        ? 'bg-red-100 text-red-700'
-                        : 'bg-green-100 text-green-700'
+                      ? 'bg-red-100 text-red-700'
+                      : 'bg-green-100 text-green-700'
                       }`}>
                       {activity.server}
                     </span>
@@ -142,8 +151,8 @@ const Coustomerpage = () => {
                   </td>
                   <td className="px-3 md:px-6 py-4">
                     <span className={`inline-flex px-2 md:px-3 py-1 rounded text-xs md:text-sm font-medium whitespace-nowrap ${activity.priority === 'High' ? 'text-red-600' :
-                        activity.priority === 'Medium' ? 'text-yellow-600' :
-                          'text-green-600'
+                      activity.priority === 'Medium' ? 'text-yellow-600' :
+                        'text-green-600'
                       }`}>
                       {activity.priority}
                     </span>
@@ -171,6 +180,11 @@ const Coustomerpage = () => {
           </div>
         </div>
       </div>
+      <RegistrationModal isOpen={open} onClose={() => setOpen(false)} />
+        <AssistProfileSetupModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };
