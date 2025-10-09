@@ -28,7 +28,7 @@ export default function CForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 lg:py-20 px-4">
+    <div className="xl:min-h-screen bg-gray-50 py-10 lg:py-20 px-4">
       <div className="max-w-7xl w-11/12 mx-auto md:bg-white rounded-lg lg:shadow-sm p-2 lg:p-8 md:p-12">
         <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
           {t('contact2.form.header')}

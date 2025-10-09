@@ -50,7 +50,7 @@ export default function MissionValues() {
                 <div className="inline-flex items-center justify-center lg:w-16 lg:h-16 bg-green-50 rounded-full mb-6">
                   {value.icon}
                 </div>
-                <h3 className="text-xl md:text-3xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl lg:text-3xl font-bold text-gray-900 mb-4">
                   {t(value.titleKey)}
                 </h3>
                 <p className="text-gray-600 md:text-sm lg:text-xl text-xs leading-relaxed">
