@@ -1,5 +1,4 @@
-
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Send, MoreVertical, ArrowLeft } from 'lucide-react';
 
 const initialChatData = [
@@ -84,10 +83,6 @@ export default function MessagePage() {
     const currentChat = chats[selectedChatIndex];
     const currentMessages = currentChat.messages;
 
-    useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [currentMessages]);
-
     const handleSend = () => {
         if (!inputValue.trim()) return;
 
@@ -108,7 +103,7 @@ export default function MessagePage() {
                     ...chat,
                     messages: [...chat.messages, newMessage],
                     preview: inputValue,
-                    time: now.toLocaleTimeString([], { minute: '2-digit' })
+                    time: timeStr
                 };
             }
             return chat;
@@ -116,6 +111,11 @@ export default function MessagePage() {
 
         setChats(updatedChats);
         setInputValue('');
+
+        // Scroll only when sending message
+        setTimeout(() => {
+            messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
     };
 
     const handleSelectChat = (index) => {
@@ -128,12 +128,10 @@ export default function MessagePage() {
     };
 
     return (
-        <div className="flex h-screen bg-gray-50 overflow-hidden md:p-8 md:rounded-2xl">
+        <div className="flex h-screen bg-gray-50 overflow-hidden md:p-8 ">
             
-            {/* Left Panel - Chat List (Hidden on small devices when chat is shown) */}
+            {/* Left Panel */}
             <div className={`${showChat ? 'hidden' : 'flex'} md:flex w-full md:w-80 flex-col bg-white border-r border-gray-200 shadow-sm flex-shrink-0`}>
-                
-                {/* Header */}
                 <div className="p-3 sm:p-4 border-b border-gray-200 bg-[#EEEEEE] flex items-center justify-between">
                     <h2 className="text-base sm:text-lg font-bold text-gray-900">Recent Messages</h2>
                     <button className="text-gray-500 hover:text-gray-700 p-1 rounded-full transition">
@@ -141,7 +139,6 @@ export default function MessagePage() {
                     </button>
                 </div>
                 
-                {/* Chat List Body */}
                 <div className="flex-1 overflow-y-auto bg-[#EEEEEE]">
                     {chats.map((chat, index) => (
                         <div
@@ -166,10 +163,8 @@ export default function MessagePage() {
                 </div>
             </div>
 
-            {/* Right Panel - Message View (Full screen on small devices when chat is shown) */}
+            {/* Right Panel */}
             <div className={`${showChat ? 'flex' : 'hidden'} md:flex flex-1 flex-col bg-[#F8F8F8] min-h-0 w-full`}>
-                
-                {/* Header */}
                 <div className="px-3 sm:px-4 md:px-6 py-[10px] border-b border-gray-200 bg-[#EEEEEE] flex items-center justify-between shadow-sm">
                     <div className="flex items-center gap-3 flex-1">
                         <button 
@@ -191,8 +186,7 @@ export default function MessagePage() {
                     </button>
                 </div>
 
-                {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 flex flex-col gap-3 sm:gap-4 bg-gradient-to-b from-white to-gray-50">
+                <div className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 flex flex-col gap-3 sm:gap-4 bg-gradient-to-b from-white to-gray-50 min-h-0">
                     <div className="text-center py-2">
                         <p className="text-gray-400 text-xs sm:text-sm font-medium">Thursday, Jan 4 • 6:21 PM</p>
                     </div>
@@ -213,7 +207,6 @@ export default function MessagePage() {
                     <div ref={messagesEndRef} />
                 </div>
 
-                {/* Input Area */}
                 <div className="px-3 sm:px-4 md:px-6 py-3 md:py-4 border-t border-gray-200 bg-[#F8F8F8]">
                     <div className="flex items-center gap-2 sm:gap-3">
                         <div className="flex-1 flex gap-2 sm:gap-3 items-center bg-[#FFFFFF] rounded-full px-3 sm:px-4 py-2 border border-gray-200 focus-within:border-blue-400 focus-within:ring-1 focus-within:ring-blue-200 transition">
@@ -235,7 +228,6 @@ export default function MessagePage() {
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     );

@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Eye, Plus, Calendar, X } from 'lucide-react';
 import ApiService from '../../services/apiService';
@@ -5,15 +6,19 @@ import ServiceRequestModal from './components/Modal/ServiceRequestModal';
 import ResheduleServiceModal from './components/Modal/ResheduleServiceModal';
 import CancleModal from './components/Modal/CancleModal';
 import { useTranslation } from 'react-i18next';
+import { CiSearch } from "react-icons/ci";
 
 const OrderManagementPage = () => {
   const [activities, setActivities] = useState([]);
+  const [filteredActivities, setFilteredActivities] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isResheduleModalOpen, setIsResheduleModalOpen] = useState(false);
   const [cancleModal, setCancleModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
- const { t } = useTranslation();
+  const [searchQuery, setSearchQuery] = useState("");
+  const { t } = useTranslation();
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
@@ -27,14 +32,14 @@ const OrderManagementPage = () => {
     console.log('Form data received in parent:', formdata);
   };
 
-  // Fetch activities via ApiService (Axios)
+  // Fetch activities via ApiService
   useEffect(() => {
     const fetchActivities = async () => {
       try {
         setLoading(true);
         const data = await ApiService.get('/employee/order.json');
-        console.log("all data ", data)
         setActivities(data || []);
+        setFilteredActivities(data || []);
         setLoading(false);
       } catch (err) {
         console.error('Error fetching activities:', err);
@@ -44,13 +49,24 @@ const OrderManagementPage = () => {
     };
     fetchActivities();
   }, []);
+
+// Filter activities based on search query (customerName and orderId)
+useEffect(() => {
+  const filtered = activities.filter(activity =>
+    activity.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    String(activity.orderId).toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  setFilteredActivities(filtered);
+  setCurrentPage(1); // Reset to first page when search changes
+}, [searchQuery, activities]);
+
+  const totalPages = Math.ceil(filteredActivities.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentActivities = activities.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(activities.length / itemsPerPage);
+  const currentActivities = filteredActivities.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div className="flex-1 p-4 md:p-8 bg-gray-50">
+    <div className="flex-1 p-4 md:p-8 ">
       <div className="mb-2 md:mb-4">
         <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{t('dashboard.employee.title.orderPageTitle')}</h1>
         <p className="text-sm md:text-base text-gray-600 pt-2">{t('dashboard.employee.subTitle.orderpageSub')}</p>
@@ -81,9 +97,21 @@ const OrderManagementPage = () => {
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="p-4 md:p-6 border-b border-gray-200">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <h2 className="text-lg md:text-xl font-bold text-gray-900">{t('dashboard.employee.table.tableTitle')}</h2>
+        <div className="p-4 md:p-6 border-b border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <h2 className="text-lg md:text-xl font-bold text-gray-900">Recent Transaction</h2>
+
+          {/* Search Field */}
+          <div className="relative w-full md:w-1/2 lg:w-1/3">
+            <span className="absolute inset-y-0 left-3 flex items-center text-gray-400 text-2xl">
+              <CiSearch />
+            </span>
+            <input
+              type="text"
+              placeholder="Search by service name or customer..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 border-2 border-[#C2C2C2] rounded-xl focus:outline-none focus:ring-2 focus:ring-black/30 text-base"
+            />
           </div>
         </div>
 
@@ -100,8 +128,8 @@ const OrderManagementPage = () => {
                   <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.location')}</th>
                   <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.assignTo')}</th>
                   <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.progress')}</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.priority')}</th>
-                <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.action')}</th>
+                  <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.priority')}</th>
+                  <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase whitespace-nowrap">{t('dashboard.employee.table.action')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -124,7 +152,7 @@ const OrderManagementPage = () => {
                       <span className={`inline-flex px-2 md:px-3 py-1 rounded-full text-xs md:text-sm whitespace-nowrap ${activity.assignTo === 'Unassigned'
                         ? 'bg-red-100 text-red-700'
                         : 'bg-green-100 text-green-700'
-                        }`}>
+                      }`}>
                         {activity.assignTo}
                       </span>
                     </td>
@@ -136,8 +164,8 @@ const OrderManagementPage = () => {
                     <td className="px-3 md:px-6 py-4">
                       <span className={`inline-flex px-2 md:px-3 py-1 rounded text-xs md:text-sm font-medium whitespace-nowrap ${activity.priority === 'High' ? 'text-red-600' :
                         activity.priority === 'Medium' ? 'text-yellow-600' :
-                          'text-green-600'
-                        }`}>
+                        'text-green-600'
+                      }`}>
                         {activity.priority}
                       </span>
                     </td>
@@ -148,14 +176,22 @@ const OrderManagementPage = () => {
                     </td>
                   </tr>
                 ))}
+                {currentActivities.length === 0 && (
+                  <tr>
+                    <td colSpan="7" className="text-center p-4 text-gray-500">
+                      No results found.
+                    </td>
+                  </tr>
+                )}
               </tbody>
-
             </table>
           </div>
         )}
 
         <div className="px-4 md:px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs md:text-sm text-gray-600">Showing 1 to {activities.length} of {activities.length} results</div>
+          <div className="text-xs md:text-sm text-gray-600">
+            Showing {currentActivities.length > 0 ? indexOfFirstItem + 1 : 0} to {indexOfFirstItem + currentActivities.length} of {filteredActivities.length} results
+          </div>
           <div className="flex gap-2">
             <button
               className="px-3 md:px-4 py-2 border border-gray-300 rounded-lg text-xs md:text-sm text-gray-700 hover:bg-gray-50"
@@ -167,14 +203,14 @@ const OrderManagementPage = () => {
             <button
               className="px-3 md:px-4 py-2 border border-gray-300 rounded-lg text-xs md:text-sm text-gray-700 hover:bg-gray-50"
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages}
+              disabled={currentPage === totalPages || totalPages === 0}
             >
               Next
             </button>
           </div>
-
         </div>
       </div>
+
       <ServiceRequestModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleCreateServiceModal} />
       <ResheduleServiceModal isOpen={isResheduleModalOpen} onClose={() => setIsResheduleModalOpen(false)} onSubmit={handleResheduleModal} />
       <CancleModal isOpen={cancleModal} onClose={() => setCancleModal(false)} onSubmit={handleCancleModal} />

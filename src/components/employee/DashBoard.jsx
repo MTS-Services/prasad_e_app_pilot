@@ -147,7 +147,7 @@ function DashBoard({ onViewCustomerDetails }) {
   const handleNext = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
 
   return (
-    <div className="p-4 md:p-8 bg-gray-50">
+    <div className="p-4 md:p-8 ">
       {/* Header */}
       <div className="mb-4 md:mb-6">
         <h1 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">{t('dashboard.employee.title.dashPageTitle')}</h1>

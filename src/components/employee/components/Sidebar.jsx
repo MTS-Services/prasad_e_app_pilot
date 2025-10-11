@@ -48,7 +48,7 @@ const Sidebar = ({
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex flex-col h-full">
-          <nav className="flex-1 px-3 py-4 overflow-y-auto">
+          <nav className="flex-1 px-3 py-4 overflow-y-auto pt-24 lg:pt-6">
             {menuItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeSection === item.id;
@@ -65,8 +65,8 @@ const Sidebar = ({
                     transition-all duration-300 ease-in-out
                     ${
                       isActive
-                        ? "bg-white border-[#28A844] text-[#28A844] font-semibold shadow-sm"
-                        : "border-transparent text-gray-700 hover:bg-gray-50 hover:text-[#28A844]"
+                        ? "bg-white border-[#28A844] text-[#002244] font-semibold shadow-sm"
+                        : "border-transparent text-[#002244] hover:bg-gray-50 hover:text-[#002244]"
                     }`}
                 >
                   {/* Animated left border */}
@@ -77,8 +77,8 @@ const Sidebar = ({
                   <Icon
                     className={`w-5 h-5 transition-colors duration-300 ${
                       isActive
-                        ? "text-[#28A844]"
-                        : "text-gray-500 group-hover:text-[#28A844]"
+                        ? "text-[#002244]"
+                        : "text-gray-500 group-hover:text-[#002244]"
                     }`}
                   />
                   <span className="truncate">{item.label}</span>
