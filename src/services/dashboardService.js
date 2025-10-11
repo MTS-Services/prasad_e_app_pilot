@@ -1,64 +1,47 @@
-import axiosInstance from '../config/axiosConfig';
-
 /**
- * Dashboard API Service
- * This service handles all dashboard-related API calls
- * When backend is ready, only the endpoints need to be updated
+ * Simple Dashboard Service
+ * Fetches data directly from public JSON files
  */
 
 class DashboardService {
   constructor() {
-    // Base endpoints - easily configurable for production
-    this.endpoints = {
-      dashboard: '/dashboard',
-      droneOperators: '/drone-operators',
-      users: '/users',
-      employees: '/employees',
-      fieldAgents: '/field-agents',
-      jobs: '/jobs',
-      payments: '/payments',
-      reports: '/reports',
-      complaints: '/complaints',
+    // JSON file paths in public directory
+    this.dataUrls = {
+      dashboard: '/admin/data/dashboardData.json',
+      droneOperators: '/admin/data/droneOperators.json',
+      users: '/admin/data/users.json',
+      employees: '/admin/data/employees.json',
+      fieldAgents: '/admin/data/fieldAgents.json',
+      jobs: '/admin/data/jobs.json',
+      payments: '/admin/data/payments.json',
+      reports: '/admin/data/reports.json',
+      complaints: '/admin/data/complaints.json',
     };
-
-    // For development, use mock data
-    this.isDevelopment = import.meta.env.DEV;
-    this.mockDataUrl = '/admin/data/dashboardData.json';
   }
 
   /**
-   * Generic method to fetch data
-   * @param {string} endpoint - The endpoint to fetch from
-   * @param {object} params - Query parameters
-   * @returns {Promise} - Axios response
+   * Fetch data from JSON file
+   * @param {string} section - The section name for data file
+   * @returns {Promise} - JSON data
    */
-  async _fetchData(endpoint, params = {}) {
+  async _fetchData(section = 'dashboard') {
     try {
-      if (this.isDevelopment) {
-        // In development, fetch from mock JSON file with proper error handling
-        try {
-          const response = await fetch(this.mockDataUrl);
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          return { data };
-        } catch (fetchError) {
-          console.warn(
-            'Failed to fetch mock data, using fallback data:',
-            fetchError
-          );
-          // Return fallback data if mock file is not available
-          return { data: this._getFallbackData() };
-        }
-      } else {
-        // In production, use actual API endpoints
-        return await axiosInstance.get(endpoint, { params });
+      const dataUrl = this.dataUrls[section];
+      if (!dataUrl) {
+        throw new Error(`No data file found for section: ${section}`);
       }
+
+      const response = await fetch(dataUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error(`Error fetching data from ${endpoint}:`, error);
-      // Return fallback data instead of throwing error
-      return { data: this._getFallbackData() };
+      console.error(`Error fetching ${section} data:`, error);
+      // Return fallback data for the specific section
+      return this._getFallbackData()[section] || {};
     }
   }
 
@@ -281,105 +264,74 @@ class DashboardService {
 
   /**
    * Get dashboard overview data
-   * @param {object} filters - Optional filters
    * @returns {Promise} Dashboard data
    */
-  async getDashboardData(filters = {}) {
-    const response = await this._fetchData(this.endpoints.dashboard, filters);
-    return this.isDevelopment ? response.data : response.data;
+  async getDashboardData() {
+    return await this._fetchData('dashboard');
   }
 
   /**
    * Get drone operators data
-   * @param {object} params - Query parameters (page, limit, search, etc.)
    * @returns {Promise} Drone operators data
    */
-  async getDroneOperators(params = {}) {
-    const response = await this._fetchData(
-      this.endpoints.droneOperators,
-      params
-    );
-    return this.isDevelopment ? response.data.droneOperators : response.data;
+  async getDroneOperators() {
+    return await this._fetchData('droneOperators');
   }
 
   /**
    * Get users data
-   * @param {object} params - Query parameters
    * @returns {Promise} Users data
    */
-  async getUsers(params = {}) {
-    const response = await this._fetchData(this.endpoints.users, params);
-    return this.isDevelopment ? response.data.users : response.data;
+  async getUsers() {
+    return await this._fetchData('users');
   }
 
   /**
    * Get employees data
-   * @param {object} params - Query parameters
    * @returns {Promise} Employees data
    */
-  async getEmployees(params = {}) {
-    const response = await this._fetchData(this.endpoints.employees, params);
-    return this.isDevelopment ? response.data.employees : response.data;
+  async getEmployees() {
+    return await this._fetchData('employees');
   }
 
   /**
    * Get field agents data
-   * @param {object} params - Query parameters
    * @returns {Promise} Field agents data
    */
-  async getFieldAgents(params = {}) {
-    const response = await this._fetchData(this.endpoints.fieldAgents, params);
-    return this.isDevelopment ? response.data.fieldAgents : response.data;
+  async getFieldAgents() {
+    return await this._fetchData('fieldAgents');
   }
 
   /**
    * Get jobs data
-   * @param {object} params - Query parameters
    * @returns {Promise} Jobs data
    */
-  async getJobs(params = {}) {
-    const response = await this._fetchData(this.endpoints.jobs, params);
-    return this.isDevelopment ? response.data.jobs : response.data;
+  async getJobs() {
+    return await this._fetchData('jobs');
   }
 
   /**
    * Get payments data
-   * @param {object} params - Query parameters
    * @returns {Promise} Payments data
    */
-  async getPayments(params = {}) {
-    const response = await this._fetchData(this.endpoints.payments, params);
-    return this.isDevelopment ? response.data.payments : response.data;
+  async getPayments() {
+    return await this._fetchData('payments');
   }
 
   /**
    * Get reports data
-   * @param {object} params - Query parameters
    * @returns {Promise} Reports data
    */
-  async getReports(params = {}) {
-    const response = await this._fetchData(this.endpoints.reports, params);
-    return this.isDevelopment ? response.data.reports : response.data;
+  async getReports() {
+    return await this._fetchData('reports');
   }
 
   /**
    * Get complaints data
-   * @param {object} params - Query parameters
    * @returns {Promise} Complaints data
    */
-  async getComplaints(params = {}) {
-    const response = await this._fetchData(this.endpoints.complaints, params);
-    return this.isDevelopment ? response.data.complaints : response.data;
-  }
-
-  /**
-   * Update production endpoints
-   * Call this method when switching to production backend
-   * @param {object} newEndpoints - New endpoint URLs
-   */
-  updateEndpoints(newEndpoints) {
-    this.endpoints = { ...this.endpoints, ...newEndpoints };
-    this.isDevelopment = false;
+  async getComplaints() {
+    return await this._fetchData('complaints');
   }
 }
 

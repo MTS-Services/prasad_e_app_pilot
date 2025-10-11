@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import dashboardService from '../services/dashboardService';
+import dataFetcher from '../utils/dataFetcher';
 
 /**
  * Custom hook for dashboard data management
  * Provides loading states, error handling, and data fetching
  */
-export const useDashboardData = (section = 'dashboard', params = {}) => {
+export const useDashboardData = (section = 'dashboard') => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,31 +20,31 @@ export const useDashboardData = (section = 'dashboard', params = {}) => {
         let response;
         switch (section) {
           case 'dashboard':
-            response = await dashboardService.getDashboardData(params);
+            response = await dataFetcher.fetchDashboardData();
             break;
           case 'drone-operators':
-            response = await dashboardService.getDroneOperators(params);
+            response = await dataFetcher.fetchDroneOperators();
             break;
           case 'users':
-            response = await dashboardService.getUsers(params);
+            response = await dataFetcher.fetchUsers();
             break;
           case 'employees':
-            response = await dashboardService.getEmployees(params);
+            response = await dataFetcher.fetchEmployees();
             break;
           case 'field-agents':
-            response = await dashboardService.getFieldAgents(params);
+            response = await dataFetcher.fetchFieldAgents();
             break;
           case 'jobs':
-            response = await dashboardService.getJobs(params);
+            response = await dataFetcher.fetchJobs();
             break;
           case 'payments':
-            response = await dashboardService.getPayments(params);
+            response = await dataFetcher.fetchPayments();
             break;
           case 'reports':
-            response = await dashboardService.getReports(params);
+            response = await dataFetcher.fetchReports();
             break;
           case 'complaints':
-            response = await dashboardService.getComplaints(params);
+            response = await dataFetcher.fetchComplaints();
             break;
           default:
             throw new Error(`Unknown section: ${section}`);
@@ -60,8 +60,7 @@ export const useDashboardData = (section = 'dashboard', params = {}) => {
     };
 
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [section]); // Only depend on section to avoid infinite loops when params is an object literal
+  }, [section]);
 
   const refetch = async () => {
     try {
@@ -71,31 +70,31 @@ export const useDashboardData = (section = 'dashboard', params = {}) => {
       let response;
       switch (section) {
         case 'dashboard':
-          response = await dashboardService.getDashboardData(params);
+          response = await dataFetcher.fetchDashboardData();
           break;
         case 'drone-operators':
-          response = await dashboardService.getDroneOperators(params);
+          response = await dataFetcher.fetchDroneOperators();
           break;
         case 'users':
-          response = await dashboardService.getUsers(params);
+          response = await dataFetcher.fetchUsers();
           break;
         case 'employees':
-          response = await dashboardService.getEmployees(params);
+          response = await dataFetcher.fetchEmployees();
           break;
         case 'field-agents':
-          response = await dashboardService.getFieldAgents(params);
+          response = await dataFetcher.fetchFieldAgents();
           break;
         case 'jobs':
-          response = await dashboardService.getJobs(params);
+          response = await dataFetcher.fetchJobs();
           break;
         case 'payments':
-          response = await dashboardService.getPayments(params);
+          response = await dataFetcher.fetchPayments();
           break;
         case 'reports':
-          response = await dashboardService.getReports(params);
+          response = await dataFetcher.fetchReports();
           break;
         case 'complaints':
-          response = await dashboardService.getComplaints(params);
+          response = await dataFetcher.fetchComplaints();
           break;
         default:
           throw new Error(`Unknown section: ${section}`);
@@ -122,13 +121,13 @@ export const useDashboardData = (section = 'dashboard', params = {}) => {
 /**
  * Hook specifically for dashboard overview data
  */
-export const useDashboardOverview = (filters = {}) => {
-  return useDashboardData('dashboard', filters);
+export const useDashboardOverview = () => {
+  return useDashboardData('dashboard');
 };
 
 /**
  * Hook for any section data with standardized interface
  */
-export const useSectionData = (section, params = {}) => {
-  return useDashboardData(section, params);
+export const useSectionData = (section) => {
+  return useDashboardData(section);
 };
