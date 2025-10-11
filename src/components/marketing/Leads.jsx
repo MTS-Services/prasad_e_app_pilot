@@ -179,7 +179,7 @@ const Leads = () => {
               <h2 className="text-xl lg:text-4xl font-bold text-gray-900 mb-2">
                 Lead Management
               </h2>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm lg:text-[16px] text-gray-600">
                 Track and nurture your marketing leads
               </p>
             </div>
@@ -199,32 +199,18 @@ const Leads = () => {
 
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="border-b border-gray-100 bg-gray-100">
-              <tr className="text-left">
-                <th className="px-6 py-4 text-sm font-medium text-gray-700">
-                  Lead
-                </th>
-                <th className="px-6 py-4 text-sm font-medium text-gray-700">
-                  Contact
-                </th>
-                <th className="px-6 py-4 text-sm font-medium text-gray-700">
-                  Source
-                </th>
-                <th className="px-6 py-4 text-sm font-medium text-gray-700">
-                  Location
-                </th>
-                <th className="px-6 py-4 text-sm font-medium text-gray-700">
-                  Score
-                </th>
-                <th className="px-6 py-4 text-sm font-medium text-gray-700">
-                  Status
-                </th>
-                <th className="px-6 py-4 text-sm font-medium text-gray-700">
-                  Action
-                </th>
-              </tr>
-            </thead>
+          <table className="w-full lg:table-fixed">
+            <thead className="sticky top-0 bg-gray-100 z-10">
+  <tr className="text-left">
+    <th className="px-6 py-4 w-1/5 text-sm font-medium text-gray-700">Lead</th>
+    <th className="px-6 py-4 w-1/5 text-sm font-medium text-gray-700">Contact</th>
+    <th className="px-6 py-4 w-1/6 text-sm font-medium text-gray-700">Source</th>
+    <th className="px-6 py-4 w-1/6 text-sm font-medium text-gray-700">Location</th>
+    <th className="px-6 py-4 w-1/12 text-sm font-medium text-gray-700">Score</th>
+    <th className="px-6 py-4 w-1/12 text-sm font-medium text-gray-700">Status</th>
+    <th className="px-6 py-4 w-1/12 text-sm font-medium text-gray-700">Action</th>
+  </tr>
+</thead>
             <tbody>
               {leads?.map((lead) => (
                 <tr
@@ -268,7 +254,7 @@ const Leads = () => {
                       {lead.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 ">
                     <button className="w-8 lg:w-10 lg:h-10 h-8 rounded-full flex items-center justify-center  text-[#7bcd08] transition-colors">
                       <CiClock1 />
                     </button>

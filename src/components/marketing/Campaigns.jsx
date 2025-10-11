@@ -141,27 +141,28 @@ const Campaigns = () => {
       </div>
 
       <div className="overflow-x-auto h-[527px]">
-        <table className="w-full lg:table-fixed">
-          <thead className="">
-            <tr className="border bg-gray-100 border-gray-200">
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
+        <table className="w-full lg:table-auto">
+          <thead className="sticky top-0 bg-gray-100 z-10">
+            <tr className="border border-gray-200">
+              <th className="px-4 py-3 w-1/4 text-left text-sm font-medium text-gray-600">
                 Campaign Name
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
-                Campaign Types
+              <th className="px-4 py-3 w-1/4 text-left text-sm font-medium text-gray-600">
+                Campaign Type
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
-                Leads Generated
+              <th className="px-4 py-3 w-1/6 text-left text-sm font-medium text-gray-600">
+                Leads
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
+              <th className="px-4 py-3 w-1/6 text-left text-sm font-medium text-gray-600">
                 ROI
               </th>
-              <th className="px-4 py-3 text-right text-sm font-medium text-gray-600">
+              <th className="px-4 py-3 w-1/6 text-right text-sm font-medium text-gray-600">
                 ACTIONS
               </th>
             </tr>
           </thead>
-          <tbody>
+
+          <tbody className="">
             {campaigns?.map((campaign) => (
               <tr key={campaign.id} className="border border-gray-200">
                 <td className="px-4 py-6 text-[16px] font-semibold text-gray-900">
