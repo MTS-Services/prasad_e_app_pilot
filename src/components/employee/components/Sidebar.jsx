@@ -1,23 +1,30 @@
 import React from "react";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { HiMenuAlt3 } from "react-icons/hi";
 import {
   LayoutDashboard,
   User,
   ShoppingCart,
   CreditCard,
   Headphones,
+  MessageCircle,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+const Sidebar = ({
+  sidebarOpen,
+  setSidebarOpen,
+  activeSection,
+  setActiveSection,
+}) => {
+  const { t } = useTranslation();
 
-const Sidebar = ({ sidebarOpen, setSidebarOpen, activeSection, setActiveSection }) => {
-    const { t } = useTranslation();
   const menuItems = [
-    { id: "dashboard", label: t('sidebar.employee.dashboard'), icon: LayoutDashboard },
-    { id: "customer", label: t('sidebar.employee.customer'), icon: User },
-    { id: "orders", label: t('sidebar.employee.orders'), icon: ShoppingCart },
-    { id: "payments", label: t('sidebar.employee.payments'), icon: CreditCard },
-    { id: "support", label: t('sidebar.employee.support'), icon: Headphones },
+    { id: "dashboard", label: t("sidebar.employee.dashboard"), icon: LayoutDashboard },
+    { id: "customer", label: t("sidebar.employee.customer"), icon: User },
+    { id: "orders", label: t("sidebar.employee.orders"), icon: ShoppingCart },
+    { id: "payments", label: t("sidebar.employee.payments"), icon: CreditCard },
+    { id: "support", label: t("sidebar.employee.support"), icon: Headphones },
+    { id: "message", label:"Message", icon:MessageCircle },
   ];
 
   return (
@@ -41,9 +48,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, activeSection, setActiveSection 
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex flex-col h-full">
-          
-          {/* Menu Items */}
-          <nav className="flex-1 px-3 py-4 overflow-y-auto ">
+          <nav className="flex-1 px-3 py-4 overflow-y-auto">
             {menuItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeSection === item.id;
@@ -56,16 +61,27 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, activeSection, setActiveSection 
                     setActiveSection(item.id);
                     setSidebarOpen(false);
                   }}
-                  className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg mb-1 transition-all duration-200 ${
-                    isActive
-                      ? "bg-white  border-l-4 border-green-600 font-semibold shadow-sm"
-                      : "text-black hover:bg-gray-50"
-                  }`}
+                  className={`group relative w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg mb-1 border-l-4 overflow-hidden
+                    transition-all duration-300 ease-in-out
+                    ${
+                      isActive
+                        ? "bg-white border-[#28A844] text-[#28A844] font-semibold shadow-sm"
+                        : "border-transparent text-gray-700 hover:bg-gray-50 hover:text-[#28A844]"
+                    }`}
                 >
+                  {/* Animated left border */}
+                  {isActive && (
+                    <span className="absolute left-0 top-0 h-full w-1 bg-[#28A844] animate-[slideIn_0.3s_ease-in-out]" />
+                  )}
+
                   <Icon
-                    className={`w-5 h-5 ${isActive ? "text-green-600" : "text-gray-500"}`}
+                    className={`w-5 h-5 transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#28A844]"
+                        : "text-gray-500 group-hover:text-[#28A844]"
+                    }`}
                   />
-                  <span>{item.label}</span>
+                  <span className="truncate">{item.label}</span>
                 </button>
               );
             })}
@@ -80,6 +96,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, activeSection, setActiveSection 
           onClick={() => setSidebarOpen(false)}
         />
       )}
+
+      {/* Custom animation keyframes */}
+      <style>
+        {`
+          @keyframes slideIn {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+          }
+        `}
+      </style>
     </>
   );
 };

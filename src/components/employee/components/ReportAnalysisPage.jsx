@@ -1,3 +1,4 @@
+
 import { useEffect, useMemo, useState } from "react";
 import { TrendingUp, ShoppingCart, Clock, CreditCard } from "lucide-react";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
@@ -87,7 +88,7 @@ const ReportAnalysisPage = () => {
 
       setSummary(data.summary || {});
       setCustomers(data.customers || []);
-      setActivities(data.customers || []); // Assume activities come from customer dates
+      setActivities(data.customers || []); // Using customer date for activities
     } catch (error) {
       console.error("Error fetching report data:", error.message);
     } finally {
@@ -145,10 +146,11 @@ const ReportAnalysisPage = () => {
     return matchesCustomerType && matchesServiceCategory;
   });
 
-  // Filter activities by period
+  // Filter activities by period (last N days)
   const filteredActivities = useMemo(() => {
     const now = new Date();
     let days = 30;
+
     switch (selectedPeriod) {
       case "last7days":
         days = 7;
@@ -171,9 +173,22 @@ const ReportAnalysisPage = () => {
     }
 
     return activities.filter((a) => {
-      const activityDate = new Date(a.date);
-      const diff = (now - activityDate) / (1000 * 60 * 60 * 24);
-      return diff <= days;
+      if (!a.date) return false;
+
+      // Support both YYYY-MM-DD and DD/MM/YYYY formats
+      let activityDate = new Date(a.date);
+      if (isNaN(activityDate)) {
+        // Try DD/MM/YYYY
+        const parts = a.date.split("/");
+        if (parts.length === 3) {
+          activityDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+        }
+      }
+
+      if (isNaN(activityDate)) return false;
+
+      const diffDays = (now - activityDate) / (1000 * 60 * 60 * 24);
+      return diffDays <= days;
     });
   }, [activities, selectedPeriod]);
 

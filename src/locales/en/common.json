@@ -27,7 +27,7 @@
     },
     "employee": {
       "title": {
-        "dashPageTitle": "Empoloyee Dashboard Overview",
+        "dashPageTitle": " Dashboard Overview",
         "customPageTitle": "Customer Management",
         "orderPageTitle": "Orders Management",
         "paymentPageTitle": "Payment Management",
