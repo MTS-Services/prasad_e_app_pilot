@@ -1,12 +1,84 @@
+import React, { useState, useRef, useEffect } from 'react';
 import { CiClock1 } from "react-icons/ci";
 import map from "../../LandingPageUI/images/Map.svg";
 import { FaCircle } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import { MapPin, Users } from 'lucide-react';
+import { MapPin, Users, ChevronDown } from 'lucide-react';
 
+// LeadsDropdown Component
+const LeadsDropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState('all');
+  const dropdownRef = useRef(null);
 
+  const options = [
+    { value: 'all', label: 'All lead' },
+    { value: 'hot', label: 'Hot' },
+    { value: 'warm', label: 'Warm' },
+    { value: 'cool', label: 'Cool' }
+  ];
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSelect = (value) => {
+    setSelected(value);
+    setIsOpen(false);
+  };
+
+  const getSelectedLabel = () => {
+    return options.find(opt => opt.value === selected)?.label || 'All lead';
+  };
+
+  return (
+    <div className="relative inline-block" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="lg:px-4 lg:py-2 px-3 py-1.5 border pr-8 border-gray-300 rounded-lg text-sm lg:text-lg text-black bg-white leading-tight flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors min-w-[120px]"
+      >
+        <span>{getSelectedLabel()}</span>
+        <ChevronDown 
+          className={`w-4 h-4 ml-2 transition-transform duration-200 ${
+            isOpen ? 'rotate-180' : ''
+          }`}
+        />
+      </button>
+
+      {isOpen && (
+        <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+          {options.map((option) => (
+            <button
+              key={option.value}
+              onClick={() => handleSelect(option.value)}
+              className={`w-full px-4 py-2.5 text-left text-sm lg:text-lg transition-colors ${
+                selected === option.value
+                  ? 'bg-lime-300 text-gray-900'
+                  : 'text-gray-700 hover:bg-lime-300'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Main Leads Component
 const Leads = () => {
-  const leads = [
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
+  const allLeads = [
     {
       id: 1,
       company: "Agritech Solutions",
@@ -47,7 +119,32 @@ const Leads = () => {
       score: 85,
       status: "Hot",
     },
+    {
+      id: 5,
+      company: "Tech Innovations",
+      email: "Sarah@techinno.com",
+      phone: "(225) 555-0119",
+      source: "Social Media",
+      location: "Mumbai, India",
+      score: 88,
+      status: "Hot",
+    },
+    {
+      id: 6,
+      company: "Green Energy Co",
+      email: "Mike@greenenergy.com",
+      phone: "(225) 555-0120",
+      source: "Referral",
+      location: "Delhi, India",
+      score: 72,
+      status: "Warm",
+    },
   ];
+
+  const totalPages = Math.ceil(allLeads.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const leads = allLeads.slice(startIndex, endIndex);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -67,10 +164,12 @@ const Leads = () => {
     if (score >= 70) return "text-yellow-600";
     return "text-green-600";
   };
-    const locations = [
+
+  const locations = [
     'Gujrat', 'Chennai', 'Lucknow', 'Hydrabad',
     'Mumbai', 'Rajhasthan', 'Delhi'
   ];
+
   return (
     <div className="">
       <div className="bg-white rounded-xl shadow-sm border border-gray-100">
@@ -84,13 +183,10 @@ const Leads = () => {
                 Track and nurture your marketing leads
               </p>
             </div>
-            <div className="flex flex-wrap py-3 lg:flex-row gap-3">
-              <select className=" lg:px-4 lg:py-2 border border-gray-300 rounded-lg text-sm lg:text-lg text-black bg-transparent">
-                <option>All lead</option>
-                <option>Hot</option>
-                <option>Warm</option>
-                <option>Cool</option>
-              </select>
+            <div className="flex flex-wrap py-3 items-center lg:flex-row gap-3">
+              {/* leadsDropdown */}
+              <LeadsDropdown />
+              {/* leadsDropDown ends here */}
               <button className="lg:btn-md xl:btn-lg btn-xs btn bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium shadow-none border-none ">
                 Export Leads
               </button>
@@ -130,7 +226,7 @@ const Leads = () => {
               </tr>
             </thead>
             <tbody>
-              {leads.map((lead) => (
+              {leads?.map((lead) => (
                 <tr
                   key={lead.id}
                   className="border-b border-gray-200 hover:bg-gray-50 transition-colors"
@@ -142,7 +238,7 @@ const Leads = () => {
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-sm">
-                      <div className="text-gray-900  text-[16px]">{lead.email}</div>
+                      <div className="text-gray-900 text-[16px]">{lead.email}</div>
                       <div className="text-gray-500 text-[16px]">{lead.phone}</div>
                     </div>
                   </td>
@@ -185,12 +281,30 @@ const Leads = () => {
 
         {/* Pagination */}
         <div className="px-6 py-4 flex items-center justify-between border-t border-gray-100">
-          <p className="text-sm text-gray-600">Showing 1 to 4 of 4 results</p>
+          <p className="text-sm text-gray-600">
+            Showing {startIndex + 1} to {Math.min(endIndex, allLeads.length)} of {allLeads.length} results
+          </p>
           <div className="flex gap-2">
-            <button className="px-4 py-2 border border-gray-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 border border-gray-300 rounded-xl text-sm font-medium transition-colors ${
+                currentPage === 1
+                  ? 'text-gray-400 cursor-not-allowed'
+                  : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
               Previous
             </button>
-            <button className="px-4 py-2 border border-gray-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+            <button
+              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 border border-gray-300 rounded-xl text-sm font-medium transition-colors ${
+                currentPage === totalPages
+                  ? 'text-gray-400 cursor-not-allowed'
+                  : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
               Next
             </button>
           </div>
