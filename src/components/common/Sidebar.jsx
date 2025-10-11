@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import {
   LayoutDashboard,
@@ -13,55 +14,65 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 
-const Sidebar = ({
-  sidebarOpen,
-  setSidebarOpen,
-  activeSection,
-  setActiveSection,
-}) => {
+const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
     {
       id: 'dashboard',
       label: t('navigation.dashboard'),
       icon: LayoutDashboard,
+      path: '', // This will be the index route
     },
     {
       id: 'drone-operators',
       label: t('sidebar.admin.droneOperator'),
       icon: Plane,
+      path: 'drone-operators',
     },
     {
-      id: 'user-management',
+      id: 'users',
       label: t('sidebar.admin.userManagement'),
       icon: Users,
+      path: 'users',
     },
     {
-      id: 'employee-management',
+      id: 'employees',
       label: t('sidebar.admin.employeeManagement'),
       icon: UserCheck,
+      path: 'employees',
     },
     {
-      id: 'field-agent',
+      id: 'field-agents',
       label: t('sidebar.admin.fieldAgent'),
       icon: MapPin,
+      path: 'field-agents',
     },
-    { id: 'jobs', label: t('sidebar.admin.jobs'), icon: Briefcase },
     {
-      id: 'payments-management',
+      id: 'jobs',
+      label: t('sidebar.admin.jobs'),
+      icon: Briefcase,
+      path: 'jobs',
+    },
+    {
+      id: 'payments',
       label: t('sidebar.admin.paymentsManagement'),
       icon: CreditCard,
+      path: 'payments',
     },
     {
       id: 'reports',
       label: t('sidebar.admin.reports'),
       icon: BarChart3,
+      path: 'reports',
     },
     {
       id: 'complaints',
       label: t('sidebar.admin.complaints'),
       icon: AlertTriangle,
+      path: 'complaints',
     },
   ];
 
@@ -90,14 +101,18 @@ const Sidebar = ({
           <nav className='flex-1 px-3 py-4 overflow-y-auto'>
             {menuItems.map((item) => {
               const Icon = item.icon;
-              const isActive = activeSection === item.id;
+              const pathSegments = location.pathname.split('/').filter(Boolean);
+              const currentPath = pathSegments[pathSegments.length - 1] || '';
+              const isActive =
+                (item.path === '' && pathSegments.length === 1) || // Dashboard index route
+                currentPath === item.path;
 
               return (
                 <button
                   key={item.id}
                   type='button'
                   onClick={() => {
-                    setActiveSection(item.id);
+                    navigate(item.path);
                     setSidebarOpen(false);
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg mb-1 transition-all duration-200 ${

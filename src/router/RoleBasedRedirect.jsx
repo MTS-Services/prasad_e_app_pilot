@@ -18,14 +18,14 @@ export const RoleBasedRedirect = () => {
   }
 
   // Redirect based on user role
-  switch (user.role?.toUpperCase()) {
-    case 'ADMIN':
+  switch (user.role?.toLowerCase()) {
+    case 'admin':
       return <Navigate to='/admin' replace />;
-    case 'EMPLOYEE':
+    case 'employee':
       return <Navigate to='/employee' replace />;
-    case 'FIELD_AGENT':
+    case 'field_agent':
       return <Navigate to='/field-agent' replace />;
-    case 'MARKETING':
+    case 'marketing':
       return <Navigate to='/marketing' replace />;
     default:
       // If role is not recognized, redirect to unauthorized page

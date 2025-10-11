@@ -7,27 +7,27 @@ import NotAuthorizedPage from '../pages/NotAuthorizedPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 // Dashboard Components
-import AdminDashboard from '../components/dashboards/AdminDashboard';
-import EmployeeDashboard from '../components/dashboards/EmployeeDashboard';
-import FieldAgentDashboard from '../components/dashboards/FieldAgentDashboard';
-import MarketingDashboard from '../components/dashboards/MarketingDashboard';
+import AdminDashboard from '../components/admin/components/AdminDashboard';
+import EmployeeDashboard from '../components/employee/EmployeeDashboard';
+import FieldAgentDashboard from '../components/fieldAgent/FieldAgentDashboard';
+import MarketingDashboard from '../components/marketing/MarketingDashboard';
 
 // Admin Components
 import Complaints from '../components/admin/components/Complaints';
-import DroneOperators from '../components/admin/components/DroneOperators';
-import Employees from '../components/admin/components/Employees';
-import FieldAgents from '../components/admin/components/FieldAgents';
+import DroneOperator from '../components/admin/components/DroneOperator';
+import EmployeeManagement from '../components/admin/components/EmployeeManagement';
+import FieldAgent from '../components/admin/components/FieldAgent';
 import Jobs from '../components/admin/components/Jobs';
-import Payments from '../components/admin/components/Payments';
+import PaymentsManagement from '../components/admin/components/PaymentsManagement';
 import Reports from '../components/admin/components/Reports';
-import Users from '../components/admin/components/Users';
+import UserManagement from '../components/admin/components/UserManagement';
 
 // Employee Components
-import EmployeeProfile from '../components/employee/Profile';
+import Profile from '../components/employee/Profile';
 import EmployeeReports from '../components/employee/Reports';
-import EmployeeSchedule from '../components/employee/Schedule';
-import EmployeeTraining from '../components/employee/Training';
-import EmployeeMessages from '../components/employee/Messages';
+import Schedule from '../components/employee/Schedule';
+import Training from '../components/employee/Training';
+import Messages from '../components/employee/Messages';
 import MyTasks from '../components/employee/MyTasks';
 
 // Field Agent Components
@@ -97,15 +97,15 @@ const AppRoutes = createBrowserRouter([
       },
       {
         path: 'drone-operators',
-        element: <DroneOperators />,
+        element: <DroneOperator />,
       },
       {
         path: 'employees',
-        element: <Employees />,
+        element: <EmployeeManagement />,
       },
       {
         path: 'field-agents',
-        element: <FieldAgents />,
+        element: <FieldAgent />,
       },
       {
         path: 'jobs',
@@ -113,7 +113,7 @@ const AppRoutes = createBrowserRouter([
       },
       {
         path: 'payments',
-        element: <Payments />,
+        element: <PaymentsManagement />,
       },
       {
         path: 'reports',
@@ -121,7 +121,7 @@ const AppRoutes = createBrowserRouter([
       },
       {
         path: 'users',
-        element: <Users />,
+        element: <UserManagement />,
       },
     ],
   },
@@ -139,7 +139,7 @@ const AppRoutes = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <EmployeeProfile />,
+        element: <Profile />,
       },
       {
         path: 'reports',
@@ -147,15 +147,15 @@ const AppRoutes = createBrowserRouter([
       },
       {
         path: 'schedule',
-        element: <EmployeeSchedule />,
+        element: <Schedule />,
       },
       {
         path: 'training',
-        element: <EmployeeTraining />,
+        element: <Training />,
       },
       {
         path: 'messages',
-        element: <EmployeeMessages />,
+        element: <Messages />,
       },
       {
         path: 'tasks',

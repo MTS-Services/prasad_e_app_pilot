@@ -23,7 +23,7 @@ class DashboardService {
 
     // For development, use mock data
     this.isDevelopment = import.meta.env.DEV;
-    this.mockDataUrl = '/data/mockData.json';
+    this.mockDataUrl = '/admin/data/dashboardData.json';
   }
 
   /**
@@ -286,7 +286,7 @@ class DashboardService {
    */
   async getDashboardData(filters = {}) {
     const response = await this._fetchData(this.endpoints.dashboard, filters);
-    return this.isDevelopment ? response.data.dashboard : response.data;
+    return this.isDevelopment ? response.data : response.data;
   }
 
   /**

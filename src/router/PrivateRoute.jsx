@@ -43,3 +43,20 @@ export const RoleBasedRoute = ({ children, role }) => {
 
   return children;
 };
+
+// Specific role-based routes
+export const PrivateAdminRoute = ({ children }) => {
+  return <RoleBasedRoute role='admin'>{children}</RoleBasedRoute>;
+};
+
+export const PrivateEmployeeRoute = ({ children }) => {
+  return <RoleBasedRoute role='employee'>{children}</RoleBasedRoute>;
+};
+
+export const PrivateFieldAgentRoute = ({ children }) => {
+  return <RoleBasedRoute role='field_agent'>{children}</RoleBasedRoute>;
+};
+
+export const PrivateMarketingRoute = ({ children }) => {
+  return <RoleBasedRoute role='marketing'>{children}</RoleBasedRoute>;
+};
