@@ -1,16 +1,22 @@
+
+
+
 import React, { useState, useEffect, useMemo } from 'react';
-import { TrendingUp, TrendingDown, Plus, Eye } from 'lucide-react';
+import { TrendingUp, TrendingDown, Plus } from 'lucide-react';
 import { GrUserSettings } from 'react-icons/gr';
+import { CiSearch } from 'react-icons/ci';
+import { BiChevronDown } from 'react-icons/bi';
 import CreateTicketModal from './components/Modal/CreateTicketModal';
 import EscalateTicketModal from './components/Modal/EscalateTicketModal';
 import ApiService from '../../services/apiService';
-import { CiSearch } from "react-icons/ci";
 
 const ITEMS_PER_PAGE = 4;
 
 const SupportPage = () => {
     const [showCreate, setShowCreate] = useState(false);
     const [showEscalate, setShowEscalate] = useState(false);
+    const [showManageModal, setShowManageModal] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null);
 
     const [stats, setStats] = useState([]);
     const [supportData, setSupportData] = useState([]);
@@ -31,7 +37,7 @@ const SupportPage = () => {
         fetchData();
     }, []);
 
-    //  Filter data based on search
+    // Filter data based on search
     const filteredData = useMemo(() => {
         if (!searchQuery.trim()) return supportData;
         return supportData.filter(
@@ -41,7 +47,7 @@ const SupportPage = () => {
         );
     }, [supportData, searchQuery]);
 
-    //  Pagination logic
+    // Pagination logic
     const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
     const paginatedData = useMemo(() => {
         const start = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -60,6 +66,15 @@ const SupportPage = () => {
     const handleSearch = (e) => {
         setSearchQuery(e.target.value);
         setCurrentPage(1);
+    };
+
+    const toggleDropdown = (index) => {
+        setActiveDropdown(activeDropdown === index ? null : index);
+    };
+
+    const handleManageTicket = () => {
+        setShowManageModal(true);
+        setActiveDropdown(null);
     };
 
     return (
@@ -98,8 +113,7 @@ const SupportPage = () => {
                     return (
                         <div
                             key={index}
-                            className={`bg-white p-3 md:p-4 rounded-lg  ${stat.label === 'Open Tickets' ? '' : ''
-                                }`}
+                            className={`bg-white p-3 md:p-4 rounded-lg`}
                         >
                             <div className="flex items-start justify-between mb-2 md:mb-3">
                                 <span className="text-gray-600 text-xs md:text-sm">{stat.label}</span>
@@ -110,10 +124,10 @@ const SupportPage = () => {
                             {bottomContent && (
                                 <div
                                     className={`text-xs md:text-sm flex items-center gap-1 ${stat.change
-                                            ? stat.trend === 'up'
-                                                ? 'text-green-600'
-                                                : 'text-red-600'
-                                            : 'text-gray-500'
+                                        ? stat.trend === 'up'
+                                            ? 'text-green-600'
+                                            : 'text-red-600'
+                                        : 'text-gray-500'
                                         }`}
                                 >
                                     {stat.change && stat.trend === 'up' && <TrendingUp className="w-4 h-4" />}
@@ -125,6 +139,7 @@ const SupportPage = () => {
                     );
                 })}
             </div>
+
             {/* Table */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200">
                 <div className="p-4 md:p-6 border-b border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -159,7 +174,7 @@ const SupportPage = () => {
                         <tbody className="divide-y divide-gray-200">
                             {paginatedData.length > 0 ? (
                                 paginatedData.map((item, index) => (
-                                    <tr key={index} className="hover:bg-gray-50">
+                                    <tr key={index} className="hover:bg-gray-50 relative">
                                         <td className="px-3 md:px-6 py-4">
                                             <div className="font-medium text-gray-900 text-sm md:text-base">{item.serviceName}</div>
                                             <div className="text-xs md:text-sm text-gray-500">{item.name}</div>
@@ -190,10 +205,41 @@ const SupportPage = () => {
                                                 <span className="text-green-600 font-medium">Low</span>
                                             )}
                                         </td>
-                                        <td className="px-3 md:px-6 py-4 text-xs md:text-sm whitespace-nowrap">
-                                            <button className="text-blue-600 hover:underline">
-                                                <Eye />
-                                            </button>
+                                        {/* Action Dropdown */}
+                                        <td className="px-3 md:px-6 py-4 text-xs md:text-sm whitespace-nowrap relative">
+                                            <div className="relative inline-block">
+                                                {/* Action Button */}
+                                                <button
+                                                    onClick={() => toggleDropdown(index)}
+                                                    className={`flex items-center gap-1 border border-gray-300 px-2 py-1 rounded transition-colors duration-200 ${activeDropdown === index ? 'bg-green-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
+                                                        }`}
+                                                >
+                                                    {activeDropdown === index ? (
+                                                        <BiChevronDown className="rotate-180 transition-transform duration-200" />
+                                                    ) : (
+                                                        <BiChevronDown className="transition-transform duration-200" />
+                                                    )}
+                                                    Action
+                                                </button>
+
+                                                {/* Dropdown Menu */}
+                                                <div
+                                                    className={`absolute right-0 top-full mt-1 w-44 bg-white border border-gray-200 rounded shadow-md z-50 overflow-hidden transform transition-all duration-200 ease-in-out ${activeDropdown === index ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                                                >
+                                                    <button
+                                                        onClick={handleManageTicket}
+                                                        className="block w-full text-left px-4 py-2 text-gray-700 text-sm hover:bg-green-600 hover:text-white transition-colors"
+                                                    >
+                                                        Manage Ticket
+                                                    </button>
+                                                    <button
+                                                        onClick={handleManageTicket}
+                                                        className="block w-full text-left px-4 py-2 text-gray-700 text-sm hover:bg-green-600 hover:text-white transition-colors"
+                                                    >
+                                                        Escalate Ticket
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))
@@ -237,6 +283,9 @@ const SupportPage = () => {
             </div>
             <CreateTicketModal isOpen={showCreate} onClose={() => setShowCreate(false)} />
             <EscalateTicketModal isOpen={showEscalate} onClose={() => setShowEscalate(false)} />
+            {showManageModal && (
+                <CreateTicketModal isOpen={showManageModal} onClose={() => setShowManageModal(false)} />
+            )}
         </div>
     );
 };
