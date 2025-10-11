@@ -155,7 +155,7 @@ const EmployeeDashboard = () => {
 
       />
       <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">
-        <div className="lg:hidden h-20"></div>
+        
         <main className="flex-1 overflow-x-hidden overflow-y bg-gray-100">
 
          <div className='min-h-full'>{renderContent()}</div>
