@@ -1,21 +1,22 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 import { CiClock1 } from "react-icons/ci";
-import map from "../../LandingPageUI/images/Map.svg";
+// import map from "../../LandingPageUI/images/Map.svg";
 import { FaCircle } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import { MapPin, Users, ChevronDown } from 'lucide-react';
+import { MapPin, Users, ChevronDown } from "lucide-react";
+import MapChart from "./MapChart";
 
 // LeadsDropdown Component
 const LeadsDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState('all');
+  const [selected, setSelected] = useState("all");
   const dropdownRef = useRef(null);
 
   const options = [
-    { value: 'all', label: 'All lead' },
-    { value: 'hot', label: 'Hot' },
-    { value: 'warm', label: 'Warm' },
-    { value: 'cool', label: 'Cool' }
+    { value: "all", label: "All lead" },
+    { value: "hot", label: "Hot" },
+    { value: "warm", label: "Warm" },
+    { value: "cool", label: "Cool" },
   ];
 
   useEffect(() => {
@@ -25,8 +26,8 @@ const LeadsDropdown = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSelect = (value) => {
@@ -35,7 +36,7 @@ const LeadsDropdown = () => {
   };
 
   const getSelectedLabel = () => {
-    return options.find(opt => opt.value === selected)?.label || 'All lead';
+    return options.find((opt) => opt.value === selected)?.label || "All lead";
   };
 
   return (
@@ -45,9 +46,9 @@ const LeadsDropdown = () => {
         className="lg:px-4 lg:py-2 px-3 py-1.5 border pr-8 border-gray-300 rounded-lg text-sm lg:text-lg text-black bg-white leading-tight flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors min-w-[120px]"
       >
         <span>{getSelectedLabel()}</span>
-        <ChevronDown 
+        <ChevronDown
           className={`w-4 h-4 ml-2 transition-transform duration-200 ${
-            isOpen ? 'rotate-180' : ''
+            isOpen ? "rotate-180" : ""
           }`}
         />
       </button>
@@ -60,8 +61,8 @@ const LeadsDropdown = () => {
               onClick={() => handleSelect(option.value)}
               className={`w-full px-4 py-2.5 text-left text-sm lg:text-lg transition-colors ${
                 selected === option.value
-                  ? 'bg-lime-300 text-gray-900'
-                  : 'text-gray-700 hover:bg-lime-300'
+                  ? "bg-lime-300 text-gray-900"
+                  : "text-gray-700 hover:bg-lime-300"
               }`}
             >
               {option.label}
@@ -166,8 +167,13 @@ const Leads = () => {
   };
 
   const locations = [
-    'Gujrat', 'Chennai', 'Lucknow', 'Hydrabad',
-    'Mumbai', 'Rajhasthan', 'Delhi'
+    "Gujrat",
+    "Chennai",
+    "Lucknow",
+    "Hydrabad",
+    "Mumbai",
+    "Rajhasthan",
+    "Delhi",
   ];
 
   return (
@@ -201,16 +207,30 @@ const Leads = () => {
         <div className="overflow-x-auto">
           <table className="w-full lg:table-fixed">
             <thead className="sticky top-0 bg-gray-100 z-10">
-  <tr className="text-left">
-    <th className="px-6 py-4 w-1/5 text-sm font-medium text-gray-700">Lead</th>
-    <th className="px-6 py-4 w-1/5 text-sm font-medium text-gray-700">Contact</th>
-    <th className="px-6 py-4 w-1/6 text-sm font-medium text-gray-700">Source</th>
-    <th className="px-6 py-4 w-1/6 text-sm font-medium text-gray-700">Location</th>
-    <th className="px-6 py-4 w-1/12 text-sm font-medium text-gray-700">Score</th>
-    <th className="px-6 py-4 w-1/12 text-sm font-medium text-gray-700">Status</th>
-    <th className="px-6 py-4 w-1/12 text-sm font-medium text-gray-700">Action</th>
-  </tr>
-</thead>
+              <tr className="text-left">
+                <th className="px-6 py-4 w-1/5 text-sm font-medium text-gray-700">
+                  Lead
+                </th>
+                <th className="px-6 py-4 w-1/5 text-sm font-medium text-gray-700">
+                  Contact
+                </th>
+                <th className="px-6 py-4 w-1/6 text-sm font-medium text-gray-700">
+                  Source
+                </th>
+                <th className="px-6 py-4 w-1/6 text-sm font-medium text-gray-700">
+                  Location
+                </th>
+                <th className="px-6 py-4 w-1/12 text-sm font-medium text-gray-700">
+                  Score
+                </th>
+                <th className="px-6 py-4 w-1/12 text-sm font-medium text-gray-700">
+                  Status
+                </th>
+                <th className="px-6 py-4 w-1/12 text-sm font-medium text-gray-700">
+                  Action
+                </th>
+              </tr>
+            </thead>
             <tbody>
               {leads?.map((lead) => (
                 <tr
@@ -224,12 +244,18 @@ const Leads = () => {
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-sm">
-                      <div className="text-gray-900 text-[16px]">{lead.email}</div>
-                      <div className="text-gray-500 text-[16px]">{lead.phone}</div>
+                      <div className="text-gray-900 text-[16px]">
+                        {lead.email}
+                      </div>
+                      <div className="text-gray-500 text-[16px]">
+                        {lead.phone}
+                      </div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-gray-900 text-[16px]">{lead.source}</span>
+                    <span className="text-sm text-gray-900 text-[16px]">
+                      {lead.source}
+                    </span>
                   </td>
                   <td className="px-6 py-4">
                     <span className="text-sm text-gray-900 text-[16px]">
@@ -268,7 +294,8 @@ const Leads = () => {
         {/* Pagination */}
         <div className="px-6 py-4 flex items-center justify-between border-t border-gray-100">
           <p className="text-sm text-gray-600">
-            Showing {startIndex + 1} to {Math.min(endIndex, allLeads.length)} of {allLeads.length} results
+            Showing {startIndex + 1} to {Math.min(endIndex, allLeads.length)} of{" "}
+            {allLeads.length} results
           </p>
           <div className="flex gap-2">
             <button
@@ -276,19 +303,21 @@ const Leads = () => {
               disabled={currentPage === 1}
               className={`px-4 py-2 border border-gray-300 rounded-xl text-sm font-medium transition-colors ${
                 currentPage === 1
-                  ? 'text-gray-400 cursor-not-allowed'
-                  : 'text-gray-700 hover:bg-gray-50'
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-gray-700 hover:bg-gray-50"
               }`}
             >
               Previous
             </button>
             <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              onClick={() =>
+                setCurrentPage(Math.min(totalPages, currentPage + 1))
+              }
               disabled={currentPage === totalPages}
               className={`px-4 py-2 border border-gray-300 rounded-xl text-sm font-medium transition-colors ${
                 currentPage === totalPages
-                  ? 'text-gray-400 cursor-not-allowed'
-                  : 'text-gray-700 hover:bg-gray-50'
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-gray-700 hover:bg-gray-50"
               }`}
             >
               Next
@@ -297,13 +326,11 @@ const Leads = () => {
         </div>
       </div>
 
-     <div className="grid lg:grid-cols-2 gap-6 mt-5">
+      <div className="grid lg:grid-cols-2 gap-6 mt-5">
         {/* Heatmap Card */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h1 className="font-semibold text-2xl text-gray-900 mb-4">
-            Heatmap
-          </h1>
-          
+          <h1 className="font-semibold text-2xl text-gray-900 mb-4">Heatmap</h1>
+
           <div className="flex gap-6 mb-6">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -321,7 +348,7 @@ const Leads = () => {
 
           {/* India Map SVG */}
           <div className="w-full h-auto flex items-center justify-center">
-            <img src={map} alt="" />
+            <MapChart/>
           </div>
         </div>
 
@@ -330,7 +357,7 @@ const Leads = () => {
           <h1 className="font-semibold text-3xl text-gray-900 mb-6">
             Targeted Audience
           </h1>
-          
+
           {/* Location Section */}
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
@@ -368,7 +395,9 @@ const Leads = () => {
           {/* Audience Type Section */}
           <div>
             <h3 className=" text-gray-600 mb-2 font-medium">Audience Type</h3>
-            <p className="text-gray-600 font-medium text-2xl">Real estate developers & investor</p>
+            <p className="text-gray-600 font-medium text-2xl">
+              Real estate developers & investor
+            </p>
           </div>
         </div>
       </div>
