@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const Campaigns = () => {
   const [seasonalPage, setSeasonalPage] = useState(1);
@@ -113,6 +113,17 @@ const Campaigns = () => {
   );
   const paginatedLoyaltyCampaigns = paginateData(loyaltyCampaigns, loyaltyPage);
 
+  // Ref for the second table
+  const loyaltyTableRef = useRef(null);
+
+  // Handler for loyalty table pagination
+  const handleLoyaltyPageChange = (newPage) => {
+    setLoyaltyPage(newPage);
+    setTimeout(() => {
+      loyaltyTableRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 0);
+  };
+
   const CampaignTable = ({
     title,
     campaigns,
@@ -211,8 +222,8 @@ const Campaigns = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 w-full">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen w-full">
+      <div className="w-full  py-6">
         {/* Seasonal Campaign Table */}
         <CampaignTable
           title="Seasonal Campaign Overview"
@@ -224,14 +235,16 @@ const Campaigns = () => {
         />
 
         {/* Loyalty Campaign Table */}
-        <CampaignTable
-          title="Loyalty Campaign Overview"
-          campaigns={paginatedLoyaltyCampaigns}
-          currentPage={loyaltyPage}
-          setCurrentPage={setLoyaltyPage}
-          totalPages={totalLoyaltyPages}
-          totalItems={loyaltyCampaigns.length}
-        />
+        <div ref={loyaltyTableRef}>
+          <CampaignTable
+            title="Loyalty Campaign Overview"
+            campaigns={paginatedLoyaltyCampaigns}
+            currentPage={loyaltyPage}
+            setCurrentPage={handleLoyaltyPageChange}
+            totalPages={totalLoyaltyPages}
+            totalItems={loyaltyCampaigns.length}
+          />
+        </div>
       </div>
     </div>
   );
